@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import ForthcomingPrograms from './components/ForthcomingPrograms';
 import Causes from './components/Causes';
 import ImpactStats from './components/ImpactStats';
 import MainContent from './components/MainContent';
@@ -21,6 +22,7 @@ export default function App() {
       
       <main className="flex-grow">
         <Hero />
+        <ForthcomingPrograms />
         <Causes />
         <ImpactStats />
         
