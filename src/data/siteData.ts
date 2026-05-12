@@ -1,3 +1,7 @@
+import policyImg from '../assets/WhatsApp Image 2026-05-10 at 6.46.14 PM (1).jpeg';
+import ruralImg from '../assets/WhatsApp Image 2026-05-10 at 6.46.13 PM.jpeg';
+import heritageImg from '../assets/WhatsApp Image 2026-05-10 at 6.46.12 PM.jpeg';
+
 export const NAV_MAIN = [
   "ABOUT US", "ADMISSIONS", "ACADEMICS", "Vedic Studies", "RESEARCH", "GURUKULAMS", "PUBLICATIONS", "CAMPUS LIFE", "RESOURCES", "ANNOUNCEMENTS"
 ];
@@ -26,12 +30,12 @@ export const EDUCATION_ITEMS = [
 export const PUBLICATIONS = [
   { title: "Cultivating Intelligence", img: "https://images.unsplash.com/photo-1544923246-77307dd654ca?w=200&q=80" },
   { title: "Importance of Languages", img: "https://images.unsplash.com/photo-1582213713374-132d439f0469?w=200&q=80" },
-  { title: "Compendium of Vedic Studies", img: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=200&q=80" }
+  { title: "Compendium of Vedic Studies", img: heritageImg }
 ];
 
 export const POLICY_BRIEFS = [
-  { title: "Vedic Education Policy", img: "https://images.unsplash.com/photo-1577891913314-147ee24c1be1?w=200&q=80" },
-  { title: "Empowering Rural Schools", img: "https://images.unsplash.com/photo-1524069290683-0457abfe42c3?w=200&q=80" },
+  { title: "Vedic Education Policy", img: policyImg },
+  { title: "Empowering Rural Schools", img: ruralImg },
   { title: "Cultural Heritage Preservation", img: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=200&q=80" }
 ];
 
@@ -58,19 +62,19 @@ export const CORE_CAUSES = [
   {
     title: "Vedic Education",
     desc: "Reviving ancient wisdom for modern minds through structured Gurukulam programs.",
-    img: "https://images.unsplash.com/photo-1544923246-77307dd654ca?w=600&q=80",
+    img: policyImg,
     color: "bg-orange-600"
   },
   {
     title: "Cultural Heritage",
     desc: "Preserving and documenting the intangible heritage of Bharat for future generations.",
-    img: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&q=80",
+    img: heritageImg,
     color: "bg-blue-900"
   },
   {
     title: "Rural Welfare",
     desc: "Bringing sustainable development and education to the heart of rural India.",
-    img: "https://images.unsplash.com/photo-1524069290683-0457abfe42c3?w=600&q=80",
+    img: ruralImg,
     color: "bg-green-700"
   }
 ];

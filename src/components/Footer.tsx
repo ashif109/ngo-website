@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-[#1a1a1a] text-white pt-16 pb-8 mt-20 border-t-8 border-[#0055a5]">
       <div className="institutional-container">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* About Column */}
           <div className="md:col-span-1">
             <h4 className="text-lg font-serif font-bold mb-6 border-l-4 border-orange-500 pl-4">About Us</h4>
@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="md:col-span-2">
+          <div className="md:col-span-2 lg:col-span-2">
             <h4 className="text-lg font-serif font-bold mb-6 border-l-4 border-green-500 pl-4">Contact Details</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="flex gap-4">
@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-[11px] font-bold uppercase mb-1">Headquarters</p>
-                  <p className="text-[12px] text-gray-400">Haridwar, Uttarakhand<br />India - 249401</p>
+                  <p className="text-[12px] text-gray-400">F.No.1006 10th Floor BL-A, Om Shree Platinum Basai  Agra - 282001, Uttar Pradesh</p>
                 </div>
               </div>
               <div className="flex gap-4">
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-[11px] font-bold uppercase mb-1">Email Support</p>
-                  <p className="text-[12px] text-gray-400">info@triyambakam.org<br />support@triyambakam.org</p>
+                  <p className="text-[12px] text-gray-400"></p>
                 </div>
               </div>
             </div>
@@ -69,13 +69,9 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 pt-8 mt-12 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+        <div className="border-t border-gray-800 pt-8 mt-12 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
           <p>© 2026 Triyambakam Gurukulam Association. All rights reserved.</p>
-          <div className="flex gap-8">
-            <span className="hover:text-white cursor-pointer">Sitemap</span>
-            <span className="hover:text-white cursor-pointer">Accessibility</span>
-            <span className="hover:text-white cursor-pointer">Feedback</span>
-          </div>
+
         </div>
       </div>
     </footer>

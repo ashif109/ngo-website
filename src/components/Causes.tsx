@@ -6,7 +6,7 @@ const Causes: React.FC = () => {
   return (
     <section className="py-24 bg-white">
       <div className="institutional-container">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 text-orange-600 font-bold text-xs uppercase tracking-widest mb-4">
               <Heart size={16} fill="currentColor" /> Our Core Missions

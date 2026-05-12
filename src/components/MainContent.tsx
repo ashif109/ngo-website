@@ -39,15 +39,15 @@ const MainContent: React.FC = () => {
           ))}
         </div>
 
-        <div className="bg-orange-50 p-10 rounded-sm border border-orange-100 mt-12">
-           <div className="flex flex-col lg:flex-row items-center gap-10">
+        <div className="bg-orange-50 p-6 md:p-10 rounded-sm border border-orange-100 mt-12">
+           <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-10">
               <div className="flex-1 text-center lg:text-left">
                  <h3 className="text-2xl font-serif font-black text-orange-900 mb-3">Join the Vedic Digital Revolution</h3>
                  <p className="text-[14px] text-orange-800/80 leading-relaxed max-w-xl">
                     Explore our upcoming MOOC on 'Vedic AI Ethics' and be part of the future of intelligent tradition.
                  </p>
               </div>
-              <button className="px-10 py-4 bg-orange-600 text-white font-bold text-xs uppercase tracking-[0.2em] hover:bg-orange-700 transition-all shadow-lg rounded-sm whitespace-nowrap">
+              <button className="w-full lg:w-auto px-10 py-4 bg-orange-600 text-white font-bold text-xs uppercase tracking-[0.2em] hover:bg-orange-700 transition-all shadow-lg rounded-sm whitespace-nowrap">
                 Register Now
               </button>
            </div>
@@ -55,16 +55,16 @@ const MainContent: React.FC = () => {
       </section>
 
       {/* Foundation Message Section */}
-      <section className="bg-blue-900 text-white p-10 rounded-sm relative overflow-hidden">
+      <section className="bg-blue-900 text-white p-6 md:p-10 rounded-sm relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
-        <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
+        <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-10">
           <div className="flex-1">
             <h3 className="font-serif font-black text-2xl mb-6 border-l-4 border-orange-500 pl-4">Foundation Message</h3>
             <p className="text-lg text-blue-100 leading-relaxed italic font-light">
               "Our mission is to resurrect the profound wisdom of the Gurukulam system and integrate it with the precision of modern inquiry. We believe that the convergence of tradition and technology is the key to global well-being."
             </p>
           </div>
-          <button className="px-8 py-4 border-2 border-white/30 text-white text-xs font-black uppercase tracking-widest hover:bg-white hover:text-blue-900 transition-all rounded-sm flex items-center gap-3">
+          <button className="w-full md:w-auto justify-center px-8 py-4 border-2 border-white/30 text-white text-xs font-black uppercase tracking-widest hover:bg-white hover:text-blue-900 transition-all rounded-sm flex items-center gap-3">
             Learn Our History <ArrowRight size={16} />
           </button>
         </div>

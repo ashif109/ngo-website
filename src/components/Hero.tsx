@@ -1,13 +1,14 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import heroBg from '../assets/Untitled design.jpg';
 
 const Hero: React.FC = () => {
   return (
-    <div className="relative w-full h-[450px] overflow-hidden bg-gray-900 border-b-8 border-[#0055a5]">
+    <div className="relative w-full min-h-[400px] md:h-[450px] py-16 md:py-0 overflow-hidden bg-gray-900 border-b-8 border-[#0055a5]">
       {/* Background with Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-60 scale-105"
-        style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=1600&q=80")' }}
+        style={{ backgroundImage: `url("${heroBg}")` }}
       ></div>
       <div className="absolute inset-0 bg-gradient-to-t from-[#003366] via-transparent to-transparent"></div>
 
@@ -23,16 +24,16 @@ const Hero: React.FC = () => {
             National Initiative 2026
           </div>
           
-          <h2 className="text-4xl md:text-6xl font-serif font-black text-white leading-tight drop-shadow-2xl mb-8 uppercase tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-black text-white leading-tight drop-shadow-2xl mb-8 uppercase tracking-tight">
             Preserving Wisdom, <br />
             <span className="text-orange-400">Empowering</span> the Future
           </h2>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="bg-orange-600 text-white px-8 py-3 rounded-sm font-black text-sm uppercase tracking-wider hover:bg-orange-700 transition-all shadow-xl hover:-translate-y-1">
+            <button className="w-full sm:w-auto bg-orange-600 text-white px-8 py-3 rounded-sm font-black text-sm uppercase tracking-wider hover:bg-orange-700 transition-all shadow-xl hover:-translate-y-1">
               Donate to the Mission
             </button>
-            <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-white/10 transition-all shadow-xl hover:-translate-y-1">
+            <button className="w-full sm:w-auto bg-transparent border-2 border-white text-white px-8 py-3 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-white/10 transition-all shadow-xl hover:-translate-y-1">
               Become a Volunteer
             </button>
           </div>

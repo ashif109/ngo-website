@@ -10,7 +10,7 @@ const ForthcomingPrograms: React.FC = () => {
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-orange-600/10 rounded-full blur-2xl -ml-32 -mb-32"></div>
 
       <div className="institutional-container relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
           <div>
             <div className="flex items-center gap-2 text-orange-400 font-bold text-xs uppercase tracking-[0.2em] mb-3">
               <Calendar size={16} /> Knowledge Calendar 2026
@@ -34,7 +34,7 @@ const ForthcomingPrograms: React.FC = () => {
                 {prog}
               </p>
               <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
-                <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Register Now</span>
+                <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Read More</span>
                 <ArrowRight size={14} className="text-orange-400 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
