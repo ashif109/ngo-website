@@ -30,10 +30,16 @@ const Hero: React.FC = () => {
           </h2>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="w-full sm:w-auto bg-orange-600 text-white px-8 py-3 rounded-sm font-black text-sm uppercase tracking-wider hover:bg-orange-700 transition-all shadow-xl hover:-translate-y-1">
+            <button 
+              onClick={() => window.dispatchEvent(new Event('openDonateModal'))}
+              className="w-full sm:w-auto bg-orange-600 text-white px-8 py-3 rounded-sm font-black text-sm uppercase tracking-wider hover:bg-orange-700 transition-all shadow-xl hover:-translate-y-1"
+            >
               Donate to the Mission
             </button>
-            <button className="w-full sm:w-auto bg-transparent border-2 border-white text-white px-8 py-3 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-white/10 transition-all shadow-xl hover:-translate-y-1">
+            <button 
+              onClick={() => window.dispatchEvent(new Event('openVolunteerModal'))}
+              className="w-full sm:w-auto bg-transparent border-2 border-white text-white px-8 py-3 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-white/10 transition-all shadow-xl hover:-translate-y-1"
+            >
               Become a Volunteer
             </button>
           </div>

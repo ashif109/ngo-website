@@ -8,6 +8,9 @@ import ImpactStats from '../../components/sections/ImpactStats';
 import MainContent from '../../components/sections/MainContent';
 import Sidebar from '../../components/layout/Sidebar';
 import Footer from '../../components/layout/Footer';
+import DonateModal from '../../components/common/DonateModal';
+import VolunteerModal from '../../components/common/VolunteerModal';
+import ContactSection from '../../components/sections/ContactSection';
 
 /**
  * Home Page Component
@@ -36,7 +39,10 @@ export default function Home() {
         </div>
       </main>
 
+      <ContactSection />
       <Footer />
+      <DonateModal />
+      <VolunteerModal />
     </>
   );
 }

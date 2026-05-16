@@ -19,7 +19,10 @@ const Header: React.FC = () => {
             <p className="text-[10px] sm:text-xs md:text-sm text-gray-500 font-bold uppercase tracking-[0.1em] sm:tracking-[0.2em] whitespace-normal md:whitespace-nowrap">(A Premier Educational Research & Cultural Academy)</p>
           </div>
           <div className="hidden lg:flex items-center gap-8">
-            <button className="bg-orange-600 text-white px-8 py-3 rounded-sm font-black text-xs uppercase tracking-[0.2em] hover:bg-orange-700 transition-all shadow-xl hover:-translate-y-1">
+            <button 
+              onClick={() => window.dispatchEvent(new Event('openDonateModal'))}
+              className="bg-orange-600 text-white px-8 py-3 rounded-sm font-black text-xs uppercase tracking-[0.2em] hover:bg-orange-700 transition-all shadow-xl hover:-translate-y-1"
+            >
               Donate Now
             </button>
             <img src={logo} alt="Secondary Logo" className="h-16 w-auto opacity-40 grayscale hover:grayscale-0 transition-all cursor-pointer" />

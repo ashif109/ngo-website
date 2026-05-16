@@ -1,0 +1,252 @@
+import React, { useState, useEffect } from 'react';
+import { X, Copy, CheckCircle, Loader2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { submitDonationNotify } from '../../services/api';
+
+const DonateModal: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
+  const [showForm, setShowForm] = useState(false);
+
+  // Form State
+  const [formData, setFormData] = useState({ donorName: '', phone: '', email: '', transactionId: '', amount: '' });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener('openDonateModal', handleOpen);
+    return () => window.removeEventListener('openDonateModal', handleOpen);
+  }, []);
+
+  const handleCopy = (text: string, field: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedField(field);
+    setTimeout(() => setCopiedField(null), 2000);
+  };
+
+  const copyIcon = (text: string, field: string) => (
+    <button 
+      onClick={() => handleCopy(text, field)}
+      className="ml-2 text-gray-400 hover:text-orange-500 transition-colors focus:outline-none"
+      title="Copy to clipboard"
+    >
+      {copiedField === field ? <CheckCircle size={16} className="text-green-500" /> : <Copy size={16} />}
+    </button>
+  );
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    setErrorMessage('');
+    
+    try {
+      const res = await submitDonationNotify({
+        ...formData,
+        amount: Number(formData.amount)
+      });
+      if (res.success) {
+        setStatus('success');
+      } else {
+        setStatus('error');
+        setErrorMessage(res.error || 'Failed to submit notification');
+      }
+    } catch (err) {
+      setStatus('error');
+      setErrorMessage('Network error. Please try again.');
+    }
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="bg-white rounded-xl shadow-2xl w-full max-w-3xl overflow-hidden relative flex flex-col max-h-[90vh]"
+          >
+            {/* Header */}
+            <div className="bg-[#0055a5] p-6 text-white relative flex-shrink-0">
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
+              >
+                <X size={24} />
+              </button>
+              <h2 className="text-2xl md:text-3xl font-serif font-bold mb-2">Support Our Mission</h2>
+              <p className="text-white/80 text-sm">Your contribution helps us preserve wisdom and empower the future.</p>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 md:p-8 overflow-y-auto custom-scrollbar">
+              
+              {!showForm ? (
+                <>
+                  {/* Sanskrit Quote Section */}
+                  <div className="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-r-lg mb-8 shadow-sm">
+                    <p className="text-xl md:text-2xl font-serif text-center text-[#006400] font-bold mb-4 leading-relaxed">
+                      "अन्नदानं परं दानं विद्यादानं अतः परम् |<br/>
+                      अन्नेन क्षणिका तृप्तिः यावज्जीवं च विद्यया ||"
+                    </p>
+                    <div className="space-y-3 text-sm text-gray-700">
+                      <p><span className="font-bold text-gray-900">Hindi Meaning:</span> अन्नदान श्रेष्ठ दान है, परंतु विद्यादान उससे भी श्रेष्ठ है। क्योंकि अन्न से क्षणिक (थोड़ी देर की) तृप्ति होती है, जबकि विद्या से जीवन भर की तृप्ति होती है。</p>
+                      <p><span className="font-bold text-gray-900">English Meaning:</span> Donating food is a great charity, but donating knowledge is even greater. Because food gives temporary satisfaction, whereas knowledge provides lifelong fulfillment.</p>
+                    </div>
+                  </div>
+
+                  {/* Donation Details Grid */}
+                  <div className="grid md:grid-cols-2 gap-8">
+                    
+                    {/* Bank Details */}
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center">
+                          <span className="bg-[#0055a5] w-2 h-6 mr-2 rounded-sm"></span> Organization Details
+                        </h3>
+                        <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                          <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Account Name / Trust Name</p>
+                          <p className="font-bold text-gray-900 text-lg flex items-center justify-between">
+                            TRIYAMBAKAM GURUKULAM ASSOCIATION
+                            {copyIcon("TRIYAMBAKAM GURUKULAM ASSOCIATION", "trustName")}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h3 className="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center">
+                          <span className="bg-orange-500 w-2 h-6 mr-2 rounded-sm"></span> Bank Details
+                        </h3>
+                        <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 space-y-4">
+                          <div>
+                            <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Bank</p>
+                            <p className="font-bold text-gray-900">HDFC Bank</p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Account Number</p>
+                            <p className="font-bold text-gray-900 text-xl tracking-widest text-[#0055a5] flex items-center justify-between">
+                              50200119100544
+                              {copyIcon("50200119100544", "accountNumber")}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Contact Details */}
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center">
+                          <span className="bg-green-600 w-2 h-6 mr-2 rounded-sm"></span> Contact Details
+                        </h3>
+                        <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                          <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Mobile Number</p>
+                          <p className="font-bold text-gray-900 text-lg flex items-center justify-between">
+                            +91 94121 62807
+                            {copyIcon("+91 94121 62807", "mobile")}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h3 className="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center">
+                          <span className="bg-gray-600 w-2 h-6 mr-2 rounded-sm"></span> Address
+                        </h3>
+                        <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                          <p className="text-gray-800 leading-relaxed">
+                            F No 1006, 10th Floor, BL-A, OM Shree Platinum Basai<br />
+                            Agra – 282001<br />
+                            Uttar Pradesh, India
+                          </p>
+                        </div>
+                      </div>
+                      
+                      {/* Trust Badge & Notify Button */}
+                      <div className="mt-8 flex flex-col items-center justify-center p-4 bg-green-50 border border-green-100 rounded-lg space-y-3">
+                        <div className="flex items-center">
+                          <CheckCircle className="text-green-600 mr-2" size={20} />
+                          <span className="text-sm font-medium text-green-800">100% Secure & Trusted Donation</span>
+                        </div>
+                        <button 
+                          onClick={() => setShowForm(true)}
+                          className="w-full bg-[#0055a5] text-white px-6 py-3 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-[#003366] transition-colors"
+                        >
+                          I have made a donation
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className="max-w-xl mx-auto py-4">
+                  {status === 'success' ? (
+                    <div className="text-center py-8">
+                      <CheckCircle className="mx-auto text-green-500 mb-4" size={64} />
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank You for Your Donation!</h3>
+                      <p className="text-gray-600 mb-6">We have received your transaction details. Your support means everything to us.</p>
+                      <button 
+                        onClick={() => { setIsOpen(false); setStatus('idle'); setShowForm(false); setFormData({ donorName: '', phone: '', email: '', transactionId: '', amount: '' }); }}
+                        className="bg-[#0055a5] text-white px-6 py-2 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-[#003366] transition-colors"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  ) : (
+                    <>
+                      <button onClick={() => setShowForm(false)} className="text-[#0055a5] text-sm font-bold mb-6 hover:underline flex items-center">
+                        &larr; Back to Bank Details
+                      </button>
+                      <h3 className="text-xl font-bold text-gray-900 mb-6 border-b pb-2">Notify us of your donation</h3>
+                      <form onSubmit={handleSubmit} className="space-y-4">
+                        {status === 'error' && (
+                          <div className="bg-red-50 text-red-600 p-3 rounded text-sm border border-red-200">
+                            {errorMessage}
+                          </div>
+                        )}
+                        <div>
+                          <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Donor Name *</label>
+                          <input required type="text" value={formData.donorName} onChange={e => setFormData({...formData, donorName: e.target.value})} className="w-full p-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-[#0055a5] focus:border-transparent outline-none transition-all" placeholder="John Doe" />
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Phone *</label>
+                            <input required type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full p-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-[#0055a5] focus:border-transparent outline-none transition-all" placeholder="+91 9876543210" />
+                          </div>
+                          <div>
+                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Email</label>
+                            <input type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full p-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-[#0055a5] focus:border-transparent outline-none transition-all" placeholder="john@example.com" />
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Transaction ID / UTR *</label>
+                            <input required type="text" value={formData.transactionId} onChange={e => setFormData({...formData, transactionId: e.target.value})} className="w-full p-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-[#0055a5] focus:border-transparent outline-none transition-all" placeholder="e.g. UPI123456789" />
+                          </div>
+                          <div>
+                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Amount (₹) *</label>
+                            <input required type="number" min="1" value={formData.amount} onChange={e => setFormData({...formData, amount: e.target.value})} className="w-full p-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-[#0055a5] focus:border-transparent outline-none transition-all" placeholder="5000" />
+                          </div>
+                        </div>
+                        
+                        <button 
+                          disabled={status === 'loading'}
+                          type="submit" 
+                          className="w-full mt-4 bg-[#0055a5] text-white px-8 py-4 rounded-sm font-black text-sm uppercase tracking-wider hover:bg-[#003366] transition-all shadow-xl hover:-translate-y-1 flex justify-center items-center disabled:opacity-70 disabled:hover:translate-y-0"
+                        >
+                          {status === 'loading' ? <Loader2 className="animate-spin mr-2" size={20} /> : 'Submit Transaction Details'}
+                        </button>
+                      </form>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+};
+
+export default DonateModal;

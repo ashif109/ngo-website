@@ -55,7 +55,13 @@ const Navbar: React.FC = () => {
                    {item}
                  </span>
                ))}
-               <button className="col-span-2 mt-2 bg-orange-600 text-white px-4 py-3 rounded-sm font-black text-xs uppercase tracking-[0.2em] hover:bg-orange-700 transition-all text-center shadow-xl">
+               <button 
+                 onClick={() => {
+                   window.dispatchEvent(new Event('openDonateModal'));
+                   setIsMobileMenuOpen(false);
+                 }}
+                 className="col-span-2 mt-2 bg-orange-600 text-white px-4 py-3 rounded-sm font-black text-xs uppercase tracking-[0.2em] hover:bg-orange-700 transition-all text-center shadow-xl"
+               >
                  Donate Now
                </button>
             </div>
