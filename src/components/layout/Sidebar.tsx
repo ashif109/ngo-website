@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mail, Download, ChevronRight } from 'lucide-react';
-import { PUBLICATIONS, POLICY_BRIEFS, NEWSLETTERS, KEY_RESOURCES } from '../data/siteData';
+import { PUBLICATIONS, POLICY_BRIEFS, NEWSLETTERS, KEY_RESOURCES } from '../../data/siteData';
 
 const Sidebar: React.FC = () => {
   return (

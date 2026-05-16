@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Globe, ChevronDown, Menu, X } from 'lucide-react';
-import { NAV_MAIN, NAV_SECONDARY } from '../data/siteData';
+import { NAV_MAIN, NAV_SECONDARY } from '../../data/siteData';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

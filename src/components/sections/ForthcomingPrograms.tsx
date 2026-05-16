@@ -1,6 +1,6 @@
 import React from 'react';
 import { BookOpen, Calendar, ArrowRight } from 'lucide-react';
-import { CAPACITY_PROGRAMS } from '../data/siteData';
+import { CAPACITY_PROGRAMS } from '../../data/siteData';
 
 const ForthcomingPrograms: React.FC = () => {
   return (

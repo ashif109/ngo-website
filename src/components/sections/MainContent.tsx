@@ -1,6 +1,6 @@
 import React from 'react';
 import { Globe, ArrowRight } from 'lucide-react';
-import { EDUCATION_ITEMS } from '../data/siteData';
+import { EDUCATION_ITEMS } from '../../data/siteData';
 
 const MainContent: React.FC = () => {
   return (

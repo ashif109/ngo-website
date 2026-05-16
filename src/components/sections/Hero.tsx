@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import heroBg from '../assets/Untitled design.jpg';
+import heroBg from '../../assets/Untitled design.jpg';
 
 const Hero: React.FC = () => {
   return (

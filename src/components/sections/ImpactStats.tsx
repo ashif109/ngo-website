@@ -1,6 +1,6 @@
 import React from 'react';
 import { GraduationCap, Landmark, Map, BookOpen } from 'lucide-react';
-import { IMPACT_STATS } from '../data/siteData';
+import { IMPACT_STATS } from '../../data/siteData';
 
 const iconMap: Record<string, any> = {
   graduation: GraduationCap,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, Heart } from 'lucide-react';
-import { CORE_CAUSES } from '../data/siteData';
+import { CORE_CAUSES } from '../../data/siteData';
 
 const Causes: React.FC = () => {
   return (
