@@ -11,13 +11,16 @@ export const NAV_SECONDARY = [
 ];
 
 export const CAPACITY_PROGRAMS = [
-  "प्रमाणित वैदिक शिक्षक प्रशिक्षण कार्यक्रम - मई 2026",
-  "संस्कृत भाषा और व्याकरण का आधुनिक अनुप्रयोग कार्यशाला - जून 2026",
-  "Leadership Development for Gurukul Management from Jun 29, 2026 to Jul 10, 2026",
-  "Ancient Indian Science and Mathematics Certification - जुलाई 2026",
-  "Biodiversity and Environmental Ethics in Vedic Literature (Online) from Jul 01, 2026",
-  "Digital Gurukulam: Integration of Tradition and Technology - अगस्त 2026",
-  "Induction Programme for Gurukul Administrators of Triyambakam from Aug 15, 2026",
+  { 
+    text: "BUILD WITH AI - मई 2026\nHackDay Agra - Partnership Announcement\nTriyambakam Gurukulam Association - Official Co-Organiser",
+    link: "https://drive.google.com/file/d/1n8g30y3dVpUhb4RSv4_unkWFoNZfsLFy/view?usp=sharing"
+  },
+  { text: "संस्कृत भाषा और व्याकरण का आधुनिक अनुप्रयोग कार्यशाला - जून 2026" },
+  { text: "Leadership Development for Gurukul Management from Jun 29, 2026 to Jul 10, 2026" },
+  { text: "Ancient Indian Science and Mathematics Certification - जुलाई 2026" },
+  { text: "Biodiversity and Environmental Ethics in Vedic Literature (Online) from Jul 01, 2026" },
+  { text: "Digital Gurukulam: Integration of Tradition and Technology - अगस्त 2026" },
+  { text: "Induction Programme for Gurukul Administrators of Triyambakam from Aug 15, 2026" },
 ];
 
 export const EDUCATION_ITEMS = [

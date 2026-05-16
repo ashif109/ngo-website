@@ -26,12 +26,18 @@ const ForthcomingPrograms: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {CAPACITY_PROGRAMS.slice(0, 4).map((prog, i) => (
-            <div key={i} className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-sm hover:bg-white/10 transition-all group cursor-pointer border-l-4 border-orange-500">
+            <div 
+              key={i} 
+              className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-sm hover:bg-white/10 transition-all group cursor-pointer border-l-4 border-orange-500"
+              onClick={() => {
+                if (prog.link) window.open(prog.link, '_blank');
+              }}
+            >
               <div className="mb-4 text-orange-500">
                 <BookOpen size={24} />
               </div>
-              <p className="text-blue-100 text-[13px] font-medium leading-relaxed group-hover:text-white transition-colors">
-                {prog}
+              <p className="text-blue-100 text-[13px] font-medium leading-relaxed group-hover:text-white transition-colors whitespace-pre-line">
+                {prog.text}
               </p>
               <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
                 <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Read More</span>
