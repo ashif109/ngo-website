@@ -18,18 +18,11 @@ app.use('/api', apiRoutes);
 app.get('/health', (req, res) => {
     res.status(200).json({ status: 'OK', message: 'Backend is running' });
 });
-// Serve Frontend in Production
-import path from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-// Since server will be in dist-server/server.js, the frontend dist is one level up
-const frontendDistPath = path.join(__dirname, '..', 'dist');
-app.use(express.static(frontendDistPath));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(frontendDistPath, 'index.html'));
-});
-// Start Server
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// Export the app for Vercel serverless
+export default app;
+// Only listen if not running on Vercel
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+}
