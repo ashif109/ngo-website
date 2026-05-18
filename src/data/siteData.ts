@@ -13,7 +13,7 @@ export const NAV_SECONDARY = [
 export const CAPACITY_PROGRAMS = [
   {
     text: "BUILD WITH AI - मई 2026\nHackDay Agra - Partnership Announcement\nTriyambakam Gurukulam Association - Official Co-Organiser",
-    link: "https://drive.google.com/file/d/1qh_i5m78sX6ffAlZGEzeinNaGFf2w_-C/view?usp=sharing"
+    link: "https://drive.google.com/file/d/1qh_i5m78sX6ffAlZGEzeinNaGFf2w_-C/view?usp=drive_link"
   }
 ];
 
