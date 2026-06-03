@@ -10,6 +10,12 @@ dotenv.config();
 // Connect to MongoDB
 connectDB();
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 const PORT = process.env.PORT && process.env.PORT !== '3000' ? process.env.PORT : 5000;
 
@@ -23,6 +29,14 @@ app.use('/api', apiRoutes);
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', message: 'Backend is running' });
+});
+
+// Serve Frontend in Production
+const frontendDistPath = path.join(__dirname, '..', 'dist');
+app.use(express.static(frontendDistPath));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendDistPath, 'index.html'));
 });
 
 // Export the app for Vercel serverless
