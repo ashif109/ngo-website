@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BookOpen, Calendar, ArrowRight, Sparkles } from 'lucide-react';
-import { CAPACITY_PROGRAMS } from '../../data/siteData';
 import { useLanguage } from '../../context/LanguageContext';
+import { getPrograms } from '../../services/api';
 
 const ForthcomingPrograms: React.FC = () => {
   const { t, language } = useLanguage();
+  const [programs, setPrograms] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        const res = await getPrograms();
+        if (res.success) {
+          setPrograms(res.data);
+        }
+      } catch (err) {
+        console.error('Error fetching programs:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPrograms();
+  }, []);
 
   return (
     <section className="bg-[#002147] py-16 relative overflow-hidden">
@@ -30,9 +48,13 @@ const ForthcomingPrograms: React.FC = () => {
           </button>
         </div>
 
-        {CAPACITY_PROGRAMS.length > 0 ? (
+        {loading ? (
+          <div className="py-12 text-center text-blue-200 text-xs font-bold uppercase tracking-widest animate-pulse">
+            Loading Forthcoming Programs...
+          </div>
+        ) : programs.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {CAPACITY_PROGRAMS.slice(0, 4).map((prog: any, i) => {
+            {programs.slice(0, 4).map((prog: any, i) => {
               let translatedText = prog.textEn;
               if (language === 'hi') {
                 translatedText = prog.textHi;
@@ -109,5 +131,4 @@ const ForthcomingPrograms: React.FC = () => {
     </section>
   );
 };
-
 export default ForthcomingPrograms;

@@ -23,6 +23,7 @@ export const translations: Record<string, any> = {
       alumniLogin: "ALUMNI LOGIN",
       helpDesk: "HELP DESK",
       grievancePortal: "GRIEVANCE PORTAL",
+      adminPortal: "ADMIN PORTAL",
       donateBtn: "Donate Now"
     },
     about: {
@@ -448,6 +449,7 @@ export const translations: Record<string, any> = {
       alumniLogin: "पूर्व छात्र लॉगिन",
       helpDesk: "सहायता केंद्र",
       grievancePortal: "शिकायत पोर्टल",
+      adminPortal: "एडमिन पोर्टल",
       donateBtn: "अभी दान करें"
     },
     about: {
@@ -873,6 +875,7 @@ export const translations: Record<string, any> = {
       alumniLogin: "ભૂતપૂર્વ વિદ્યાર્થી લોગિન",
       helpDesk: "હેલ્પ ડેસ્ક",
       grievancePortal: "ફરિયાદ પોર્ટલ",
+      adminPortal: "એડમિન પોર્ટલ",
       donateBtn: "હમણાં જ દાન કરો"
     },
     about: {

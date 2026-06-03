@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { GraduationCap, Landmark, Map, BookOpen } from 'lucide-react';
-import { IMPACT_STATS } from '../../data/siteData';
 import { useLanguage } from '../../context/LanguageContext';
+import { getSiteContent } from '../../services/api';
 
 const iconMap: Record<string, any> = {
   graduation: GraduationCap,
@@ -10,8 +10,24 @@ const iconMap: Record<string, any> = {
   book: BookOpen
 };
 
+const FALLBACK_STATS = [
+  { labelEn: 'Students Empowered', labelHi: 'सशक्त छात्र', labelGu: 'સશક્ત વિદ્યાર્થીઓ', value: '15,000+', icon: 'graduation' },
+  { labelEn: 'Gurukulams Supported', labelHi: 'समर्थित गुरुकुल', labelGu: 'સમર્થિત ગુરુકુળ', value: '120+', icon: 'building' },
+  { labelEn: 'Villages Reached', labelHi: 'पहुंचे हुए गाँव', labelGu: 'પહોંચેલા ગામો', value: '450+', icon: 'map' },
+  { labelEn: 'Research Publications', labelHi: 'अनुसंधान प्रकाशन', labelGu: 'સંશોધન પ્રકાશનો', value: '200+', icon: 'book' }
+];
+
 const ImpactStats: React.FC = () => {
   const { language } = useLanguage();
+  const [stats, setStats] = useState(FALLBACK_STATS);
+
+  useEffect(() => {
+    getSiteContent('stats').then(res => {
+      if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+        setStats(res.data);
+      }
+    }).catch(() => {});
+  }, []);
 
   return (
     <section className="bg-blue-900 py-20 text-white relative overflow-hidden">
@@ -37,27 +53,16 @@ const ImpactStats: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8">
-          {IMPACT_STATS.map((stat, i) => {
-            const Icon = iconMap[stat.icon];
-            let translatedLabel = stat.label;
-            if (language === 'hi') {
-              if (stat.label === "Students Empowered") translatedLabel = "सशक्त छात्र";
-              else if (stat.label === "Gurukulams Supported") translatedLabel = "समर्थित गुरुकुल";
-              else if (stat.label === "Villages Reached") translatedLabel = "पहुंचे हुए गाँव";
-              else if (stat.label === "Research Publications") translatedLabel = "अनुसंधान प्रकाशन";
-            } else if (language === 'gu') {
-              if (stat.label === "Students Empowered") translatedLabel = "સશક્ત વિદ્યાર્થીઓ";
-              else if (stat.label === "Gurukulams Supported") translatedLabel = "સમર્થિત ગુરુકુલો";
-              else if (stat.label === "Villages Reached") translatedLabel = "પહોંચેલા ગામો";
-              else if (stat.label === "Research Publications") translatedLabel = "સંશોધન પ્રકાશનો";
-            }
+          {stats.map((stat: any, i: number) => {
+            const Icon = iconMap[stat.icon] || BookOpen;
+            const label = language === 'hi' ? stat.labelHi : language === 'gu' ? stat.labelGu : stat.labelEn;
             return (
               <div key={i} className="text-center group">
                 <div className="bg-blue-800/50 w-20 h-20 mx-auto rounded-2xl flex items-center justify-center mb-6 border border-blue-700/50 group-hover:bg-orange-600 group-hover:border-orange-500 transition-all duration-500 shadow-xl group-hover:-translate-y-2">
                   <Icon size={32} className="text-blue-100 group-hover:text-white" />
                 </div>
                 <div className="text-4xl md:text-5xl font-black mb-2 tracking-tight">{stat.value}</div>
-                <div className="text-[12px] font-bold uppercase tracking-[0.2em] text-blue-300">{translatedLabel}</div>
+                <div className="text-[12px] font-bold uppercase tracking-[0.2em] text-blue-300">{label}</div>
               </div>
             );
           })}

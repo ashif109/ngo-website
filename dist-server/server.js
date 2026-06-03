@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import apiRoutes from './routes/api.js';
+import adminRoutes from './routes/admin.js';
 // Load environment variables
 dotenv.config();
 // Connect to MongoDB
@@ -18,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 // Routes
 app.use('/api', apiRoutes);
+app.use('/api/admin', adminRoutes);
 // Health check endpoint
 app.get('/health', (req, res) => {
     res.status(200).json({ status: 'OK', message: 'Backend is running' });

@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
+import { getGallery } from '../services/api';
 
 import Header from '../components/layout/Header';
 import Navbar from '../components/layout/Navbar';
@@ -24,6 +25,13 @@ const CampusLifePage: React.FC = () => {
   const [activeIdx, setActiveIdx] = useState<number>(0);
   const [direction, setDirection] = useState<number>(0);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const [cmsGallery, setCmsGallery] = useState<any[]>([]);
+
+  useEffect(() => {
+    getGallery('campus-life').then(res => {
+      if (res.success && Array.isArray(res.data)) setCmsGallery(res.data);
+    }).catch(() => {});
+  }, []);
 
   useEffect(() => {
     document.title = `${t('campusLife.title')} | Triyambakam Gurukulam Association`;
@@ -74,7 +82,7 @@ const CampusLifePage: React.FC = () => {
     }
   ];
 
-  const galleryItems = [
+  const staticGalleryItems = [
     {
       src: aboutMango,
       title: t('campusLife.galleryItem1Title'),
@@ -97,8 +105,19 @@ const CampusLifePage: React.FC = () => {
       src: aboutStudents,
       title: t('campusLife.galleryItem4Title'),
       desc: t('campusLife.galleryItem4Desc'),
-      tag: language === 'hi' ? "गुरुकुल" : language === 'gu' ? "ગુરુકુલમ" : "Gurukulam"
+      tag: language === 'hi' ? "गुरुकुल" : language === 'gu' ? "ગુરુકુળ" : "Gurukulam"
     }
+  ];
+
+  // Merge static + CMS gallery items
+  const galleryItems = [
+    ...staticGalleryItems,
+    ...cmsGallery.map((img: any) => ({
+      src: img.url,
+      title: language === 'hi' ? (img.captionHi || img.captionEn) : language === 'gu' ? (img.captionGu || img.captionEn) : img.captionEn,
+      desc: '',
+      tag: img.section || 'Gallery'
+    }))
   ];
 
   const handlePrev = (e?: React.MouseEvent) => {

@@ -26,6 +26,7 @@ const Navbar: React.FC = () => {
       case "ALUMNI LOGIN": return "nav.alumniLogin";
       case "HELP DESK": return "nav.helpDesk";
       case "GRIEVANCE PORTAL": return "nav.grievancePortal";
+      case "ADMIN PORTAL": return "nav.adminPortal";
       default: return "";
     }
   };
@@ -204,6 +205,10 @@ const Navbar: React.FC = () => {
                        else if (item === "ALUMNI LOGIN") window.location.hash = '#/alumni-login';
                        else if (item === "HELP DESK") window.location.hash = '#/help-desk';
                        else if (item === "GRIEVANCE PORTAL") window.location.hash = '#/grievance-portal';
+                       else if (item === "ADMIN PORTAL") {
+                         const token = localStorage.getItem('adminToken');
+                         window.location.hash = token ? '#/admin-dashboard' : '#/admin-login';
+                       }
                      }}
                      className="text-[10px] font-bold text-white/80 hover:text-white cursor-pointer uppercase tracking-wider"
                    >
@@ -240,6 +245,10 @@ const Navbar: React.FC = () => {
                   else if (item === "ALUMNI LOGIN") window.location.hash = '#/alumni-login';
                   else if (item === "HELP DESK") window.location.hash = '#/help-desk';
                   else if (item === "GRIEVANCE PORTAL") window.location.hash = '#/grievance-portal';
+                  else if (item === "ADMIN PORTAL") {
+                    const token = localStorage.getItem('adminToken');
+                    window.location.hash = token ? '#/admin-dashboard' : '#/admin-login';
+                  }
                 }}
                 className="hover:text-white transition-colors cursor-pointer uppercase tracking-wider relative group"
               >

@@ -1,51 +1,73 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import heroBg from '../../assets/main image inhanced.png';
+import staticHeroBg from '../../assets/main image inhanced.png';
 import { useLanguage } from '../../context/LanguageContext';
-
+import { getSiteContent } from '../../services/api';
 
 const Hero: React.FC = () => {
   const { language } = useLanguage();
+  const [content, setContent] = useState<any>(null);
+
+  useEffect(() => {
+    getSiteContent('hero').then(res => {
+      if (res.success && res.data) {
+        setContent(res.data);
+      }
+    }).catch(() => {});
+  }, []);
+
+  // Use CMS content if loaded, otherwise fall back to static defaults
+  const heroBg = (content?.backgroundImageUrl) || staticHeroBg;
+  const headline = language === 'hi'
+    ? (content?.headlineHi || 'ज्ञान का संरक्षण, भविष्य का सशक्तिकरण')
+    : language === 'gu'
+    ? (content?.headlineGu || 'જ્ઞાનનું સંરક્ષણ, ભવિષ્યનું સશક્તિકરણ')
+    : (content?.headlineEn || 'Preserving Wisdom, Empowering the Future');
+
+  const badge = language === 'hi'
+    ? (content?.badgeHi || 'राष्ट्रीय पहल 2026')
+    : language === 'gu'
+    ? (content?.badgeGu || 'રાષ્ટ્રીય પહેલ 2026')
+    : (content?.badgeEn || 'National Initiative 2026');
 
   return (
     <div className="relative w-full min-h-[480px] md:h-[520px] py-16 md:py-0 overflow-hidden bg-gray-900 border-b-8 border-[#0055a5]">
       {/* Background with Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center opacity-60"
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-60 transition-all duration-700"
         style={{ backgroundImage: `url("${heroBg}")` }}
       ></div>
       <div className="absolute inset-0 bg-gradient-to-t from-[#003366] via-transparent to-transparent"></div>
 
       {/* Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-4xl"
         >
           <div className="inline-block px-4 py-1 bg-orange-600 text-white text-[12px] font-bold uppercase tracking-widest mb-6 rounded-sm shadow-xl">
-            {language === 'hi' ? 'राष्ट्रीय पहल 2026' : language === 'gu' ? 'રાષ્ટ્રીય પહેલ 2026' : 'National Initiative 2026'}
+            {badge}
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-black text-white leading-tight drop-shadow-2xl mb-8 uppercase tracking-tight">
-            {language === 'hi' ? (
-              <>ज्ञान का संरक्षण, <br /><span className="text-orange-400">भविष्य का</span> सशक्तिकरण</>
-            ) : language === 'gu' ? (
-              <>જ્ઞાનનું સંરક્ષણ, <br /><span className="text-orange-400">ભવિષ્યનું</span> સશક્તિકરણ</>
-            ) : (
-              <>Preserving Wisdom, <br /><span className="text-orange-400">Empowering</span> the Future</>
-            )}
+            {headline.includes(',') ? (
+              <>
+                {headline.split(',')[0]},<br />
+                <span className="text-orange-400">{headline.split(',').slice(1).join(',').trim()}</span>
+              </>
+            ) : headline}
           </h2>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <button 
+            <button
               onClick={() => window.dispatchEvent(new Event('openDonateModal'))}
               className="w-full sm:w-auto bg-orange-600 text-white px-8 py-3 rounded-sm font-black text-sm uppercase tracking-wider hover:bg-orange-700 transition-all shadow-xl hover:-translate-y-1 cursor-pointer"
             >
               {language === 'hi' ? 'मिशन में दान दें' : language === 'gu' ? 'મિશનમાં દાન આપો' : 'Donate to the Mission'}
             </button>
-            <button 
+            <button
               onClick={() => window.dispatchEvent(new Event('openVolunteerModal'))}
               className="w-full sm:w-auto bg-transparent border-2 border-white text-white px-8 py-3 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-white/10 transition-all shadow-xl hover:-translate-y-1 cursor-pointer"
             >
