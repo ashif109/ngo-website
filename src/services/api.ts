@@ -26,3 +26,12 @@ export const submitDonationNotify = async (data: any) => {
   });
   return response.json();
 };
+
+export const submitGeneralForm = async (formType: string, data: any) => {
+  const response = await fetch(`${API_BASE_URL}/submit-general`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ formType, data })
+  });
+  return response.json();
+};

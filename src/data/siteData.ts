@@ -10,43 +10,29 @@ export const NAV_SECONDARY = [
   "MEDIA ROOM", "AWARDS", "CONTACT US", "ALUMNI LOGIN", "HELP DESK", "GRIEVANCE PORTAL"
 ];
 
-export const CAPACITY_PROGRAMS = [
-  {
-    text: "BUILD WITH AI - मई 2026\nHackDay Agra - Partnership Announcement\nTriyambakam Gurukulam Association - Official Co-Organiser",
-    link: "https://drive.google.com/file/d/1qh_i5m78sX6ffAlZGEzeinNaGFf2w_-C/view?usp=drive_link"
-  }
-];
+export const CAPACITY_PROGRAMS = [];
 
+// EDUCATION_ITEMS: fill with real courses/admissions when available from client
 export const EDUCATION_ITEMS = [
+  /*
   { title: "Vedic Vidya Peeth (Vedic Studies)\nIntegrated Course", subtitle: "Ancient scriptures meets modern logic", new: true, tag: "Admission 2026 Open: Apply Now for Personal Interview" },
   { title: "Admission Process for 18th Batch of Leadership Development 2026-28", subtitle: "Know More", new: false },
   { title: "Massive Open Online Course (MOOC)", subtitle: "MOOC on 'Vedic AI Ethics'", new: true, tag: "Know More" },
   { title: "Certificate Course on Cultural Management (CCCM)", subtitle: "Know More", new: true }
+  */
 ];
 
-export const PUBLICATIONS = [
-  { title: "Cultivating Intelligence", img: "https://images.unsplash.com/photo-1544923246-77307dd654ca?w=200&q=80" },
-  { title: "Importance of Languages", img: "https://images.unsplash.com/photo-1582213713374-132d439f0469?w=200&q=80" },
-  { title: "Compendium of Vedic Studies", img: heritageImg }
-];
+// latest publications: fill with real books/publications when available from client
+export const PUBLICATIONS = [];
 
-export const POLICY_BRIEFS = [
-  { title: "Vedic Education Policy", img: policyImg },
-  { title: "Empowering Rural Schools", img: ruralImg },
-  { title: "Cultural Heritage Preservation", img: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=200&q=80" }
-];
+// policy briefs: fill with real research briefs when available from client
+export const POLICY_BRIEFS = [];
 
-export const NEWSLETTERS = [
-  { title: "Gurukulam News Vol 4. Issue. 4", date: "Vol. 14, No. 4/2026" },
-  { title: "Vol. 14, No. 4/2026", date: "Vol. 14, No. 4/2026" },
-  { title: "Vol. 14, No. 3/2026", date: "Vol. 14, No. 3/2026" }
-];
+// newsletters: fill with real newsletters when available from client
+export const NEWSLETTERS = [];
 
-export const KEY_RESOURCES = [
-  { title: "Annual Report 2025" },
-  { title: "Vision 2050" },
-  { title: "Academic Calendar" }
-];
+// key resources: fill with real downloadable assets when available from client
+export const KEY_RESOURCES = [];
 
 export const IMPACT_STATS = [
   { label: "Students Empowered", value: "15,000+", icon: "graduation" },
