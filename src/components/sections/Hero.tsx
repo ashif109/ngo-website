@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import staticHeroBg from '../../assets/WhatsApp Image 2026-05-10 at 6.46.13 PM.jpeg';
+import staticHeroBg from '../../src/assets/WhatsApp Image 2026-05-10 at 6.46.13 PM.jpeg';
 import { useLanguage } from '../../context/LanguageContext';
 import { getSiteContent } from '../../services/api';
 import { Star, HeartHandshake, Users } from 'lucide-react';
