@@ -17,7 +17,8 @@ const Hero: React.FC = () => {
     }).catch(() => { });
   }, []);
 
-  const heroBg = (content?.backgroundImageUrl) || staticHeroBg;
+  // Forcing staticHeroBg to ensure the correct WhatsApp image is shown instead of an old CMS database image
+  const heroBg = staticHeroBg; // (content?.backgroundImageUrl) || staticHeroBg;
 
   const badge = language === 'hi'
     ? (content?.badgeHi || 'राष्ट्रीय पहल 2026')
