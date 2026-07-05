@@ -25,10 +25,10 @@ const ForthcomingPrograms: React.FC = () => {
   }, []);
 
   return (
-    <section className="bg-[#002147] py-16 relative overflow-hidden">
+    <section className="bg-primary-dark py-16 relative overflow-hidden">
       {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-800/20 rounded-full blur-3xl -mr-48 -mt-48"></div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-orange-600/10 rounded-full blur-2xl -ml-32 -mb-32"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary-dark/20 rounded-full blur-3xl -mr-48 -mt-48"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full blur-2xl -ml-32 -mb-32"></div>
 
       <div className="institutional-container relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
@@ -37,19 +37,19 @@ const ForthcomingPrograms: React.FC = () => {
               <Calendar size={16} /> {language === 'hi' ? 'ज्ञान कैलेंडर 2026' : language === 'gu' ? 'જ્ઞાન કેલેન્ડર 2026' : 'Knowledge Calendar 2026'}
             </div>
             <h2 className="text-3xl md:text-4xl font-serif font-black text-white leading-tight">
-              {language === 'hi' ? <>आगामी <span className="text-orange-500">कार्यक्रम</span></> : language === 'gu' ? <>આગામી <span className="text-orange-500">કાર્યક્રમો</span></> : <>Forthcoming <span className="text-orange-500">Programs</span></>}
+              {language === 'hi' ? <>आगामी <span className="text-secondary">कार्यक्रम</span></> : language === 'gu' ? <>આગામી <span className="text-secondary">કાર્યક્રમો</span></> : <>Forthcoming <span className="text-secondary">Programs</span></>}
             </h2>
           </div>
           <button 
             onClick={() => window.dispatchEvent(new CustomEvent('navigateToEvents'))}
-            className="px-6 py-3 border border-blue-400/30 text-blue-100 hover:bg-white hover:text-blue-900 transition-all text-[11px] font-black uppercase tracking-widest rounded-sm flex items-center gap-2 cursor-pointer"
+            className="px-6 py-3 border border-blue-400/30 text-white hover:bg-white hover:text-primary transition-all text-[11px] font-black uppercase tracking-widest rounded-sm flex items-center gap-2 cursor-pointer"
           >
             {language === 'hi' ? 'सभी कार्यक्रम देखें' : language === 'gu' ? 'બધા કાર્યક્રમો જુઓ' : 'View All Events'} <ArrowRight size={14} />
           </button>
         </div>
 
         {loading ? (
-          <div className="py-12 text-center text-blue-200 text-xs font-bold uppercase tracking-widest animate-pulse">
+          <div className="py-12 text-center text-secondary-light text-xs font-bold uppercase tracking-widest animate-pulse">
             Loading Forthcoming Programs...
           </div>
         ) : programs.length > 0 ? (
@@ -64,13 +64,13 @@ const ForthcomingPrograms: React.FC = () => {
               return (
                 <div 
                   key={i} 
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-sm transition-all group border-l-4 border-orange-500 flex flex-col justify-between"
+                  className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-sm transition-all group border-l-4 border-secondary flex flex-col justify-between"
                 >
                   <div>
-                    <div className="mb-4 text-orange-500">
+                    <div className="mb-4 text-secondary">
                       <BookOpen size={24} />
                     </div>
-                    <p className="text-blue-100 text-[13px] font-medium leading-relaxed group-hover:text-white transition-colors whitespace-pre-line mb-6">
+                    <p className="text-white text-[13px] font-medium leading-relaxed group-hover:text-white transition-colors whitespace-pre-line mb-6">
                       {translatedText}
                     </p>
                   </div>
@@ -79,7 +79,7 @@ const ForthcomingPrograms: React.FC = () => {
                     {prog.link && (
                       <button 
                         onClick={() => window.open(prog.link, '_blank')}
-                        className="w-full py-2 px-3 bg-white/10 hover:bg-white/20 text-blue-100 hover:text-white transition-all text-[10px] font-bold uppercase tracking-widest rounded-sm flex items-center justify-between group/btn cursor-pointer"
+                        className="w-full py-2 px-3 bg-white/10 hover:bg-white/20 text-white hover:text-white transition-all text-[10px] font-bold uppercase tracking-widest rounded-sm flex items-center justify-between group/btn cursor-pointer"
                       >
                         <span>{language === 'hi' ? 'विवरण पढ़ें (PDF)' : language === 'gu' ? 'વિગતો વાંચો (PDF)' : 'Read Details (PDF)'}</span>
                         <ArrowRight size={12} className="text-orange-400 group-hover/btn:translate-x-1 transition-all" />
@@ -88,7 +88,7 @@ const ForthcomingPrograms: React.FC = () => {
                     {prog.websiteLink && (
                       <button 
                         onClick={() => window.open(prog.websiteLink, '_blank')}
-                        className="w-full py-2 px-3 bg-orange-600 hover:bg-orange-700 text-white transition-all text-[10px] font-bold uppercase tracking-widest rounded-sm flex items-center justify-between group/btn cursor-pointer shadow-md hover:shadow-orange-600/20"
+                        className="w-full py-2 px-3 bg-accent hover:bg-orange-700 text-white transition-all text-[10px] font-bold uppercase tracking-widest rounded-sm flex items-center justify-between group/btn cursor-pointer shadow-md hover:shadow-orange-600/20"
                       >
                         <span>{language === 'hi' ? 'वेबसाइट पर जाएं' : language === 'gu' ? 'વેબસાઇટની મુલાકાત લો' : 'Visit Website'}</span>
                         <ArrowRight size={12} className="text-white group-hover/btn:translate-x-1 transition-all" />
@@ -100,10 +100,10 @@ const ForthcomingPrograms: React.FC = () => {
             })}
           </div>
         ) : (
-          <div className="max-w-2xl mx-auto bg-white/5 backdrop-blur-sm border border-white/10 p-8 sm:p-12 rounded-sm text-center border-l-4 border-orange-500 shadow-2xl relative overflow-hidden flex flex-col items-center justify-center">
+          <div className="max-w-2xl mx-auto bg-white/5 backdrop-blur-sm border border-white/10 p-8 sm:p-12 rounded-sm text-center border-l-4 border-secondary shadow-2xl relative overflow-hidden flex flex-col items-center justify-center">
             <div className="absolute inset-0 bg-gradient-to-br from-orange-600/[0.03] via-transparent to-transparent pointer-events-none"></div>
             
-            <div className="bg-orange-600/15 border border-orange-500/30 w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-xl shadow-orange-600/5">
+            <div className="bg-accent/15 border border-secondary/30 w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-xl shadow-orange-600/5">
               <Sparkles size={28} className="text-orange-400 animate-pulse" />
             </div>
 
@@ -111,7 +111,7 @@ const ForthcomingPrograms: React.FC = () => {
               {language === 'hi' ? 'नए कार्यक्रम जल्द ही आ रहे हैं' : language === 'gu' ? 'નવા કાર્યક્રમો ટૂંક સમયમાં આવી રહ્યા છે' : 'New Programs & Events Coming Soon'}
             </h4>
             
-            <p className="text-blue-100/75 text-sm max-w-md leading-relaxed mb-8">
+            <p className="text-white/75 text-sm max-w-md leading-relaxed mb-8">
               {language === 'hi'
                 ? 'हम वर्तमान में हमारी अकादमिक और सांस्कृतिक पहलों की नई श्रृंखला का नियोजन कर रहे हैं। आधिकारिक घोषणाओं के लिए हमारे साथ जुड़े रहें।'
                 : language === 'gu'
@@ -121,7 +121,7 @@ const ForthcomingPrograms: React.FC = () => {
 
             <button 
               onClick={() => window.location.hash = '#/admissions'}
-              className="bg-orange-600 hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] px-8 py-3.5 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
+              className="bg-accent hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] px-8 py-3.5 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
             >
               <Calendar size={14} /> {language === 'hi' ? 'रुचि दर्ज करें' : language === 'gu' ? 'રસ નોંધાવો' : 'Register Interest'}
             </button>

@@ -42,15 +42,15 @@ const CampusLifePage: React.FC = () => {
       title: t('campusLife.sec1Title'),
       desc: t('campusLife.sec1Desc'),
       icon: Users,
-      color: "border-orange-500/30",
+      color: "border-secondary/30",
       accent: "text-orange-400"
     },
     {
       title: t('campusLife.sec2Title'),
       desc: t('campusLife.sec2Desc'),
       icon: Calendar,
-      color: "border-blue-500/30",
-      accent: "text-blue-400"
+      color: "border-secondary/30",
+      accent: "text-secondary"
     },
     {
       title: t('campusLife.sec3Title'),
@@ -182,9 +182,9 @@ const CampusLifePage: React.FC = () => {
       <Header />
       <Navbar />
 
-      <main className="flex-grow bg-[#002147] text-white py-16 relative overflow-hidden" id="campus-life-main-content">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-800/15 rounded-full blur-[140px] -mr-80 -mt-80 z-0 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-orange-600/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
+      <main className="flex-grow bg-primary-dark text-white py-16 relative overflow-hidden" id="campus-life-main-content">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-dark/15 rounded-full blur-[140px] -mr-80 -mt-80 z-0 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-accent/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
 
         <div className="institutional-container relative z-10">
           {/* Breadcrumb Navigation */}
@@ -193,7 +193,7 @@ const CampusLifePage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             onClick={() => window.dispatchEvent(new CustomEvent('navigateToHome'))}
-            className="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
+            className="inline-flex items-center gap-2 text-secondary-light hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
             aria-label="Navigate back to homepage"
             id="back-to-home-btn"
           >
@@ -209,10 +209,10 @@ const CampusLifePage: React.FC = () => {
             <h1 className="text-4xl sm:text-5xl font-serif font-black text-white leading-tight uppercase tracking-tight">
               {t('campusLife.title')}
             </h1>
-            <h2 className="text-lg sm:text-xl font-serif font-bold text-blue-200 leading-relaxed border-l-4 border-orange-500 pl-4">
+            <h2 className="text-lg sm:text-xl font-serif font-bold text-secondary-light leading-relaxed border-l-4 border-secondary pl-4">
               {t('campusLife.internalHeading')}
             </h2>
-            <p className="text-blue-100/80 text-sm sm:text-base leading-relaxed">
+            <p className="text-white/80 text-sm sm:text-base leading-relaxed">
               {t('campusLife.descTitle')} <br className="hidden sm:inline" />
               {t('campusLife.desc')}
             </p>
@@ -234,16 +234,16 @@ const CampusLifePage: React.FC = () => {
                     className={`bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 p-6 sm:p-8 rounded-sm shadow-xl transition-all duration-300 relative group ${sec.color}`}
                   >
                     <div className="flex justify-between items-start mb-6">
-                      <div className="w-10 h-10 rounded-sm bg-blue-950/80 border border-white/10 flex items-center justify-center text-xl shadow-md group-hover:bg-orange-600 group-hover:border-transparent transition-all">
+                      <div className="w-10 h-10 rounded-sm bg-primary-dark/80 border border-white/10 flex items-center justify-center text-xl shadow-md group-hover:bg-accent group-hover:border-transparent transition-all">
                         <IconComp size={20} className={`${sec.accent} group-hover:text-white transition-colors`} />
                       </div>
-                      <span className="text-[10px] font-black text-white/20 select-none group-hover:text-orange-500/30 transition-colors">0{idx+1}</span>
+                      <span className="text-[10px] font-black text-white/20 select-none group-hover:text-secondary/30 transition-colors">0{idx+1}</span>
                     </div>
                     <div className="space-y-2">
                       <h4 className="text-base font-serif font-bold text-white group-hover:text-orange-400 transition-colors">
                         {sec.title}
                       </h4>
-                      <p className="text-blue-100/70 text-xs sm:text-sm leading-relaxed">
+                      <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
                         {sec.desc}
                       </p>
                     </div>
@@ -265,7 +265,7 @@ const CampusLifePage: React.FC = () => {
             {/* Desktop Layout - Showcase Gallery */}
             <div className="hidden md:grid grid-cols-12 gap-8 items-stretch">
               {/* Main Showcase Panel */}
-              <div className="col-span-7 lg:col-span-8 relative aspect-[16/10] rounded-sm overflow-hidden border border-white/10 bg-blue-950/40 shadow-2xl flex flex-col justify-end group">
+              <div className="col-span-7 lg:col-span-8 relative aspect-[16/10] rounded-sm overflow-hidden border border-white/10 bg-primary-dark/40 shadow-2xl flex flex-col justify-end group">
                 {/* Images with crossfade animation */}
                 <div className="absolute inset-0 overflow-hidden">
                   <AnimatePresence mode="wait">
@@ -289,7 +289,7 @@ const CampusLifePage: React.FC = () => {
                 <div className="absolute top-4 right-4 z-10 flex gap-2">
                   <button
                     onClick={() => setSelectedIdx(activeIdx)}
-                    className="w-10 h-10 rounded-full bg-black/40 hover:bg-orange-600 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg"
+                    className="w-10 h-10 rounded-full bg-black/40 hover:bg-accent backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg"
                     aria-label="View fullscreen"
                     title="Fullscreen"
                   >
@@ -298,13 +298,13 @@ const CampusLifePage: React.FC = () => {
                 </div>
 
                 <div className="absolute top-4 left-4 z-10">
-                  <span className="bg-orange-600 text-white font-black text-[10px] uppercase tracking-widest px-3 py-1 rounded-sm shadow-md">
+                  <span className="bg-accent text-white font-black text-[10px] uppercase tracking-widest px-3 py-1 rounded-sm shadow-md">
                     {galleryItems[activeIdx].tag}
                   </span>
                 </div>
 
                 {/* Glassmorphic Caption Banner */}
-                <div className="relative z-10 p-6 sm:p-8 bg-[#002147]/70 backdrop-blur-md border-t border-white/10">
+                <div className="relative z-10 p-6 sm:p-8 bg-primary-dark/70 backdrop-blur-md border-t border-white/10">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeIdx}
@@ -317,7 +317,7 @@ const CampusLifePage: React.FC = () => {
                       <h4 className="font-serif font-black text-lg lg:text-2xl text-white uppercase tracking-wider">
                         {galleryItems[activeIdx].title}
                       </h4>
-                      <p className="text-xs lg:text-sm text-blue-200/90 leading-relaxed max-w-3xl">
+                      <p className="text-xs lg:text-sm text-secondary-light/90 leading-relaxed max-w-3xl">
                         {galleryItems[activeIdx].desc}
                       </p>
                     </motion.div>
@@ -333,14 +333,14 @@ const CampusLifePage: React.FC = () => {
                     onClick={() => setActiveIdx(idx)}
                     className={`flex items-center gap-4 p-4 rounded-sm border transition-all text-left relative overflow-hidden w-full h-[22%] cursor-pointer group ${
                       activeIdx === idx
-                        ? 'bg-white/[0.08] border-orange-500/50 shadow-lg shadow-orange-500/5'
+                        ? 'bg-white/[0.08] border-secondary/50 shadow-lg shadow-orange-500/5'
                         : 'bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:border-white/15'
                     }`}
                   >
                     {activeIdx === idx && (
                       <motion.div
                         layoutId="activeBorder"
-                        className="absolute inset-0 border-2 border-orange-500 rounded-sm pointer-events-none z-10"
+                        className="absolute inset-0 border-2 border-secondary rounded-sm pointer-events-none z-10"
                         transition={{ type: "spring", stiffness: 350, damping: 30 }}
                       />
                     )}
@@ -355,7 +355,7 @@ const CampusLifePage: React.FC = () => {
                       <h5 className="font-serif font-bold text-xs lg:text-sm text-white truncate uppercase tracking-wide group-hover:text-orange-300 transition-colors">
                         {item.title}
                       </h5>
-                      <p className="text-[10px] text-blue-200/50 truncate leading-relaxed">
+                      <p className="text-[10px] text-secondary-light/50 truncate leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
@@ -376,7 +376,7 @@ const CampusLifePage: React.FC = () => {
                 <div 
                   ref={carouselRef}
                   onScroll={handleScroll}
-                  className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar w-full h-[280px] rounded-sm border border-white/10 bg-blue-950/40 relative shadow-xl"
+                  className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar w-full h-[280px] rounded-sm border border-white/10 bg-primary-dark/40 relative shadow-xl"
                   style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
                   {galleryItems.map((item, idx) => (
@@ -388,7 +388,7 @@ const CampusLifePage: React.FC = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
                       
                       {/* Floating Category Tag */}
-                      <span className="absolute top-4 left-4 bg-orange-600 text-white font-black text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-sm shadow-md">
+                      <span className="absolute top-4 left-4 bg-accent text-white font-black text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-sm shadow-md">
                         {item.tag}
                       </span>
                       
@@ -412,7 +412,7 @@ const CampusLifePage: React.FC = () => {
                     key={idx}
                     onClick={() => scrollToIdx(idx)}
                     className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                      activeIdx === idx ? 'bg-orange-500 w-7 shadow-md shadow-orange-500/20' : 'bg-white/20 w-2 hover:bg-white/40'
+                      activeIdx === idx ? 'bg-secondary w-7 shadow-md shadow-orange-500/20' : 'bg-white/20 w-2 hover:bg-white/40'
                     }`}
                     aria-label={`Go to slide ${idx + 1}`}
                   />
@@ -420,21 +420,21 @@ const CampusLifePage: React.FC = () => {
               </div>
 
               {/* Caption Description Box */}
-              <div className="bg-[#002147]/65 backdrop-blur-sm border border-white/10 p-5 rounded-sm space-y-2 shadow-lg">
+              <div className="bg-primary-dark/65 backdrop-blur-sm border border-white/10 p-5 rounded-sm space-y-2 shadow-lg">
                 <span className="text-[10px] font-black text-orange-400 uppercase tracking-widest">
                   {galleryItems[activeIdx].tag}
                 </span>
                 <h4 className="font-serif font-black text-lg text-white uppercase tracking-wider">
                   {galleryItems[activeIdx].title}
                 </h4>
-                <p className="text-xs text-blue-200/80 leading-relaxed">
+                <p className="text-xs text-secondary-light/80 leading-relaxed">
                   {galleryItems[activeIdx].desc}
                 </p>
               </div>
             </div>
 
             {/* Label */}
-            <div className="mt-8 bg-orange-500/5 border border-orange-500/10 p-4 rounded-sm text-center">
+            <div className="mt-8 bg-secondary/5 border border-secondary/10 p-4 rounded-sm text-center">
               <p className="text-orange-400/90 text-xs font-semibold leading-relaxed tracking-wide">
                 {t('campusLife.galleryLabel')}
               </p>
@@ -446,23 +446,23 @@ const CampusLifePage: React.FC = () => {
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-[#003366] to-[#001f3f] border border-white/10 p-8 sm:p-12 rounded-sm text-center border-l-4 border-orange-500 shadow-2xl relative"
+            className="bg-gradient-to-br from-primary-dark to-primary-dark border border-white/10 p-8 sm:p-12 rounded-sm text-center border-l-4 border-secondary shadow-2xl relative"
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
             <div className="max-w-2xl mx-auto space-y-6">
-              <span className="text-[9px] font-black uppercase text-orange-400 tracking-widest border border-orange-500/30 px-2.5 py-1 rounded-full">
+              <span className="text-[9px] font-black uppercase text-orange-400 tracking-widest border border-secondary/30 px-2.5 py-1 rounded-full">
                 {language === 'hi' ? 'स्वयंसेवक पंजीकरण' : language === 'gu' ? 'સ્વયંસેવક રજીસ્ટ્રેશન' : 'Volunteer Registry'}
               </span>
               <h3 className="text-2xl sm:text-3xl font-serif font-black text-white uppercase tracking-wider">
                 {t('campusLife.ctaTitle')}
               </h3>
-              <p className="text-blue-100/85 text-xs sm:text-sm leading-relaxed">
+              <p className="text-white/85 text-xs sm:text-sm leading-relaxed">
                 {t('campusLife.ctaDesc')}
               </p>
               <div className="flex justify-center pt-2">
                 <button 
                   onClick={() => window.dispatchEvent(new Event('openVolunteerModal'))}
-                  className="bg-orange-600 hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] px-8 py-3.5 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
+                  className="bg-accent hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] px-8 py-3.5 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
                   id="become-volunteer-btn"
                 >
                   <UserPlus size={14} /> {t('campusLife.btnVolunteer')}
@@ -548,7 +548,7 @@ const CampusLifePage: React.FC = () => {
                 </AnimatePresence>
                 
                 {/* Floating category tag */}
-                <span className="absolute top-4 left-4 bg-orange-600/90 text-white font-black text-[10px] uppercase tracking-wider px-3 py-1 rounded-sm shadow-md z-20">
+                <span className="absolute top-4 left-4 bg-accent/90 text-white font-black text-[10px] uppercase tracking-wider px-3 py-1 rounded-sm shadow-md z-20">
                   {galleryItems[selectedIdx].tag}
                 </span>
               </div>
@@ -567,7 +567,7 @@ const CampusLifePage: React.FC = () => {
                     <h4 className="font-serif font-black text-lg sm:text-xl text-white uppercase tracking-wider">
                       {galleryItems[selectedIdx].title}
                     </h4>
-                    <p className="text-blue-200/80 text-xs sm:text-sm leading-relaxed line-clamp-3">
+                    <p className="text-secondary-light/80 text-xs sm:text-sm leading-relaxed line-clamp-3">
                       {galleryItems[selectedIdx].desc}
                     </p>
                     <div className="text-[10px] font-bold text-orange-400 uppercase tracking-widest pt-1">

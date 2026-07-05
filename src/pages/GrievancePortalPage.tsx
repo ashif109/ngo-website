@@ -74,9 +74,9 @@ const GrievancePortalPage: React.FC = () => {
       <Header />
       <Navbar />
 
-      <main className="flex-grow bg-[#002147] text-white py-16 relative overflow-hidden" id="grievance-portal-content">
-        <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-blue-800/15 rounded-full blur-[130px] -mr-72 -mt-72 z-0 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-orange-600/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
+      <main className="flex-grow bg-primary-dark text-white py-16 relative overflow-hidden" id="grievance-portal-content">
+        <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-primary-dark/15 rounded-full blur-[130px] -mr-72 -mt-72 z-0 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-accent/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
 
         <div className="institutional-container relative z-10">
           
@@ -86,7 +86,7 @@ const GrievancePortalPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             onClick={() => window.dispatchEvent(new CustomEvent('navigateToHome'))}
-            className="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
+            className="inline-flex items-center gap-2 text-secondary-light hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform" />
             {language === 'hi' ? 'मुख्य पृष्ठ पर वापस' : language === 'gu' ? 'મુખ્ય પૃષ્ઠ પર પાછા' : 'Back to Home'}
@@ -100,7 +100,7 @@ const GrievancePortalPage: React.FC = () => {
             <h1 className="text-4xl sm:text-5xl font-serif font-black text-white leading-tight uppercase tracking-tight">
               {t('grievance.title')}
             </h1>
-            <p className="text-blue-100/80 text-sm sm:text-base leading-relaxed">
+            <p className="text-white/80 text-sm sm:text-base leading-relaxed">
               {t('grievance.desc')}
             </p>
           </div>
@@ -111,9 +111,9 @@ const GrievancePortalPage: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-sm p-8 sm:p-10 shadow-2xl relative border-t-4 border-orange-500 overflow-hidden"
+              className="lg:col-span-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-sm p-8 sm:p-10 shadow-2xl relative border-t-4 border-secondary overflow-hidden"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600/10 rounded-full blur-2xl pointer-events-none"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl pointer-events-none"></div>
 
               {status === 'success' ? (
                 <motion.div 
@@ -126,7 +126,7 @@ const GrievancePortalPage: React.FC = () => {
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-2xl font-serif font-black text-white uppercase tracking-wider">{t('grievance.successTitle')}</h3>
-                    <p className="text-blue-200 text-sm max-w-md mx-auto leading-relaxed">
+                    <p className="text-secondary-light text-sm max-w-md mx-auto leading-relaxed">
                       {t('grievance.successDesc')}
                     </p>
                   </div>
@@ -147,24 +147,24 @@ const GrievancePortalPage: React.FC = () => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{t('grievance.fieldName')}</label>
+                      <label className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{t('grievance.fieldName')}</label>
                       <input 
                         required 
                         type="text" 
                         value={formData.name} 
                         onChange={e => setFormData({...formData, name: e.target.value})} 
-                        className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none transition-all text-sm text-white" 
+                        className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none transition-all text-sm text-white" 
                         placeholder={language === 'hi' ? 'आपका नाम' : 'Your Name'} 
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{t('grievance.fieldEmail')}</label>
+                      <label className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{t('grievance.fieldEmail')}</label>
                       <input 
                         required 
                         type="email" 
                         value={formData.email} 
                         onChange={e => setFormData({...formData, email: e.target.value})} 
-                        className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none transition-all text-sm text-white" 
+                        className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none transition-all text-sm text-white" 
                         placeholder="example@mail.com" 
                       />
                     </div>
@@ -172,46 +172,46 @@ const GrievancePortalPage: React.FC = () => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{t('grievance.fieldPhone')}</label>
+                      <label className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{t('grievance.fieldPhone')}</label>
                       <input 
                         required 
                         type="tel" 
                         value={formData.phone} 
                         onChange={e => setFormData({...formData, phone: e.target.value})} 
-                        className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none transition-all text-sm text-white" 
+                        className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none transition-all text-sm text-white" 
                         placeholder="+91 XXXXX XXXXX" 
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{t('grievance.fieldCategory')}</label>
+                      <label className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{t('grievance.fieldCategory')}</label>
                       <select 
                         value={formData.category} 
                         onChange={e => setFormData({...formData, category: e.target.value})} 
-                        className="w-full p-3.5 bg-blue-950/90 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none transition-all text-sm text-white cursor-pointer"
+                        className="w-full p-3.5 bg-primary-dark/90 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none transition-all text-sm text-white cursor-pointer"
                       >
                         {categories.map((cat, idx) => (
-                          <option key={idx} value={cat.value} className="bg-blue-950 text-white py-2">{cat.label}</option>
+                          <option key={idx} value={cat.value} className="bg-primary-dark text-white py-2">{cat.label}</option>
                         ))}
                       </select>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{t('grievance.fieldDesc')}</label>
+                    <label className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{t('grievance.fieldDesc')}</label>
                     <textarea 
                       required 
                       rows={5} 
                       value={formData.description} 
                       onChange={e => setFormData({...formData, description: e.target.value})} 
-                      className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none transition-all text-sm text-white resize-none" 
+                      className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none transition-all text-sm text-white resize-none" 
                       placeholder={language === 'hi' ? 'विवरण यहाँ प्रदान करें...' : "Provide detailed information..."}
                     ></textarea>
                   </div>
 
                   {/* Document Attachment Upload Component */}
                   <div>
-                    <label className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{t('grievance.fieldAttach')}</label>
-                    <div className="relative border border-dashed border-white/20 rounded-sm p-6 bg-blue-950/20 text-center hover:bg-blue-950/40 transition-colors flex flex-col items-center justify-center cursor-pointer group">
+                    <label className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{t('grievance.fieldAttach')}</label>
+                    <div className="relative border border-dashed border-white/20 rounded-sm p-6 bg-primary-dark/20 text-center hover:bg-primary-dark/40 transition-colors flex flex-col items-center justify-center cursor-pointer group">
                       <input 
                         type="file" 
                         accept="image/*,application/pdf"
@@ -222,14 +222,14 @@ const GrievancePortalPage: React.FC = () => {
                       <span className="text-xs font-bold text-white">
                         {formData.fileName ? formData.fileName : (language === 'hi' ? 'फ़ाइल चुनने के लिए यहाँ क्लिक करें या ड्रैग करें' : 'Click or drag file to upload')}
                       </span>
-                      <span className="text-[10px] text-blue-200/50 mt-1">PDF, JPG, PNG (Max 5MB)</span>
+                      <span className="text-[10px] text-secondary-light/50 mt-1">PDF, JPG, PNG (Max 5MB)</span>
                     </div>
                   </div>
 
                   {/* Privacy Notice Box */}
                   <div className="flex gap-3 bg-white/[0.02] border border-white/5 p-4 rounded-sm items-start">
                     <ShieldCheck size={18} className="text-green-400 flex-shrink-0 mt-0.5" />
-                    <p className="text-[11px] text-blue-200/80 leading-relaxed font-bold">
+                    <p className="text-[11px] text-secondary-light/80 leading-relaxed font-bold">
                       {t('grievance.privacyNotice')}
                     </p>
                   </div>
@@ -237,7 +237,7 @@ const GrievancePortalPage: React.FC = () => {
                   <button 
                     disabled={status === 'loading'}
                     type="submit" 
-                    className="w-full bg-orange-600 hover:bg-orange-700 text-white py-4 rounded-sm font-black text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xl hover:-translate-y-0.5 disabled:opacity-75 disabled:hover:translate-y-0"
+                    className="w-full bg-accent hover:bg-orange-700 text-white py-4 rounded-sm font-black text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xl hover:-translate-y-0.5 disabled:opacity-75 disabled:hover:translate-y-0"
                   >
                     {status === 'loading' ? (
                       <Loader2 className="animate-spin" size={14} />
@@ -253,12 +253,12 @@ const GrievancePortalPage: React.FC = () => {
 
             {/* RIGHT COLUMN: POLICY DETAILS (Col-span 4) */}
             <div className="lg:col-span-4 space-y-6">
-              <div className="bg-[#003366]/40 border border-white/10 p-6 sm:p-8 rounded-sm space-y-4 shadow-xl">
+              <div className="bg-primary/40 border border-white/10 p-6 sm:p-8 rounded-sm space-y-4 shadow-xl">
                 <div className="flex items-center gap-2 border-b border-white/10 pb-3 text-orange-400">
                   <AlertCircle size={16} />
                   <h4 className="text-xs font-black uppercase text-white tracking-wide">Redressal Policy</h4>
                 </div>
-                <p className="text-xs text-blue-200/80 leading-relaxed">
+                <p className="text-xs text-secondary-light/80 leading-relaxed">
                   {language === 'hi' 
                     ? 'त्र्यंबकम गुरुकुलम हमारे समुदाय के सभी सदस्यों के लिए पारदर्शिता, सत्यनिष्ठा और न्याय सुनिश्चित करने के लिए प्रतिबद्ध है। हमारी शिकायत समिति निष्पक्षता और तटस्थता के नियमों का पालन करते हुए सभी शिकायतों की जांच करती है।'
                     : 'Triyambakam Gurukulam is committed to ensuring transparency, integrity, and safety across all programs. Our committee investigates and addresses all logged feedbacks and concerns without bias.'}

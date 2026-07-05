@@ -46,13 +46,13 @@ export const CORE_CAUSES = [
     title: "Vedic Education",
     desc: "Reviving ancient wisdom for modern minds through structured Gurukulam programs.",
     img: policyImg,
-    color: "bg-orange-600"
+    color: "bg-accent"
   },
   {
     title: "Cultural Heritage",
     desc: "Preserving and documenting the intangible heritage of Bharat for future generations.",
     img: heritageImg,
-    color: "bg-blue-900"
+    color: "bg-primary"
   },
   {
     title: "Rural Welfare",

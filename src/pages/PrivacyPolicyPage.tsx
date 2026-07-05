@@ -50,9 +50,9 @@ const PrivacyPolicyPage: React.FC = () => {
       <Header />
       <Navbar />
 
-      <main className="flex-grow bg-[#002147] text-white py-16 relative overflow-hidden" id="privacy-policy-content">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-800/10 rounded-full blur-[120px] -mr-60 -mt-60 z-0 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-orange-600/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
+      <main className="flex-grow bg-primary-dark text-white py-16 relative overflow-hidden" id="privacy-policy-content">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-dark/10 rounded-full blur-[120px] -mr-60 -mt-60 z-0 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-accent/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
 
         <div className="institutional-container relative z-10">
           {/* Breadcrumb Navigation */}
@@ -61,7 +61,7 @@ const PrivacyPolicyPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             onClick={() => window.dispatchEvent(new CustomEvent('navigateToHome'))}
-            className="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
+            className="inline-flex items-center gap-2 text-secondary-light hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform" />
             {language === 'hi' ? 'मुख्य पृष्ठ पर वापस' : language === 'gu' ? 'મુખ્ય પૃષ્ઠ પર પાછા' : 'Back to Home'}
@@ -75,7 +75,7 @@ const PrivacyPolicyPage: React.FC = () => {
             <h1 className="text-4xl sm:text-5xl font-serif font-black text-white leading-tight uppercase tracking-tight">
               {t('privacy.title')}
             </h1>
-            <p className="text-blue-100/80 text-sm sm:text-base leading-relaxed">
+            <p className="text-white/80 text-sm sm:text-base leading-relaxed">
               {t('privacy.desc')}
             </p>
           </div>
@@ -83,7 +83,7 @@ const PrivacyPolicyPage: React.FC = () => {
           {/* DETAILED STATEMENT */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
             <div className="lg:col-span-8 space-y-8 bg-white/5 border border-white/10 p-8 sm:p-10 rounded-sm shadow-xl">
-              <p className="text-xs sm:text-sm text-blue-100/90 leading-relaxed italic">
+              <p className="text-xs sm:text-sm text-white/90 leading-relaxed italic">
                 {t('privacy.bodyText')}
               </p>
 
@@ -93,7 +93,7 @@ const PrivacyPolicyPage: React.FC = () => {
                     <h3 className="font-serif font-bold text-base text-orange-400">
                       {sec.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-blue-200/80 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-secondary-light/80 leading-relaxed">
                       {sec.content}
                     </p>
                   </div>
@@ -108,12 +108,12 @@ const PrivacyPolicyPage: React.FC = () => {
                   <FileText size={16} />
                   <h4 className="text-xs font-black uppercase text-white tracking-wider">Privacy Contact</h4>
                 </div>
-                <p className="text-xs text-blue-200/70 leading-relaxed">
+                <p className="text-xs text-secondary-light/70 leading-relaxed">
                   {language === 'hi'
                     ? 'यदि आपके पास हमारी गोपनीयता प्रथाओं या अपने व्यक्तिगत डेटा के बारे में कोई प्रश्न हैं, तो कृपया हमसे संपर्क करें:'
                     : 'If you have any questions or feedback regarding our privacy practices or personal data management, contact us directly at:'}
                 </p>
-                <div className="flex items-center gap-2 text-xs font-bold text-white bg-blue-950/60 p-3 border border-white/10 rounded-sm">
+                <div className="flex items-center gap-2 text-xs font-bold text-white bg-primary-dark/60 p-3 border border-white/10 rounded-sm">
                   <Mail size={14} className="text-orange-400" />
                   <span>croping@gmail.com</span>
                 </div>

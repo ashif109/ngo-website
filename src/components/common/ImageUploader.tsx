@@ -69,14 +69,14 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
   return (
     <div className={`space-y-3 ${className}`}>
       {label && (
-        <label className="block text-[10px] font-black text-blue-300 uppercase tracking-wider">
+        <label className="block text-[10px] font-black text-secondary-light uppercase tracking-wider">
           {label}
         </label>
       )}
 
       {/* Preview */}
       {preview && (
-        <div className="relative w-full h-40 rounded-sm overflow-hidden border border-white/10 bg-blue-950/30">
+        <div className="relative w-full h-40 rounded-sm overflow-hidden border border-white/10 bg-primary-dark/30">
           <img
             src={preview}
             alt="Preview"
@@ -94,8 +94,8 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
       )}
 
       {!preview && (
-        <div className="w-full h-24 rounded-sm border-2 border-dashed border-white/10 flex items-center justify-center bg-blue-950/20">
-          <ImageIcon size={28} className="text-blue-300/40" />
+        <div className="w-full h-24 rounded-sm border-2 border-dashed border-white/10 flex items-center justify-center bg-primary-dark/20">
+          <ImageIcon size={28} className="text-secondary-light/40" />
         </div>
       )}
 
@@ -105,7 +105,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
           type="button"
           onClick={() => setMode('url')}
           className={`px-3 py-1.5 text-[10px] font-black uppercase rounded-sm cursor-pointer transition-all ${
-            mode === 'url' ? 'bg-orange-600 text-white' : 'bg-white/5 text-blue-300 hover:bg-white/10'
+            mode === 'url' ? 'bg-accent text-white' : 'bg-white/5 text-secondary-light hover:bg-white/10'
           }`}
         >
           <Link size={10} className="inline mr-1" />URL
@@ -114,7 +114,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
           type="button"
           onClick={() => setMode('file')}
           className={`px-3 py-1.5 text-[10px] font-black uppercase rounded-sm cursor-pointer transition-all ${
-            mode === 'file' ? 'bg-orange-600 text-white' : 'bg-white/5 text-blue-300 hover:bg-white/10'
+            mode === 'file' ? 'bg-accent text-white' : 'bg-white/5 text-secondary-light hover:bg-white/10'
           }`}
         >
           <Upload size={10} className="inline mr-1" />Upload File
@@ -129,12 +129,12 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
             value={urlInput}
             onChange={e => setUrlInput(e.target.value)}
             placeholder="https://example.com/image.jpg"
-            className="flex-1 p-2.5 bg-blue-950/40 border border-white/10 rounded-sm text-white text-xs outline-none focus:ring-1 focus:ring-orange-500"
+            className="flex-1 p-2.5 bg-primary-dark/40 border border-white/10 rounded-sm text-white text-xs outline-none focus:ring-1 focus:ring-orange-500"
           />
           <button
             type="button"
             onClick={handleUrlSubmit}
-            className="px-3 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-sm text-[10px] font-black uppercase cursor-pointer transition-all"
+            className="px-3 py-2 bg-accent hover:bg-orange-700 text-white rounded-sm text-[10px] font-black uppercase cursor-pointer transition-all"
           >
             Set
           </button>
@@ -156,14 +156,14 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
             htmlFor={`file-upload-${label?.replace(/\s/g, '-')}`}
             className={`flex items-center justify-center gap-2 w-full p-3 border-2 border-dashed rounded-sm cursor-pointer transition-all ${
               uploading
-                ? 'border-orange-500/50 bg-orange-600/5'
-                : 'border-white/10 bg-white/5 hover:border-orange-500/50 hover:bg-orange-600/5'
+                ? 'border-secondary/50 bg-accent/5'
+                : 'border-white/10 bg-white/5 hover:border-secondary/50 hover:bg-accent/5'
             }`}
           >
             {uploading ? (
-              <><Loader2 size={14} className="animate-spin text-orange-400" /> <span className="text-xs text-blue-200 font-bold">Uploading...</span></>
+              <><Loader2 size={14} className="animate-spin text-orange-400" /> <span className="text-xs text-secondary-light font-bold">Uploading...</span></>
             ) : (
-              <><Upload size={14} className="text-blue-300" /> <span className="text-xs text-blue-200 font-bold">Choose image file (max 10MB)</span></>
+              <><Upload size={14} className="text-secondary-light" /> <span className="text-xs text-secondary-light font-bold">Choose image file (max 10MB)</span></>
             )}
           </label>
         </div>
@@ -178,7 +178,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
       {status === 'error' && (
         <div className="text-red-300 text-[10px] font-bold space-y-1">
           <div className="flex items-center gap-1"><AlertCircle size={12} /> {errorMsg}</div>
-          <div className="text-blue-300 font-normal">Tip: You can still paste an image URL directly instead.</div>
+          <div className="text-secondary-light font-normal">Tip: You can still paste an image URL directly instead.</div>
         </div>
       )}
     </div>

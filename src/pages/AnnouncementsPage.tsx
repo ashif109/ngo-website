@@ -45,7 +45,7 @@ const AnnouncementsPage: React.FC = () => {
 
   const sections = [
     { title: t('announcements.sec1Title'), icon: Megaphone, accent: "text-orange-400" },
-    { title: t('announcements.sec2Title'), icon: Calendar, accent: "text-blue-400" },
+    { title: t('announcements.sec2Title'), icon: Calendar, accent: "text-secondary" },
     { title: t('announcements.sec3Title'), icon: Compass, accent: "text-green-400" },
     { title: t('announcements.sec4Title'), icon: Award, accent: "text-indigo-400" }
   ];
@@ -55,9 +55,9 @@ const AnnouncementsPage: React.FC = () => {
       <Header />
       <Navbar />
 
-      <main className="flex-grow bg-[#002147] text-white py-16 relative overflow-hidden" id="announcements-main-content">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-800/15 rounded-full blur-[140px] -mr-80 -mt-80 z-0 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-orange-600/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
+      <main className="flex-grow bg-primary-dark text-white py-16 relative overflow-hidden" id="announcements-main-content">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-dark/15 rounded-full blur-[140px] -mr-80 -mt-80 z-0 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-accent/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
 
         <div className="institutional-container relative z-10">
           {/* Breadcrumb Navigation */}
@@ -66,7 +66,7 @@ const AnnouncementsPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             onClick={() => window.dispatchEvent(new CustomEvent('navigateToHome'))}
-            className="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
+            className="inline-flex items-center gap-2 text-secondary-light hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
             aria-label="Navigate back to homepage"
             id="back-to-home-btn"
           >
@@ -90,7 +90,7 @@ const AnnouncementsPage: React.FC = () => {
               const IconComp = sec.icon;
               return (
                 <div key={idx} className="bg-white/[0.02] border border-white/5 p-5 rounded-sm flex items-center gap-4 hover:bg-white/[0.04] transition-all">
-                  <div className="w-10 h-10 rounded-sm bg-blue-950/80 border border-white/10 flex items-center justify-center text-xl shadow-md">
+                  <div className="w-10 h-10 rounded-sm bg-primary-dark/80 border border-white/10 flex items-center justify-center text-xl shadow-md">
                     <IconComp size={18} className={sec.accent} />
                   </div>
                   <span className="text-xs font-black uppercase tracking-wider text-white">{sec.title}</span>
@@ -104,16 +104,16 @@ const AnnouncementsPage: React.FC = () => {
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-white/[0.02] border border-white/10 rounded-sm p-16 text-center shadow-2xl border-t-4 border-orange-500 mb-24"
+            className="bg-white/[0.02] border border-white/10 rounded-sm p-16 text-center shadow-2xl border-t-4 border-secondary mb-24"
           >
             <div className="max-w-md mx-auto space-y-4">
-              <div className="w-12 h-12 bg-orange-600/15 border border-orange-500/20 rounded-full flex items-center justify-center text-orange-400 mx-auto animate-bounce">
+              <div className="w-12 h-12 bg-accent/15 border border-secondary/20 rounded-full flex items-center justify-center text-orange-400 mx-auto animate-bounce">
                 <Bell size={24} />
               </div>
               <h3 className="text-xl font-serif font-black uppercase text-white tracking-wide">
                 {t('announcements.emptyStateTitle')}
               </h3>
-              <p className="text-blue-100/70 text-xs leading-relaxed">
+              <p className="text-white/70 text-xs leading-relaxed">
                 {t('announcements.emptyStateDesc')}
               </p>
             </div>
@@ -124,18 +124,18 @@ const AnnouncementsPage: React.FC = () => {
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-[#003366] to-[#001f3f] border border-white/10 p-8 sm:p-12 rounded-sm shadow-2xl relative overflow-hidden border-l-4 border-orange-500"
+            className="bg-gradient-to-br from-primary-dark to-primary-dark border border-white/10 p-8 sm:p-12 rounded-sm shadow-2xl relative overflow-hidden border-l-4 border-secondary"
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div className="max-w-2xl mx-auto text-center space-y-6">
-              <span className="text-[9px] font-black uppercase text-orange-400 tracking-widest border border-orange-500/30 px-2.5 py-1 rounded-full">
+              <span className="text-[9px] font-black uppercase text-orange-400 tracking-widest border border-secondary/30 px-2.5 py-1 rounded-full">
                 {language === 'hi' ? 'सूचनाएं' : language === 'gu' ? 'સૂચનાઓ' : 'Notifications'}
               </span>
               <h3 className="text-2xl sm:text-3xl font-serif font-black text-white uppercase tracking-wider">
                 {t('announcements.ctaTitle')}
               </h3>
-              <p className="text-blue-100/80 text-xs sm:text-sm leading-relaxed">
+              <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
                 {t('announcements.ctaDesc')}
               </p>
 
@@ -160,12 +160,12 @@ const AnnouncementsPage: React.FC = () => {
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     placeholder={language === 'hi' ? 'आपका ईमेल पता' : language === 'gu' ? 'તમારું ઇમેઇલ સરનામું' : 'Your email address'} 
-                    className="flex-grow p-3 bg-blue-950/80 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none text-sm text-white"
+                    className="flex-grow p-3 bg-primary-dark/80 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none text-sm text-white"
                   />
                   <button 
                     disabled={status === 'loading'}
                     type="submit" 
-                    className="bg-orange-600 hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] py-3 px-6 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer disabled:opacity-75"
+                    className="bg-accent hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] py-3 px-6 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer disabled:opacity-75"
                   >
                     {status === 'loading' ? t('admissions.btnSubmitting') : t('announcements.btnSubscribe')}
                   </button>

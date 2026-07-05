@@ -67,10 +67,10 @@ const AdmissionsPage: React.FC = () => {
       <Header />
       <Navbar />
 
-      <main className="flex-grow bg-[#002147] text-white py-16 relative overflow-hidden">
+      <main className="flex-grow bg-primary-dark text-white py-16 relative overflow-hidden">
         {/* Glowing Decorative Backgrounds */}
-        <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-blue-800/15 rounded-full blur-[130px] -mr-72 -mt-72 z-0 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-orange-600/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-primary-dark/15 rounded-full blur-[130px] -mr-72 -mt-72 z-0 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-accent/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
 
         <div className="institutional-container relative z-10">
           
@@ -80,7 +80,7 @@ const AdmissionsPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             onClick={() => window.dispatchEvent(new CustomEvent('navigateToHome'))}
-            className="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
+            className="inline-flex items-center gap-2 text-secondary-light hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform" />
             {language === 'hi' ? 'मुख्य पृष्ठ पर वापस' : language === 'gu' ? 'મુખ્ય પૃષ્ઠ પર પાછા' : 'Back to Home'}
@@ -94,7 +94,7 @@ const AdmissionsPage: React.FC = () => {
             <h1 className="text-4xl sm:text-5xl font-serif font-black text-white leading-tight uppercase tracking-tight">
               {t('admissions.title')}
             </h1>
-            <p className="text-blue-100/80 text-sm sm:text-base leading-relaxed">
+            <p className="text-white/80 text-sm sm:text-base leading-relaxed">
               {t('admissions.desc')}
             </p>
           </div>
@@ -107,10 +107,10 @@ const AdmissionsPage: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="lg:col-span-7 bg-white/5 backdrop-blur-md border border-white/10 rounded-sm p-8 sm:p-10 shadow-2xl relative border-t-4 border-orange-500 overflow-hidden"
+              className="lg:col-span-7 bg-white/5 backdrop-blur-md border border-white/10 rounded-sm p-8 sm:p-10 shadow-2xl relative border-t-4 border-secondary overflow-hidden"
             >
               {/* Radial glow subtle accent */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600/10 rounded-full blur-2xl pointer-events-none"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl pointer-events-none"></div>
 
               {status === 'success' ? (
                 <motion.div 
@@ -123,7 +123,7 @@ const AdmissionsPage: React.FC = () => {
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-2xl font-serif font-black text-white uppercase tracking-wider">{t('admissions.successTitle')}</h3>
-                    <p className="text-blue-200 text-sm max-w-md mx-auto leading-relaxed">
+                    <p className="text-secondary-light text-sm max-w-md mx-auto leading-relaxed">
                       {t('admissions.successDesc')}
                     </p>
                   </div>
@@ -144,24 +144,24 @@ const AdmissionsPage: React.FC = () => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{t('admissions.fieldName')}</label>
+                      <label className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{t('admissions.fieldName')}</label>
                       <input 
                         required 
                         type="text" 
                         value={formData.name} 
                         onChange={e => setFormData({...formData, name: e.target.value})} 
-                        className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
+                        className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
                         placeholder={language === 'hi' ? 'आपका पूरा नाम' : language === 'gu' ? 'તમારું પૂરું નામ' : 'Your full name'} 
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{t('admissions.fieldEmail')}</label>
+                      <label className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{t('admissions.fieldEmail')}</label>
                       <input 
                         required 
                         type="email" 
                         value={formData.email} 
                         onChange={e => setFormData({...formData, email: e.target.value})} 
-                        className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
+                        className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
                         placeholder="example@mail.com" 
                       />
                     </div>
@@ -169,37 +169,37 @@ const AdmissionsPage: React.FC = () => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{t('admissions.fieldPhone')}</label>
+                      <label className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{t('admissions.fieldPhone')}</label>
                       <input 
                         required 
                         type="tel" 
                         value={formData.phone} 
                         onChange={e => setFormData({...formData, phone: e.target.value})} 
-                        className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
+                        className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
                         placeholder="+91 XXXXX XXXXX" 
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{t('admissions.fieldInterest')}</label>
+                      <label className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{t('admissions.fieldInterest')}</label>
                       <select 
                         value={formData.program} 
                         onChange={e => setFormData({...formData, program: e.target.value})} 
-                        className="w-full p-3.5 bg-blue-950/90 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white cursor-pointer"
+                        className="w-full p-3.5 bg-primary-dark/90 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white cursor-pointer"
                       >
                         {programs.map((prog, idx) => (
-                          <option key={idx} value={prog} className="bg-blue-950 text-white py-2">{prog}</option>
+                          <option key={idx} value={prog} className="bg-primary-dark text-white py-2">{prog}</option>
                         ))}
                       </select>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{t('admissions.fieldMessage')}</label>
+                    <label className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{t('admissions.fieldMessage')}</label>
                     <textarea 
                       rows={4} 
                       value={formData.message} 
                       onChange={e => setFormData({...formData, message: e.target.value})} 
-                      className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white resize-none" 
+                      className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white resize-none" 
                       placeholder={language === 'hi' ? 'हमें अपने बारे में बताएं...' : language === 'gu' ? 'અમને તમારા વિશે કહો...' : "Tell us about yourself and what you'd like to learn or participate in..."}
                     ></textarea>
                   </div>
@@ -207,7 +207,7 @@ const AdmissionsPage: React.FC = () => {
                   <button 
                     disabled={status === 'loading'}
                     type="submit" 
-                    className="w-full bg-orange-600 hover:bg-orange-700 text-white py-4 rounded-sm font-black text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xl hover:-translate-y-0.5 disabled:opacity-75 disabled:hover:translate-y-0"
+                    className="w-full bg-accent hover:bg-orange-700 text-white py-4 rounded-sm font-black text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xl hover:-translate-y-0.5 disabled:opacity-75 disabled:hover:translate-y-0"
                   >
                     {status === 'loading' ? (
                       <span>{t('admissions.btnSubmitting')}</span>
@@ -229,16 +229,16 @@ const AdmissionsPage: React.FC = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-gradient-to-br from-[#003366] to-[#001f3f] border border-white/10 p-6 sm:p-8 rounded-sm shadow-2xl relative overflow-hidden border-l-4 border-orange-500"
+                className="bg-gradient-to-br from-primary-dark to-primary-dark border border-white/10 p-6 sm:p-8 rounded-sm shadow-2xl relative overflow-hidden border-l-4 border-secondary"
               >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-secondary/10 rounded-full blur-2xl pointer-events-none"></div>
 
                 <div className="space-y-4">
-                  <div className="inline-flex items-center gap-1.5 bg-[#002147] border border-white/10 px-2.5 py-1 rounded-full text-[9px] font-black uppercase text-orange-400 tracking-wider">
+                  <div className="inline-flex items-center gap-1.5 bg-primary-dark border border-white/10 px-2.5 py-1 rounded-full text-[9px] font-black uppercase text-orange-400 tracking-wider">
                     <Calendar size={10} className="animate-spin" /> {t('admissions.comingSoonBadge')}
                   </div>
                   <h3 className="text-xl font-serif font-black text-white uppercase tracking-wider">{t('admissions.comingSoonTitle')}</h3>
-                  <p className="text-blue-100/80 text-xs leading-relaxed">
+                  <p className="text-white/80 text-xs leading-relaxed">
                     {t('admissions.comingSoonDesc')}
                   </p>
                 </div>
@@ -259,23 +259,23 @@ const AdmissionsPage: React.FC = () => {
                 <div className="space-y-5">
                   {/* Phone Info */}
                   <div className="flex gap-4 items-start group">
-                    <div className="w-9 h-9 rounded-full bg-orange-600/10 border border-orange-500/20 flex items-center justify-center text-orange-400 group-hover:bg-orange-600 group-hover:text-white transition-all duration-300">
+                    <div className="w-9 h-9 rounded-full bg-accent/10 border border-secondary/20 flex items-center justify-center text-orange-400 group-hover:bg-accent group-hover:text-white transition-all duration-300">
                       <Phone size={14} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-black text-blue-300 uppercase tracking-widest">{t('admissions.contactPhone')}</p>
+                      <p className="text-[10px] font-black text-secondary-light uppercase tracking-widest">{t('admissions.contactPhone')}</p>
                       <p className="text-sm font-bold text-white mt-0.5">+91 94121 62807</p>
                     </div>
                   </div>
 
                   {/* Headquarters Info */}
                   <div className="flex gap-4 items-start group">
-                    <div className="w-9 h-9 rounded-full bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                    <div className="w-9 h-9 rounded-full bg-primary-light/10 border border-secondary/20 flex items-center justify-center text-secondary group-hover:bg-primary-light group-hover:text-white transition-all duration-300">
                       <MapPin size={14} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-black text-blue-300 uppercase tracking-widest">{t('admissions.contactLocation')}</p>
-                      <p className="text-xs font-medium text-blue-100/90 leading-relaxed mt-0.5">
+                      <p className="text-[10px] font-black text-secondary-light uppercase tracking-widest">{t('admissions.contactLocation')}</p>
+                      <p className="text-xs font-medium text-white/90 leading-relaxed mt-0.5">
                         F.No.1006 10th Floor BL-A, Om Shree Platinum Basai <br/>
                         Agra - 282001, Uttar Pradesh
                       </p>
@@ -294,11 +294,11 @@ const AdmissionsPage: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-[#002147] border border-white/10 rounded-sm p-10 sm:p-12 text-center shadow-2xl relative overflow-hidden"
+            className="bg-primary-dark border border-white/10 rounded-sm p-10 sm:p-12 text-center shadow-2xl relative overflow-hidden"
           >
             {/* Decorative background glows */}
-            <div className="absolute top-0 left-0 w-32 h-32 bg-orange-500/5 rounded-full blur-2xl pointer-events-none"></div>
-            <div className="absolute bottom-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl pointer-events-none"></div>
+            <div className="absolute top-0 left-0 w-32 h-32 bg-secondary/5 rounded-full blur-2xl pointer-events-none"></div>
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-surface0/5 rounded-full blur-2xl pointer-events-none"></div>
 
             <div className="max-w-2xl mx-auto space-y-5">
               <div className="flex justify-center text-orange-400">

@@ -5,16 +5,32 @@
   --font-sans: "Inter", "Noto Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", "Tiro Devanagari Hindi", serif;
 
-  --color-primary-blue: #003366;
-  --color-secondary-blue: #0055a5;
-  --color-institutional-green: #006400;
-  --color-accent-orange: #ea580c;
+  --color-primary: #7A1F1E;
+  --color-primary-light: #9D2928;
+  --color-primary-dark: #5C1615;
+
+  --color-secondary: #D4AF37;
+  --color-secondary-light: #E6C55C;
+  --color-secondary-dark: #B89326;
+
+  --color-accent: #D97706;
   
-  --shadow-premium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --color-background: #FDFBF7;
+  --color-surface: #F5F0E6;
+  
+  --color-text-main: #2C241B;
+  --color-text-muted: #5C4E3F;
+  
+  --color-border-main: #E6DBCC;
+  --color-border-gold: #D4AF37;
+
+  --shadow-premium: 0 10px 15px -3px rgba(122, 31, 30, 0.1), 0 4px 6px -2px rgba(122, 31, 30, 0.05);
+  --shadow-luxury: 0 20px 25px -5px rgba(122, 31, 30, 0.15), 0 10px 10px -5px rgba(122, 31, 30, 0.04);
+  --shadow-glow: 0 0 15px rgba(212, 175, 55, 0.4);
 }
 
 body {
-  @apply bg-[#ffffff] text-[#1a1a1a] antialiased scroll-smooth;
+  @apply bg-background text-text-main antialiased scroll-smooth;
 }
 
 .institutional-container {
@@ -22,11 +38,11 @@ body {
 }
 
 .section-title {
-  @apply font-serif text-lg pb-2 mb-6 flex items-center gap-3 uppercase tracking-widest relative overflow-hidden;
+  @apply font-serif text-lg pb-2 mb-6 flex items-center gap-3 uppercase tracking-widest relative overflow-hidden text-primary;
 }
 
 .institutional-card {
-  @apply bg-white border border-gray-100 p-6 h-full shadow-sm hover:shadow-premium transition-all duration-300 rounded-sm;
+  @apply bg-white border border-border-main p-6 h-full shadow-sm hover:shadow-luxury transition-all duration-300 rounded-lg;
 }
 
 /* Custom Scrollbar for Nav */
@@ -40,9 +56,13 @@ body {
 
 /* Micro-interactions */
 .hover-lift {
-  @apply transition-transform duration-300 hover:-translate-y-1;
+  @apply transition-transform duration-300 hover:-translate-y-1 hover:shadow-premium;
 }
 
 .premium-gradient {
-  @apply bg-gradient-to-r from-[#003366] to-[#0055a5];
+  @apply bg-gradient-to-r from-primary-dark to-primary;
+}
+
+.golden-glow {
+  @apply hover:shadow-glow transition-shadow duration-300;
 }

@@ -30,11 +30,11 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact-section" className="py-20 bg-gray-50 border-t border-gray-200">
+    <section id="contact-section" className="py-20 bg-background border-t border-border-main">
       <div className="institutional-container">
         <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden flex flex-col md:flex-row">
           
-          <div className="bg-[#0055a5] p-8 md:p-12 text-white md:w-2/5 flex flex-col justify-center">
+          <div className="bg-primary-light p-8 md:p-12 text-white md:w-2/5 flex flex-col justify-center">
             <h2 className="text-3xl font-serif font-bold mb-4">
               {language === 'hi' ? 'संपर्क करें' : language === 'gu' ? 'સંપર્ક કરો' : 'Get in Touch'}
             </h2>
@@ -57,10 +57,10 @@ const ContactSection: React.FC = () => {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
                   <Send className="text-green-600" size={24} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                <h3 className="text-2xl font-bold text-text-main mb-2">
                   {language === 'hi' ? 'संदेश भेजा गया!' : language === 'gu' ? 'સંદેશ મોકલાઈ ગયો!' : 'Message Sent!'}
                 </h3>
-                <p className="text-gray-600 mb-6">
+                <p className="text-text-muted mb-6">
                   {language === 'hi'
                     ? 'हमसे संपर्क करने के लिए धन्यवाद। हम जल्द ही आपसे संपर्क करेंगे।'
                     : language === 'gu'
@@ -69,7 +69,7 @@ const ContactSection: React.FC = () => {
                 </p>
                 <button 
                   onClick={() => setStatus('idle')}
-                  className="text-[#0055a5] font-bold text-sm uppercase tracking-wider hover:underline cursor-pointer"
+                  className="text-primary-light font-bold text-sm uppercase tracking-wider hover:underline cursor-pointer"
                 >
                   {language === 'hi' ? 'एक और संदेश भेजें' : language === 'gu' ? 'બીજો સંદેશ મોકલો' : 'Send another message'}
                 </button>
@@ -82,28 +82,28 @@ const ContactSection: React.FC = () => {
                   </div>
                 )}
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1">
                     {language === 'hi' ? 'आपका नाम *' : language === 'gu' ? 'તમારું નામ *' : 'Your Name *'}
                   </label>
-                  <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-sm focus:ring-2 focus:ring-[#0055a5] focus:border-transparent outline-none transition-all font-semibold" placeholder="John Doe" />
+                  <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full p-3 bg-background border border-border-main rounded-sm focus:ring-2 focus:ring-[#9D2928] focus:border-transparent outline-none transition-all font-semibold" placeholder="John Doe" />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1">
                     {language === 'hi' ? 'आपका ईमेल *' : language === 'gu' ? 'તમારું ઇમેઇલ *' : 'Your Email *'}
                   </label>
-                  <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-sm focus:ring-2 focus:ring-[#0055a5] focus:border-transparent outline-none transition-all font-semibold" placeholder="john@example.com" />
+                  <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full p-3 bg-background border border-border-main rounded-sm focus:ring-2 focus:ring-[#9D2928] focus:border-transparent outline-none transition-all font-semibold" placeholder="john@example.com" />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1">
                     {language === 'hi' ? 'संदेश *' : language === 'gu' ? 'સંદેશ *' : 'Message *'}
                   </label>
-                  <textarea required rows={4} value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-sm focus:ring-2 focus:ring-[#0055a5] focus:border-transparent outline-none transition-all font-semibold" placeholder={language === 'hi' ? 'हम आपकी कैसे मदद कर सकते हैं?' : language === 'gu' ? 'અમે તમને કેવી રીતે મદદ કરી શકીએ?' : 'How can we help you?'}></textarea>
+                  <textarea required rows={4} value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="w-full p-3 bg-background border border-border-main rounded-sm focus:ring-2 focus:ring-[#9D2928] focus:border-transparent outline-none transition-all font-semibold" placeholder={language === 'hi' ? 'हम आपकी कैसे मदद कर सकते हैं?' : language === 'gu' ? 'અમે તમને કેવી રીતે મદદ કરી શકીએ?' : 'How can we help you?'}></textarea>
                 </div>
                 
                 <button 
                   disabled={status === 'loading'}
                   type="submit" 
-                  className="w-full bg-[#0055a5] text-white px-8 py-4 rounded-sm font-black text-sm uppercase tracking-wider hover:bg-[#003366] transition-all shadow-xl hover:-translate-y-1 flex justify-center items-center disabled:opacity-70 disabled:hover:translate-y-0 cursor-pointer"
+                  className="w-full bg-primary-light text-white px-8 py-4 rounded-sm font-black text-sm uppercase tracking-wider hover:bg-primary transition-all shadow-xl hover-lift flex justify-center items-center disabled:opacity-70 disabled:hover:translate-y-0 cursor-pointer"
                 >
                   {status === 'loading' ? <Loader2 className="animate-spin mr-2" size={20} /> : (
                     <><Send size={16} className="mr-2" /> {language === 'hi' ? 'संदेश भेजें' : language === 'gu' ? 'સંદેશ મોકલો' : 'Send Message'}</>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import staticHeroBg from '../../assets/main image inhanced.png';
+import staticHeroBg from '../../assets/WhatsApp Image 2026-05-10 at 6.46.13 PM.jpeg';
 import { useLanguage } from '../../context/LanguageContext';
 import { getSiteContent } from '../../services/api';
+import { Star, HeartHandshake, Users } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const { language } = useLanguage();
@@ -13,72 +14,103 @@ const Hero: React.FC = () => {
       if (res.success && res.data) {
         setContent(res.data);
       }
-    }).catch(() => {});
+    }).catch(() => { });
   }, []);
 
-  // Use CMS content if loaded, otherwise fall back to static defaults
   const heroBg = (content?.backgroundImageUrl) || staticHeroBg;
-  const headline = language === 'hi'
-    ? (content?.headlineHi || 'ज्ञान का संरक्षण, भविष्य का सशक्तिकरण')
-    : language === 'gu'
-    ? (content?.headlineGu || 'જ્ઞાનનું સંરક્ષણ, ભવિષ્યનું સશક્તિકરણ')
-    : (content?.headlineEn || 'Preserving Wisdom, Empowering the Future');
 
   const badge = language === 'hi'
     ? (content?.badgeHi || 'राष्ट्रीय पहल 2026')
     : language === 'gu'
-    ? (content?.badgeGu || 'રાષ્ટ્રીય પહેલ 2026')
-    : (content?.badgeEn || 'National Initiative 2026');
+      ? (content?.badgeGu || 'રાષ્ટ્રીય પહેલ 2026')
+      : (content?.badgeEn || 'NATIONAL INITIATIVE 2026');
 
   return (
-    <div className="relative w-full min-h-[480px] md:h-[520px] py-16 md:py-0 overflow-hidden bg-gray-900 border-b-8 border-[#0055a5]">
-      {/* Background with Overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-60 transition-all duration-700"
-        style={{ backgroundImage: `url("${heroBg}")` }}
-      ></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-[#003366] via-transparent to-transparent"></div>
+    <div className="relative w-full min-h-[500px] sm:min-h-[550px] md:min-h-[60vh] lg:min-h-[70vh] flex items-center overflow-hidden bg-primary-dark py-16 md:py-20 lg:py-24">
+      {/* Background Image & Overlays */}
+      {/* Background Image Container restricted to right side for better sizing and masking */}
+      <div className="absolute inset-y-0 right-0 w-full sm:w-[90%] md:w-[75%] lg:w-[65%]">
+        <div
+          className="absolute inset-0 bg-cover bg-no-repeat transition-all duration-700 opacity-90"
+          style={{ 
+            backgroundImage: `url("${heroBg}")`, 
+            backgroundPosition: 'center center',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 100%)',
+            maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 100%)'
+          }}
+        ></div>
+      </div>
 
-      {/* Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+      {/* Rich gradient overlays matching the reference - adjusted for better face visibility */}
+      <div className="absolute inset-0 bg-gradient-to-r from-primary-dark via-primary-dark/40 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-transparent to-transparent"></div>
+
+      {/* Content Container */}
+      <div className="institutional-container relative z-10 w-full pt-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-4xl"
+          className="max-w-2xl text-left"
         >
-          <div className="inline-block px-4 py-1 bg-orange-600 text-white text-[12px] font-bold uppercase tracking-widest mb-6 rounded-sm shadow-xl">
+          {/* Badge */}
+          <div className="flex items-center gap-2 text-secondary font-bold text-[11px] md:text-xs uppercase tracking-[0.2em] mb-6">
+            <Star size={14} className="fill-current" />
             {badge}
           </div>
-          
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-black text-white leading-tight drop-shadow-2xl mb-8 uppercase tracking-tight">
-            {headline.includes(',') ? (
-              <>
-                {headline.split(',')[0]},<br />
-                <span className="text-orange-400">{headline.split(',').slice(1).join(',').trim()}</span>
-              </>
-            ) : headline}
-          </h2>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          {/* Heading */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] font-serif font-black leading-[1.05] mb-6 drop-shadow-2xl">
+            <span className="text-white block tracking-tight">PRESERVING</span>
+            <span className="text-white block tracking-tight">WISDOM,</span>
+            <span className="text-secondary block tracking-tight mt-1">EMPOWERING</span>
+            <span className="text-secondary block tracking-tight">THE FUTURE</span>
+          </h1>
+
+          {/* Decorative Line */}
+          <div className="flex items-center gap-2 mb-6 opacity-80">
+            <div className="h-[1px] w-12 bg-secondary"></div>
+            <div className="w-1.5 h-1.5 rounded-full border border-secondary"></div>
+            <div className="h-[1px] w-32 bg-gradient-to-r from-secondary to-transparent"></div>
+          </div>
+
+          {/* Paragraph */}
+          <p className="text-white/90 text-sm md:text-base leading-relaxed mb-10 max-w-lg font-medium">
+            {language === 'hi'
+              ? 'प्राचीन ज्ञान को पोषित करने, वैदिक शिक्षा को बढ़ावा देने और एक उज्जवल, मूल्य-आधारित कल के निर्माण के हमारे मिशन में शामिल हों।'
+              : language === 'gu'
+                ? 'પ્રાચીન જ્ઞાનને પોષવા, વૈદિક શિક્ષણને પ્રોત્સાહન આપવા અને ઉજ્જવળ, મૂલ્ય આધારિત આવતીકાલના નિર્માણના અમારા મિશનમાં જોડાઓ.'
+                : 'Join us in our mission to nurture ancient knowledge, promote Vedic education, and build a brighter, value-driven tomorrow.'}
+          </p>
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
             <button
               onClick={() => window.dispatchEvent(new Event('openDonateModal'))}
-              className="w-full sm:w-auto bg-orange-600 text-white px-8 py-3 rounded-sm font-black text-sm uppercase tracking-wider hover:bg-orange-700 transition-all shadow-xl hover:-translate-y-1 cursor-pointer"
+              className="flex items-center justify-center gap-3 bg-[#f59e0b] hover:bg-[#d97706] text-primary-dark px-8 py-3.5 rounded-sm font-black text-xs uppercase tracking-wider transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer"
             >
+              <HeartHandshake size={18} />
               {language === 'hi' ? 'मिशन में दान दें' : language === 'gu' ? 'મિશનમાં દાન આપો' : 'Donate to the Mission'}
             </button>
             <button
               onClick={() => window.dispatchEvent(new Event('openVolunteerModal'))}
-              className="w-full sm:w-auto bg-transparent border-2 border-white text-white px-8 py-3 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-white/10 transition-all shadow-xl hover:-translate-y-1 cursor-pointer"
+              className="flex items-center justify-center gap-3 bg-transparent border border-white/40 hover:bg-white/10 text-white px-8 py-3.5 rounded-sm font-bold text-xs uppercase tracking-wider transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer"
             >
+              <Users size={18} />
               {language === 'hi' ? 'स्वयंसेवक बनें' : language === 'gu' ? 'સ્વયંસેવક બનો' : 'Become a Volunteer'}
             </button>
           </div>
         </motion.div>
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-white to-green-600"></div>
+      {/* Decorative Bottom Border Area */}
+      <div className="absolute bottom-0 left-0 w-full z-20">
+        <div className="w-full h-3 bg-gradient-to-r from-primary-dark via-primary to-primary-dark border-t border-secondary/30 relative">
+          <div className="absolute left-1/2 -top-4 -translate-x-1/2 w-8 h-8 rounded-full bg-primary-dark border-t border-secondary/30 flex items-center justify-center shadow-[0_-5px_10px_rgba(0,0,0,0.3)]">
+            <Star size={14} className="text-secondary fill-current" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

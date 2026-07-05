@@ -17,14 +17,14 @@ const Header: React.FC = () => {
 
           {/* Center: Text */}
           <div className="text-center flex-1 px-4 lg:px-8 w-full flex flex-col justify-center overflow-hidden">
-            <h1 className="text-2xl md:text-4xl xl:text-5xl font-serif font-black text-[#006400] leading-tight md:leading-none tracking-wide drop-shadow-sm mb-1 sm:mb-2 whitespace-normal md:whitespace-nowrap">{t('header.academyNameHindi')}</h1>
-            <h2 className="text-lg md:text-2xl xl:text-3xl font-serif font-bold text-[#006400] leading-tight tracking-wide mb-1 whitespace-normal md:whitespace-nowrap">{t('header.academyNameEnglish')}</h2>
-            <p className="text-[10px] sm:text-xs md:text-sm text-gray-500 font-bold uppercase tracking-[0.1em] sm:tracking-[0.2em] whitespace-normal md:whitespace-nowrap">{t('header.subtitle')}</p>
+            <h1 className="text-2xl md:text-4xl xl:text-5xl font-serif font-black text-primary leading-tight md:leading-none tracking-wide drop-shadow-sm mb-1 sm:mb-2 whitespace-normal md:whitespace-nowrap">{t('header.academyNameHindi')}</h1>
+            <h2 className="text-lg md:text-2xl xl:text-3xl font-serif font-bold text-primary leading-tight tracking-wide mb-1 whitespace-normal md:whitespace-nowrap">{t('header.academyNameEnglish')}</h2>
+            <p className="text-[10px] sm:text-xs md:text-sm text-text-muted font-bold uppercase tracking-[0.1em] sm:tracking-[0.2em] whitespace-normal md:whitespace-nowrap">{t('header.subtitle')}</p>
           </div>
           <div className="hidden lg:flex items-center gap-8">
             <button 
               onClick={() => window.dispatchEvent(new Event('openDonateModal'))}
-              className="bg-orange-600 text-white px-8 py-3 rounded-sm font-black text-xs uppercase tracking-[0.2em] hover:bg-orange-700 transition-all shadow-xl hover:-translate-y-1"
+              className="bg-accent text-white px-8 py-3 rounded-sm font-black text-xs uppercase tracking-[0.2em] hover:bg-orange-700 transition-all shadow-xl hover-lift"
             >
               {t('header.donateBtn')}
             </button>

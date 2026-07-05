@@ -25,7 +25,7 @@ const VedicStudiesPage: React.FC = () => {
       title: t("vedic.explore1Title"),
       desc: t("vedic.explore1Desc"),
       icon: BookOpen,
-      color: "border-orange-500/30",
+      color: "border-secondary/30",
       glow: "shadow-orange-500/5",
       accent: "text-orange-400"
     },
@@ -34,9 +34,9 @@ const VedicStudiesPage: React.FC = () => {
       title: t("vedic.explore2Title"),
       desc: t("vedic.explore2Desc"),
       icon: Compass,
-      color: "border-blue-500/30",
-      glow: "shadow-blue-500/5",
-      accent: "text-blue-400"
+      color: "border-secondary/30",
+      glow: "shadow-secondary/5",
+      accent: "text-secondary"
     },
     {
       emoji: "📜",
@@ -130,13 +130,13 @@ const VedicStudiesPage: React.FC = () => {
       title: t("vedic.topic1Title"),
       subtitle: t("vedic.topic1Sub"),
       desc: t("vedic.topic1Desc"),
-      color: "border-l-4 border-orange-500"
+      color: "border-l-4 border-secondary"
     },
     {
       title: t("vedic.topic2Title"),
       subtitle: t("vedic.topic2Sub"),
       desc: t("vedic.topic2Desc"),
-      color: "border-l-4 border-blue-500"
+      color: "border-l-4 border-secondary"
     },
     {
       title: t("vedic.topic3Title"),
@@ -157,10 +157,10 @@ const VedicStudiesPage: React.FC = () => {
       <Header />
       <Navbar />
 
-      <main className="flex-grow bg-[#002147] text-white py-16 relative overflow-hidden">
+      <main className="flex-grow bg-primary-dark text-white py-16 relative overflow-hidden">
         {/* Glowing Decorative Backgrounds */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-800/15 rounded-full blur-[140px] -mr-80 -mt-80 z-0 pointer-events-none"></div>
-        <div className="absolute top-[40%] left-0 w-[450px] h-[450px] bg-orange-600/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-dark/15 rounded-full blur-[140px] -mr-80 -mt-80 z-0 pointer-events-none"></div>
+        <div className="absolute top-[40%] left-0 w-[450px] h-[450px] bg-accent/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
         <div className="absolute bottom-0 right-[15%] w-[500px] h-[500px] bg-teal-600/5 rounded-full blur-[120px] z-0 pointer-events-none"></div>
 
         <div className="institutional-container relative z-10">
@@ -171,7 +171,7 @@ const VedicStudiesPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             onClick={() => window.dispatchEvent(new CustomEvent('navigateToHome'))}
-            className="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
+            className="inline-flex items-center gap-2 text-secondary-light hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform" />
             {language === 'hi' ? 'मुख्य पृष्ठ पर वापस' : language === 'gu' ? 'મુખ્ય પૃષ્ઠ પર પાછા' : 'Back to Home'}
@@ -187,21 +187,21 @@ const VedicStudiesPage: React.FC = () => {
               </div>
               
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-serif font-black text-white leading-tight uppercase tracking-tight">
-                {t('vedic.title').split(' ')[0]} <span className="text-orange-500 underline decoration-wavy decoration-orange-600/30">{t('vedic.title').split(' ').slice(1).join(' ')}</span>
+                {t('vedic.title').split(' ')[0]} <span className="text-secondary underline decoration-wavy decoration-orange-600/30">{t('vedic.title').split(' ').slice(1).join(' ')}</span>
               </h1>
               
-              <h2 className="text-lg sm:text-xl font-serif font-bold text-blue-200 leading-relaxed border-l-4 border-orange-500 pl-4">
+              <h2 className="text-lg sm:text-xl font-serif font-bold text-secondary-light leading-relaxed border-l-4 border-secondary pl-4">
                 {t('vedic.descTitle')}
               </h2>
               
-              <p className="text-blue-100/80 text-sm sm:text-base leading-relaxed">
+              <p className="text-white/80 text-sm sm:text-base leading-relaxed">
                 {t('vedic.desc')}
               </p>
 
               <div className="pt-2 flex flex-wrap gap-4">
                 <button 
                   onClick={() => window.dispatchEvent(new Event('openVolunteerModal'))}
-                  className="bg-orange-600 hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] px-8 py-3.5 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer"
+                  className="bg-accent hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] px-8 py-3.5 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer"
                 >
                   {t('vedic.btnJoin')}
                 </button>
@@ -252,13 +252,13 @@ const VedicStudiesPage: React.FC = () => {
           {/* 2. WHAT YOU'LL EXPLORE GRID */}
           <div className="mb-24">
             <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-              <span className="text-xs font-bold text-orange-400 uppercase tracking-[0.2em] bg-orange-600/10 border border-orange-500/20 px-3.5 py-1.5 rounded-sm">
+              <span className="text-xs font-bold text-orange-400 uppercase tracking-[0.2em] bg-accent/10 border border-secondary/20 px-3.5 py-1.5 rounded-sm">
                 {t('vedic.syllabusBadge')}
               </span>
               <h2 className="text-3xl sm:text-4xl font-serif font-black uppercase text-white tracking-tight">
-                {t('vedic.exploreTitle').split(' ').slice(0, -1).join(' ')} <span className="text-orange-500">{t('vedic.exploreTitle').split(' ').slice(-1)[0]}</span>
+                {t('vedic.exploreTitle').split(' ').slice(0, -1).join(' ')} <span className="text-secondary">{t('vedic.exploreTitle').split(' ').slice(-1)[0]}</span>
               </h2>
-              <p className="text-blue-100/70 text-xs sm:text-sm">
+              <p className="text-white/70 text-xs sm:text-sm">
                 {t('vedic.exploreDesc')}
               </p>
             </div>
@@ -278,7 +278,7 @@ const VedicStudiesPage: React.FC = () => {
                     className={`bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 p-6 sm:p-8 rounded-sm shadow-xl transition-all duration-300 relative group ${card.glow}`}
                   >
                     <div className="flex justify-between items-start mb-6">
-                      <div className="w-10 h-10 rounded-sm bg-blue-950/80 border border-white/10 flex items-center justify-center text-xl shadow-md group-hover:bg-orange-600 group-hover:border-transparent transition-all">
+                      <div className="w-10 h-10 rounded-sm bg-primary-dark/80 border border-white/10 flex items-center justify-center text-xl shadow-md group-hover:bg-accent group-hover:border-transparent transition-all">
                         <span className="group-hover:scale-110 transition-transform">{card.emoji}</span>
                       </div>
                       <IconComp size={18} className={`${card.accent} opacity-60 group-hover:opacity-100 transition-opacity`} />
@@ -288,7 +288,7 @@ const VedicStudiesPage: React.FC = () => {
                       <h4 className="text-base font-serif font-bold text-white group-hover:text-orange-400 transition-colors">
                         {card.title}
                       </h4>
-                      <p className="text-blue-100/70 text-xs sm:text-sm leading-relaxed">
+                      <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
                         {card.desc}
                       </p>
                     </div>
@@ -304,13 +304,13 @@ const VedicStudiesPage: React.FC = () => {
             {/* Left Column: Why Vedic (Col-span 7) */}
             <div className="lg:col-span-7 space-y-8">
               <div>
-                <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest border border-orange-500/20 bg-orange-600/10 px-3.5 py-1.5 rounded-sm">
+                <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest border border-secondary/20 bg-accent/10 px-3.5 py-1.5 rounded-sm">
                   {t('vedic.outcomesBadge')}
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-serif font-black uppercase text-white tracking-tight mt-4">
-                  {t('vedic.whyTitle').split(' ').slice(0, -2).join(' ')} <span className="text-orange-500">{t('vedic.whyTitle').split(' ').slice(-2).join(' ')}</span>
+                  {t('vedic.whyTitle').split(' ').slice(0, -2).join(' ')} <span className="text-secondary">{t('vedic.whyTitle').split(' ').slice(-2).join(' ')}</span>
                 </h2>
-                <p className="text-blue-100/70 text-xs sm:text-sm mt-2">
+                <p className="text-white/70 text-xs sm:text-sm mt-2">
                   {t('vedic.whyDesc')}
                 </p>
               </div>
@@ -329,7 +329,7 @@ const VedicStudiesPage: React.FC = () => {
                     <div className="text-green-400 w-8 h-8 rounded-full bg-green-950/40 border border-green-500/20 flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform">
                       <CheckCircle2 size={16} />
                     </div>
-                    <span className="text-sm font-bold text-blue-100/90 group-hover:text-white transition-colors">
+                    <span className="text-sm font-bold text-white/90 group-hover:text-white transition-colors">
                       {text}
                     </span>
                   </motion.div>
@@ -348,14 +348,14 @@ const VedicStudiesPage: React.FC = () => {
                 {areasOfLearning.map((foc, idx) => (
                   <span 
                     key={idx}
-                    className="text-[10px] sm:text-[11px] font-bold text-orange-300 hover:text-white uppercase tracking-wider bg-orange-950/40 hover:bg-orange-950/60 border border-orange-500/20 px-3.5 py-1.5 rounded-full transition-all cursor-default select-none shadow-sm hover:shadow-md"
+                    className="text-[10px] sm:text-[11px] font-bold text-orange-300 hover:text-white uppercase tracking-wider bg-orange-950/40 hover:bg-orange-950/60 border border-secondary/20 px-3.5 py-1.5 rounded-full transition-all cursor-default select-none shadow-sm hover:shadow-md"
                   >
                     {foc}
                   </span>
                 ))}
               </div>
 
-              <div className="border-t border-white/5 pt-4 flex items-center gap-2 text-[10px] text-blue-300 font-bold uppercase tracking-widest">
+              <div className="border-t border-white/5 pt-4 flex items-center gap-2 text-[10px] text-secondary-light font-bold uppercase tracking-widest">
                 <ChevronRight size={14} className="text-orange-400 animate-pulse" /> {t('vedic.areasBadge')}
               </div>
             </div>
@@ -365,13 +365,13 @@ const VedicStudiesPage: React.FC = () => {
           {/* 4. FEATURED TOPICS PANEL */}
           <div className="mb-24">
             <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-              <span className="text-xs font-bold text-orange-400 uppercase tracking-[0.2em] bg-orange-600/10 border border-orange-500/20 px-3.5 py-1.5 rounded-sm">
+              <span className="text-xs font-bold text-orange-400 uppercase tracking-[0.2em] bg-accent/10 border border-secondary/20 px-3.5 py-1.5 rounded-sm">
                 {t('vedic.topicsBadge')}
               </span>
               <h2 className="text-3xl sm:text-4xl font-serif font-black uppercase text-white tracking-tight">
-                {t('vedic.topicsTitle').split(' ').slice(0, -1).join(' ')} <span className="text-orange-500">{t('vedic.topicsTitle').split(' ').slice(-1)[0]}</span>
+                {t('vedic.topicsTitle').split(' ').slice(0, -1).join(' ')} <span className="text-secondary">{t('vedic.topicsTitle').split(' ').slice(-1)[0]}</span>
               </h2>
-              <p className="text-blue-100/70 text-xs sm:text-sm">
+              <p className="text-white/70 text-xs sm:text-sm">
                 {t('vedic.topicsDesc')}
               </p>
             </div>
@@ -385,19 +385,19 @@ const VedicStudiesPage: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.08 }}
-                  className={`bg-white/[0.02] border border-white/5 hover:border-[#0055a5] p-6 sm:p-8 rounded-sm shadow-xl flex flex-col justify-between hover:bg-white/[0.04] transition-all ${topic.color} group`}
+                  className={`bg-white/[0.02] border border-white/5 hover:border-primary-light p-6 sm:p-8 rounded-sm shadow-xl flex flex-col justify-between hover:bg-white/[0.04] transition-all ${topic.color} group`}
                 >
                   <div className="space-y-3">
-                    <span className="text-[9px] font-black uppercase tracking-widest bg-[#003366] text-blue-300 px-2 py-0.5 rounded-full border border-white/10">
+                    <span className="text-[9px] font-black uppercase tracking-widest bg-primary text-secondary-light px-2 py-0.5 rounded-full border border-white/10">
                       {language === 'hi' ? `मॉड्यूल ${idx + 1}` : language === 'gu' ? `મોડ્યુલ ${idx + 1}` : `Module ${idx + 1}`}
                     </span>
                     <h3 className="text-lg font-serif font-bold text-white group-hover:text-orange-400 transition-colors mt-2">
                       {topic.title}
                     </h3>
-                    <h4 className="text-xs font-bold text-blue-200/90 uppercase tracking-wide">
+                    <h4 className="text-xs font-bold text-secondary-light/90 uppercase tracking-wide">
                       {topic.subtitle}
                     </h4>
-                    <p className="text-blue-100/70 text-xs sm:text-sm leading-relaxed mt-2">
+                    <p className="text-white/70 text-xs sm:text-sm leading-relaxed mt-2">
                       {topic.desc}
                     </p>
                   </div>
@@ -418,23 +418,23 @@ const VedicStudiesPage: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-gradient-to-br from-[#003366] to-[#001f3f] border border-white/10 p-8 sm:p-12 rounded-sm relative overflow-hidden shadow-2xl text-center border-l-4 border-orange-500"
+            className="bg-gradient-to-br from-primary-dark to-primary-dark border border-white/10 p-8 sm:p-12 rounded-sm relative overflow-hidden shadow-2xl text-center border-l-4 border-secondary"
           >
             {/* Background glowing bubbles */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div className="max-w-2xl mx-auto space-y-6">
-              <div className="inline-flex items-center gap-1.5 bg-[#002147] border border-white/10 px-3.5 py-1.5 rounded-full text-xs font-black uppercase text-orange-400 tracking-wider">
+              <div className="inline-flex items-center gap-1.5 bg-primary-dark border border-white/10 px-3.5 py-1.5 rounded-full text-xs font-black uppercase text-orange-400 tracking-wider">
                 <Calendar size={12} className="animate-spin" /> {t('vedic.updatesBadge')}
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-serif font-black text-white uppercase tracking-wider">
                 {t('vedic.upcomingTitle')} <br/>
-                <span className="text-orange-500">{t('vedic.upcomingSubtitle')}</span>
+                <span className="text-secondary">{t('vedic.upcomingSubtitle')}</span>
               </h3>
 
-              <p className="text-blue-100/80 text-xs sm:text-sm leading-relaxed">
+              <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
                 {t('vedic.upcomingDesc')}
               </p>
 
@@ -442,13 +442,13 @@ const VedicStudiesPage: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto pt-4">
                 <button 
                   onClick={() => window.dispatchEvent(new Event('openDonateModal'))}
-                  className="bg-orange-600 hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] py-3.5 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-1.5"
+                  className="bg-accent hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] py-3.5 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-1.5"
                 >
                   <Database size={14} /> {t('vedic.btnResources')}
                 </button>
                 <button 
                   onClick={() => window.dispatchEvent(new Event('openVolunteerModal'))}
-                  className="bg-[#002147] hover:bg-black/20 border border-white/10 text-white font-black text-xs uppercase tracking-[0.2em] py-3.5 rounded-sm transition-all shadow-md hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-1.5"
+                  className="bg-primary-dark hover:bg-black/20 border border-white/10 text-white font-black text-xs uppercase tracking-[0.2em] py-3.5 rounded-sm transition-all shadow-md hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-1.5"
                 >
                   <Users size={14} className="text-orange-400" /> {language === 'hi' ? 'समुदाय से जुड़ें' : language === 'gu' ? 'સમુદાયમાં જોડાઓ' : 'Join Community'}
                 </button>

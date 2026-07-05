@@ -13,14 +13,14 @@ const FALLBACK_CAUSES = [
     descEn: 'Reviving ancient wisdom for modern minds through structured Gurukulam programs.',
     descHi: 'संरचित गुरुकुल कार्यक्रमों के माध्यम से आधुनिक दिमागों के लिए प्राचीन ज्ञान को पुनर्जीवित करना।',
     descGu: 'આયોજિત ગુરુકુળ કાર્યક્રમો દ્વારા આધુનિક મન માટે પ્રાચીન જ્ઞાનને પુનર્જીવિત કરવું.',
-    imageUrl: policyImg, colorClass: 'bg-orange-600'
+    imageUrl: policyImg, colorClass: 'bg-accent'
   },
   {
     titleEn: 'Cultural Heritage', titleHi: 'सांस्कृतिक विरासत', titleGu: 'સાંસ્કૃતિક વારસો',
     descEn: 'Preserving and documenting the intangible heritage of Bharat for future generations.',
     descHi: 'भावी पीढ़ियों के लिए भारत की अमूर्त विरासत का संरक्षण और दस्तावेजीकरण।',
     descGu: 'ભાવી પેઢીઓ માટે ભારતના અમૂર્ત વારસાનું સંરક્ષણ અને દસ્તાવેજીકરણ.',
-    imageUrl: heritageImg, colorClass: 'bg-blue-900'
+    imageUrl: heritageImg, colorClass: 'bg-primary'
   },
   {
     titleEn: 'Rural Welfare', titleHi: 'ग्रामीण कल्याण', titleGu: 'ગ્રામીણ કલ્યાણ',
@@ -54,15 +54,15 @@ const Causes: React.FC = () => {
       <div className="institutional-container">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
           <div className="max-w-2xl">
-            <div className="flex items-center gap-2 text-orange-600 font-bold text-xs uppercase tracking-widest mb-4">
+            <div className="flex items-center gap-2 text-accent font-bold text-xs uppercase tracking-widest mb-4">
               <Heart size={16} fill="currentColor" />
               {language === 'hi' ? 'हमारे मुख्य मिशन' : language === 'gu' ? 'અમારા મુખ્ય મિશનો' : 'Our Core Missions'}
             </div>
-            <h2 className="text-4xl md:text-5xl font-serif font-black text-blue-900 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-serif font-black text-primary leading-tight">
               {language === 'hi' ? 'मुद्दे जिन्हें आपके सहयोग की आवश्यकता है' : language === 'gu' ? 'કાર્યો કે જેમને તમારા સમર્થનની જરૂર છે' : 'Causes That Need Your Support'}
             </h2>
           </div>
-          <button className="px-8 py-4 bg-blue-900 text-white font-bold text-xs uppercase tracking-[0.2em] hover:bg-blue-800 transition-all rounded-sm shadow-xl flex items-center gap-3 cursor-pointer">
+          <button className="px-8 py-4 bg-primary text-white font-bold text-xs uppercase tracking-[0.2em] hover:bg-primary-dark transition-all rounded-sm shadow-xl flex items-center gap-3 cursor-pointer">
             {language === 'hi' ? 'सभी मिशन देखें' : language === 'gu' ? 'બધા મિશનો જુઓ' : 'View All Causes'} <ArrowRight size={16} />
           </button>
         </div>
@@ -83,12 +83,12 @@ const Causes: React.FC = () => {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                   ) : (
-                    <div className="w-full h-full bg-blue-900/30 flex items-center justify-center">
-                      <span className="text-blue-300/50 text-4xl font-serif">{title?.[0]}</span>
+                    <div className="w-full h-full bg-primary/30 flex items-center justify-center">
+                      <span className="text-secondary-light/50 text-4xl font-serif">{title?.[0]}</span>
                     </div>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                  <div className={`absolute top-6 left-6 ${cause.colorClass || 'bg-orange-600'} text-white px-4 py-1 text-[10px] font-black uppercase tracking-widest rounded-sm shadow-lg`}>
+                  <div className={`absolute top-6 left-6 ${cause.colorClass || 'bg-accent'} text-white px-4 py-1 text-[10px] font-black uppercase tracking-widest rounded-sm shadow-lg`}>
                     {language === 'hi' ? 'प्राथमिकता मिशन' : language === 'gu' ? 'પ્રાથમિકતા મિશન' : 'Priority Mission'}
                   </div>
                   <div className="absolute bottom-8 left-8 right-8">
@@ -96,11 +96,11 @@ const Causes: React.FC = () => {
                     <p className="text-[12px] text-gray-300 leading-relaxed line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">{desc}</p>
                   </div>
                 </div>
-                <div className="flex items-center justify-between border-b border-gray-100 pb-4">
-                  <div className="text-[11px] font-black text-blue-900 uppercase tracking-widest">
+                <div className="flex items-center justify-between border-b border-border-main pb-4">
+                  <div className="text-[11px] font-black text-primary uppercase tracking-widest">
                     {language === 'hi' ? 'हमें बढ़ने में मदद करें' : language === 'gu' ? 'અમને આગળ વધવામાં મદદ કરો' : 'Help Us Grow'}
                   </div>
-                  <div className="flex items-center gap-2 text-orange-600 font-bold text-xs group-hover:gap-4 transition-all">
+                  <div className="flex items-center gap-2 text-accent font-bold text-xs group-hover:gap-4 transition-all">
                     {language === 'hi' ? 'अभी योगदान करें' : language === 'gu' ? 'હમણાં જ યોગદાન આપો' : 'CONTRIBUTE NOW'} <ArrowRight size={14} />
                   </div>
                 </div>

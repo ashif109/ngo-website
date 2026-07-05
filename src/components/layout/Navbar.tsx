@@ -34,21 +34,21 @@ const Navbar: React.FC = () => {
   return (
     <nav className="sticky top-0 z-50 shadow-lg relative">
       {/* Primary Navigation */}
-      <div className="bg-[#0055a5] text-white relative z-20">
+      <div className="bg-primary-light text-white relative z-20">
         <div className="institutional-container">
           <div className="flex items-center justify-between lg:justify-start">
             
             <div className="flex items-center lg:flex-wrap overflow-x-auto no-scrollbar lg:overflow-visible flex-1 lg:flex-none relative">
               <div 
                 onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
-                className="p-4 border-r border-white/10 hover:bg-[#003366] transition-colors cursor-pointer group"
+                className="p-4 border-r border-white/10 hover:bg-primary transition-colors cursor-pointer group"
               >
                 <Globe size={16} className="group-hover:rotate-12 transition-transform" />
               </div>
 
               {/* Premium Language Dropdown Selection */}
               {isLanguageDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-[#003366]/95 backdrop-blur-md border border-white/10 shadow-2xl rounded-sm py-2 z-50">
+                <div className="absolute top-full left-0 mt-1 w-48 bg-primary/95 backdrop-blur-md border border-white/10 shadow-2xl rounded-sm py-2 z-50">
                   {[
                     { code: 'en', label: '🇬🇧 English' },
                     { code: 'hi', label: '🇮🇳 हिन्दी (Hindi)' },
@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
                         setLanguage(lang.code as any);
                         setIsLanguageDropdownOpen(false);
                       }}
-                      className="px-4 py-2.5 text-xs font-bold text-white hover:bg-[#0055a5] flex items-center justify-between cursor-pointer transition-colors"
+                      className="px-4 py-2.5 text-xs font-bold text-white hover:bg-primary-light flex items-center justify-between cursor-pointer transition-colors"
                     >
                       <span>{lang.label}</span>
                       {language === lang.code && <Check size={14} className="text-orange-400" />}
@@ -101,7 +101,7 @@ const Navbar: React.FC = () => {
                           window.location.hash = '';
                         }
                       }}
-                      className="px-5 py-4 text-[11px] font-bold border-r border-white/10 hover:bg-[#003366] transition-colors cursor-pointer flex items-center gap-2 whitespace-nowrap group"
+                      className="px-5 py-4 text-[11px] font-bold border-r border-white/10 hover:bg-primary transition-colors cursor-pointer flex items-center gap-2 whitespace-nowrap group"
                     >
                       {translatedText} 
                       <ChevronDown size={10} className="group-hover:translate-y-0.5 transition-transform opacity-70" />
@@ -113,7 +113,7 @@ const Navbar: React.FC = () => {
 
             {/* Mobile Menu Toggle */}
             <div 
-              className="lg:hidden p-4 cursor-pointer hover:bg-[#003366] transition-colors flex items-center gap-2 font-bold text-xs tracking-wider"
+              className="lg:hidden p-4 cursor-pointer hover:bg-primary transition-colors flex items-center gap-2 font-bold text-xs tracking-wider"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               MENU {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
@@ -125,9 +125,9 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Dropdown Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-[#004a8f] border-t border-white/10 shadow-2xl z-10 max-h-[80vh] overflow-y-auto">
+        <div className="lg:hidden absolute top-full left-0 w-full bg-primary border-t border-white/10 shadow-2xl z-10 max-h-[80vh] overflow-y-auto">
           {/* Mobile Language Selector */}
-          <div className="bg-[#003366] px-6 py-4 border-b border-white/10 flex items-center justify-between">
+          <div className="bg-primary px-6 py-4 border-b border-white/10 flex items-center justify-between">
             <span className="text-[10px] font-black text-white/70 uppercase tracking-wider flex items-center gap-1.5">
               <Globe size={12} /> Language / भाषा
             </span>
@@ -142,7 +142,7 @@ const Navbar: React.FC = () => {
                   onClick={() => setLanguage(lang.code as any)}
                   className={`px-3 py-1.5 text-[10px] font-bold rounded-sm border uppercase transition-all cursor-pointer ${
                     language === lang.code
-                      ? 'bg-orange-600 border-transparent text-white'
+                      ? 'bg-accent border-transparent text-white'
                       : 'bg-white/5 border-white/10 text-white/80 hover:bg-white/10'
                   }`}
                 >
@@ -184,14 +184,14 @@ const Navbar: React.FC = () => {
                     }
                     setIsMobileMenuOpen(false);
                   }}
-                  className="px-6 py-4 text-xs font-bold border-b border-white/10 hover:bg-[#003366] transition-colors cursor-pointer flex items-center justify-between text-white tracking-wide"
+                  className="px-6 py-4 text-xs font-bold border-b border-white/10 hover:bg-primary transition-colors cursor-pointer flex items-center justify-between text-white tracking-wide"
                 >
                   {translatedText}
                   <ChevronDown size={14} className="opacity-70" />
                 </div>
               );
             })}
-            <div className="bg-[#003366] p-6 grid grid-cols-2 gap-y-6 gap-x-4">
+            <div className="bg-primary p-6 grid grid-cols-2 gap-y-6 gap-x-4">
                {NAV_SECONDARY.map((item, i) => {
                  const translatedText = getMenuTranslationKey(item) ? t(getMenuTranslationKey(item)) : item;
                  return (
@@ -221,7 +221,7 @@ const Navbar: React.FC = () => {
                    window.dispatchEvent(new Event('openDonateModal'));
                    setIsMobileMenuOpen(false);
                  }}
-                 className="col-span-2 mt-2 bg-orange-600 text-white px-4 py-3 rounded-sm font-black text-xs uppercase tracking-[0.2em] hover:bg-orange-700 transition-all text-center shadow-xl"
+                 className="col-span-2 mt-2 bg-accent text-white px-4 py-3 rounded-sm font-black text-xs uppercase tracking-[0.2em] hover:bg-orange-700 transition-all text-center shadow-xl"
                >
                  {t('nav.donateBtn')}
                </button>
@@ -231,7 +231,7 @@ const Navbar: React.FC = () => {
       )}
 
       {/* Secondary Navigation */}
-      <div className="hidden lg:block bg-[#003366] py-2 border-t border-white/5">
+      <div className="hidden lg:block bg-primary py-2 border-t border-white/5">
         <div className="institutional-container flex gap-6 text-[10px] font-bold text-white/80">
           {NAV_SECONDARY.map((item, i) => {
             const translatedText = getMenuTranslationKey(item) ? t(getMenuTranslationKey(item)) : item;

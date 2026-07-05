@@ -48,9 +48,9 @@ const AlumniLoginPage: React.FC = () => {
       <Header />
       <Navbar />
 
-      <main className="flex-grow bg-[#002147] text-white py-16 relative overflow-hidden" id="alumni-login-content">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-800/10 rounded-full blur-[120px] -mr-60 -mt-60 z-0 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-orange-600/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
+      <main className="flex-grow bg-primary-dark text-white py-16 relative overflow-hidden" id="alumni-login-content">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-dark/10 rounded-full blur-[120px] -mr-60 -mt-60 z-0 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-accent/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
 
         <div className="institutional-container relative z-10">
           {/* Breadcrumb Navigation */}
@@ -59,7 +59,7 @@ const AlumniLoginPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             onClick={() => window.dispatchEvent(new CustomEvent('navigateToHome'))}
-            className="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
+            className="inline-flex items-center gap-2 text-secondary-light hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform" />
             {language === 'hi' ? 'मुख्य पृष्ठ पर वापस' : language === 'gu' ? 'મુખ્ય પૃષ્ઠ પર પાછા' : 'Back to Home'}
@@ -73,7 +73,7 @@ const AlumniLoginPage: React.FC = () => {
             <h1 className="text-4xl sm:text-5xl font-serif font-black text-white leading-tight uppercase tracking-tight">
               {t('alumni.title')}
             </h1>
-            <p className="text-blue-100/80 text-sm sm:text-base leading-relaxed">
+            <p className="text-white/80 text-sm sm:text-base leading-relaxed">
               {t('alumni.desc')}
             </p>
           </div>
@@ -84,18 +84,18 @@ const AlumniLoginPage: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-7 bg-[#003366]/40 backdrop-blur-md border border-white/10 rounded-sm p-8 sm:p-12 shadow-2xl relative border-l-4 border-orange-500 overflow-hidden"
+              className="lg:col-span-7 bg-primary/40 backdrop-blur-md border border-white/10 rounded-sm p-8 sm:p-12 shadow-2xl relative border-l-4 border-secondary overflow-hidden"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600/10 rounded-full blur-3xl pointer-events-none"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl pointer-events-none"></div>
 
               <div className="space-y-6">
-                <span className="bg-orange-600/90 text-white font-black text-[9px] uppercase tracking-wider px-2.5 py-1 rounded-sm shadow-md">
+                <span className="bg-accent/90 text-white font-black text-[9px] uppercase tracking-wider px-2.5 py-1 rounded-sm shadow-md">
                   {language === 'hi' ? 'जल्द आ रहा है' : language === 'gu' ? 'ટૂંક સમયમાં આવી રહ્યું છે' : 'Under Development'}
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-serif font-black text-white uppercase tracking-wider">
                   {t('alumni.statusCardTitle')}
                 </h2>
-                <p className="text-blue-100/80 text-xs sm:text-sm leading-relaxed">
+                <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
                   {t('alumni.statusCardDesc')}
                 </p>
 
@@ -106,12 +106,12 @@ const AlumniLoginPage: React.FC = () => {
                       <CheckCircle2 size={20} className="text-green-400 flex-shrink-0" />
                       <div>
                         <p className="text-xs font-black text-white uppercase tracking-wider">{t('alumni.successTitle')}</p>
-                        <p className="text-[10px] text-blue-200 mt-0.5">{t('alumni.successDesc')}</p>
+                        <p className="text-[10px] text-secondary-light mt-0.5">{t('alumni.successDesc')}</p>
                       </div>
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">
-                      <label className="block text-[10px] font-black text-blue-300 uppercase tracking-wider">
+                      <label className="block text-[10px] font-black text-secondary-light uppercase tracking-wider">
                         {language === 'hi' ? 'अधिसूचना प्राप्त करने के लिए ईमेल दर्ज करें' : 'Get notified when we launch'}
                       </label>
                       <div className="flex flex-col sm:flex-row gap-3">
@@ -120,13 +120,13 @@ const AlumniLoginPage: React.FC = () => {
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="flex-grow p-3 bg-blue-950/60 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none text-sm text-white"
+                          className="flex-grow p-3 bg-primary-dark/60 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none text-sm text-white"
                           placeholder="your-email@mail.com"
                         />
                         <button
                           disabled={status === 'loading'}
                           type="submit"
-                          className="bg-orange-600 hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] px-6 py-3 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 disabled:hover:translate-y-0 whitespace-nowrap"
+                          className="bg-accent hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] px-6 py-3 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 disabled:hover:translate-y-0 whitespace-nowrap"
                         >
                           {status === 'loading' ? (
                             <Loader2 className="animate-spin" size={14} />
@@ -146,7 +146,7 @@ const AlumniLoginPage: React.FC = () => {
 
             {/* RIGHT COLUMN: ALUMNI PORTAL FEATURES (Col-span 5) */}
             <div className="lg:col-span-5 space-y-6">
-              <h3 className="text-sm font-black uppercase text-blue-300 tracking-widest border-b border-white/10 pb-2">
+              <h3 className="text-sm font-black uppercase text-secondary-light tracking-widest border-b border-white/10 pb-2">
                 {t('alumni.futureTitle')}
               </h3>
 
@@ -155,12 +155,12 @@ const AlumniLoginPage: React.FC = () => {
                   const Icon = feat.icon;
                   return (
                     <div key={idx} className="flex gap-4 p-4 rounded-sm border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-colors">
-                      <div className="w-9 h-9 rounded-sm bg-orange-600/10 border border-orange-500/20 flex items-center justify-center text-orange-400 flex-shrink-0">
+                      <div className="w-9 h-9 rounded-sm bg-accent/10 border border-secondary/20 flex items-center justify-center text-orange-400 flex-shrink-0">
                         <Icon size={16} />
                       </div>
                       <div className="min-w-0">
                         <h4 className="font-serif font-bold text-xs text-white uppercase tracking-wide truncate">{feat.title}</h4>
-                        <p className="text-[10px] text-blue-200/60 leading-relaxed mt-0.5">{feat.desc}</p>
+                        <p className="text-[10px] text-secondary-light/60 leading-relaxed mt-0.5">{feat.desc}</p>
                       </div>
                     </div>
                   );

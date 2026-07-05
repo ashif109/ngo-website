@@ -30,7 +30,7 @@ const ImpactStats: React.FC = () => {
   }, []);
 
   return (
-    <section className="bg-blue-900 py-20 text-white relative overflow-hidden">
+    <section className="bg-primary py-20 text-white relative overflow-hidden">
       {/* Decorative background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-64 h-64 border-8 border-white rounded-full -ml-32 -mt-32"></div>
@@ -42,8 +42,8 @@ const ImpactStats: React.FC = () => {
           <h2 className="text-3xl md:text-5xl font-serif font-black mb-4">
             {language === 'hi' ? 'संख्या में हमारा प्रभाव' : language === 'gu' ? 'આંકડામાં અમારો પ્રભાવ' : 'Our Impact in Numbers'}
           </h2>
-          <div className="w-24 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-          <p className="mt-6 text-blue-100 max-w-2xl mx-auto italic font-medium">
+          <div className="w-24 h-1.5 bg-secondary mx-auto rounded-full"></div>
+          <p className="mt-6 text-white max-w-2xl mx-auto italic font-medium">
             {language === 'hi'
               ? 'दशकों से, हम अपने समाज की बौद्धिक और सांस्कृतिक जड़ों के पोषण के प्रति अपनी प्रतिबद्धता में अडिग रहे हैं।'
               : language === 'gu'
@@ -58,11 +58,11 @@ const ImpactStats: React.FC = () => {
             const label = language === 'hi' ? stat.labelHi : language === 'gu' ? stat.labelGu : stat.labelEn;
             return (
               <div key={i} className="text-center group">
-                <div className="bg-blue-800/50 w-20 h-20 mx-auto rounded-2xl flex items-center justify-center mb-6 border border-blue-700/50 group-hover:bg-orange-600 group-hover:border-orange-500 transition-all duration-500 shadow-xl group-hover:-translate-y-2">
-                  <Icon size={32} className="text-blue-100 group-hover:text-white" />
+                <div className="bg-primary-dark/50 w-20 h-20 mx-auto rounded-2xl flex items-center justify-center mb-6 border border-primary/50 group-hover:bg-accent group-hover:border-secondary transition-all duration-500 shadow-xl group-hover:-translate-y-2">
+                  <Icon size={32} className="text-white group-hover:text-white" />
                 </div>
                 <div className="text-4xl md:text-5xl font-black mb-2 tracking-tight">{stat.value}</div>
-                <div className="text-[12px] font-bold uppercase tracking-[0.2em] text-blue-300">{label}</div>
+                <div className="text-[12px] font-bold uppercase tracking-[0.2em] text-secondary-light">{label}</div>
               </div>
             );
           })}

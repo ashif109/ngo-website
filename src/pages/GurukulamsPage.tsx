@@ -27,7 +27,7 @@ const GurukulamsPage: React.FC = () => {
       title: t('gurukulams.value1Title'),
       desc: t('gurukulams.value1Desc'),
       icon: Shield,
-      color: "from-orange-500 to-amber-500",
+      color: "from-secondary to-amber-500",
       glow: "shadow-orange-500/10"
     },
     {
@@ -35,7 +35,7 @@ const GurukulamsPage: React.FC = () => {
       desc: t('gurukulams.value2Desc'),
       icon: BookOpen,
       color: "from-blue-600 to-indigo-600",
-      glow: "shadow-blue-500/10"
+      glow: "shadow-secondary/10"
     },
     {
       title: t('gurukulams.value3Title'),
@@ -65,9 +65,9 @@ const GurukulamsPage: React.FC = () => {
       <Header />
       <Navbar />
 
-      <main className="flex-grow bg-[#002147] text-white py-16 relative overflow-hidden" id="gurukulam-main-content">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-800/15 rounded-full blur-[140px] -mr-80 -mt-80 z-0 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-orange-600/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
+      <main className="flex-grow bg-primary-dark text-white py-16 relative overflow-hidden" id="gurukulam-main-content">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-dark/15 rounded-full blur-[140px] -mr-80 -mt-80 z-0 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-accent/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
 
         <div className="institutional-container relative z-10">
           {/* Breadcrumb Navigation */}
@@ -76,7 +76,7 @@ const GurukulamsPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             onClick={() => window.dispatchEvent(new CustomEvent('navigateToHome'))}
-            className="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
+            className="inline-flex items-center gap-2 text-secondary-light hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
             aria-label="Navigate back to homepage"
             id="back-to-home-btn"
           >
@@ -93,10 +93,10 @@ const GurukulamsPage: React.FC = () => {
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-serif font-black text-white leading-tight uppercase tracking-tight">
                 {t('gurukulams.title')}
               </h1>
-              <h2 className="text-lg sm:text-xl font-serif font-bold text-blue-200 leading-relaxed border-l-4 border-orange-500 pl-4">
+              <h2 className="text-lg sm:text-xl font-serif font-bold text-secondary-light leading-relaxed border-l-4 border-secondary pl-4">
                 {t('gurukulams.whatIsTitle')}
               </h2>
-              <p className="text-blue-100/80 text-sm sm:text-base leading-relaxed">
+              <p className="text-white/80 text-sm sm:text-base leading-relaxed">
                 {t('gurukulams.whatIsText')}
               </p>
             </div>
@@ -128,7 +128,7 @@ const GurukulamsPage: React.FC = () => {
               <h3 className="text-3xl font-serif font-black uppercase text-white leading-tight">
                 {t('gurukulams.systemTitle')}
               </h3>
-              <p className="text-blue-100/80 text-sm sm:text-base leading-relaxed">
+              <p className="text-white/80 text-sm sm:text-base leading-relaxed">
                 {t('gurukulams.systemText')}
               </p>
             </div>
@@ -136,7 +136,7 @@ const GurukulamsPage: React.FC = () => {
               <h4 className="text-sm font-black uppercase tracking-wider text-orange-400 border-b border-white/10 pb-4">
                 {t('gurukulams.philosophyTitle')}
               </h4>
-              <p className="text-blue-100/70 text-xs sm:text-sm leading-relaxed">
+              <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
                 {t('gurukulams.philosophyText')}
               </p>
             </div>
@@ -145,13 +145,13 @@ const GurukulamsPage: React.FC = () => {
           {/* VALUES OF GURUKULAM */}
           <div className="mb-24">
             <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-              <span className="text-xs font-bold text-orange-400 uppercase tracking-[0.2em] bg-orange-600/10 border border-orange-500/20 px-3.5 py-1.5 rounded-sm">
+              <span className="text-xs font-bold text-orange-400 uppercase tracking-[0.2em] bg-accent/10 border border-secondary/20 px-3.5 py-1.5 rounded-sm">
                 {language === 'hi' ? 'नैतिक आधार' : language === 'gu' ? 'નૈતિક આધાર' : 'Ethical Values'}
               </span>
               <h2 className="text-3xl sm:text-4xl font-serif font-black uppercase text-white tracking-tight">
                 {t('gurukulams.valuesTitle')}
               </h2>
-              <p className="text-blue-100/70 text-xs sm:text-sm">
+              <p className="text-white/70 text-xs sm:text-sm">
                 {t('gurukulams.valuesDesc')}
               </p>
             </div>
@@ -176,7 +176,7 @@ const GurukulamsPage: React.FC = () => {
                       <h4 className="text-xs sm:text-sm font-black uppercase tracking-wider text-white">
                         {val.title}
                       </h4>
-                      <p className="text-blue-100/70 text-[11px] sm:text-xs leading-relaxed">
+                      <p className="text-white/70 text-[11px] sm:text-xs leading-relaxed">
                         {val.desc}
                       </p>
                     </div>
@@ -192,7 +192,7 @@ const GurukulamsPage: React.FC = () => {
               <h3 className="text-3xl font-serif font-black uppercase text-white leading-tight">
                 {t('gurukulams.relevanceTitle')}
               </h3>
-              <p className="text-blue-100/80 text-sm sm:text-base leading-relaxed">
+              <p className="text-white/80 text-sm sm:text-base leading-relaxed">
                 {t('gurukulams.relevanceText')}
               </p>
             </div>
@@ -201,15 +201,15 @@ const GurukulamsPage: React.FC = () => {
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="lg:col-span-5 bg-gradient-to-br from-[#003366] to-[#001f3f] border border-white/10 p-6 sm:p-8 rounded-sm shadow-2xl border-l-4 border-orange-500 relative"
+              className="lg:col-span-5 bg-gradient-to-br from-primary-dark to-primary-dark border border-white/10 p-6 sm:p-8 rounded-sm shadow-2xl border-l-4 border-secondary relative"
             >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/10 rounded-full blur-2xl pointer-events-none"></div>
+              <div className="absolute top-0 right-0 w-24 h-24 bg-secondary/10 rounded-full blur-2xl pointer-events-none"></div>
               <div className="space-y-4">
-                <div className="inline-flex items-center gap-1.5 bg-[#002147] border border-white/10 px-2.5 py-1 rounded-full text-[9px] font-black uppercase text-orange-400 tracking-wider">
+                <div className="inline-flex items-center gap-1.5 bg-primary-dark border border-white/10 px-2.5 py-1 rounded-full text-[9px] font-black uppercase text-orange-400 tracking-wider">
                   <Calendar size={10} className="animate-pulse" /> {language === 'hi' ? 'जल्द आ रहा है' : language === 'gu' ? 'ટૂંક સમયમાં આવી રહ્યું છે' : 'Upcoming'}
                 </div>
                 <h4 className="text-xl font-serif font-black text-white uppercase tracking-wider">{t('gurukulams.futureTitle')}</h4>
-                <p className="text-blue-100/80 text-xs leading-relaxed">
+                <p className="text-white/80 text-xs leading-relaxed">
                   {t('gurukulams.futureText')}
                 </p>
               </div>
@@ -221,23 +221,23 @@ const GurukulamsPage: React.FC = () => {
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] border border-white/10 p-8 sm:p-12 rounded-sm text-center border-l-4 border-orange-500 shadow-2xl relative"
+            className="bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] border border-white/10 p-8 sm:p-12 rounded-sm text-center border-l-4 border-secondary shadow-2xl relative"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-orange-600/[0.01] to-blue-600/[0.01] pointer-events-none"></div>
             <div className="max-w-2xl mx-auto space-y-6">
-              <span className="text-[9px] font-black uppercase text-orange-400 tracking-widest border border-orange-500/30 px-2.5 py-1 rounded-full">
+              <span className="text-[9px] font-black uppercase text-orange-400 tracking-widest border border-secondary/30 px-2.5 py-1 rounded-full">
                 {language === 'hi' ? 'सामुदायिक पंजीकरण' : language === 'gu' ? 'સામુદાયિક રજીસ્ટ્રેશન' : 'Community Registry'}
               </span>
               <h3 className="text-2xl sm:text-3xl font-serif font-black text-white uppercase tracking-wider">
                 {t('gurukulams.ctaTitle')}
               </h3>
-              <p className="text-blue-100/85 text-xs sm:text-sm leading-relaxed">
+              <p className="text-white/85 text-xs sm:text-sm leading-relaxed">
                 {t('gurukulams.ctaDesc')}
               </p>
               <div className="flex justify-center pt-2">
                 <button 
                   onClick={() => window.dispatchEvent(new Event('openVolunteerModal'))}
-                  className="bg-orange-600 hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] px-8 py-3.5 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
+                  className="bg-accent hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] px-8 py-3.5 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
                   id="join-community-btn"
                 >
                   <Users size={14} /> {t('gurukulams.btnJoin')}

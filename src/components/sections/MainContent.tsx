@@ -80,7 +80,7 @@ const MainContent: React.FC = () => {
     <div className="lg:col-span-3 space-y-16">
       {/* Education */}
       <section className="space-y-8">
-        <h3 className="section-title text-[#0055a5] text-[13px] font-black border-l-4 border-blue-900 pl-3 uppercase">
+        <h3 className="section-title text-primary-light text-[13px] font-black border-l-4 border-blue-900 pl-3 uppercase">
           {language === 'hi' ? 'शिक्षा और नवाचार' : language === 'gu' ? 'શિક્ષણ અને નવીનતા' : 'Education & Innovation'}
         </h3>
         
@@ -88,15 +88,15 @@ const MainContent: React.FC = () => {
           <div className="space-y-8 mt-6">
             {/* Main Premium Announcement Banner */}
             <div className="relative overflow-hidden rounded-sm border border-blue-100 bg-gradient-to-br from-blue-50/70 via-indigo-50/30 to-white p-6 md:p-8 shadow-sm">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-[#0055a5]/5 rounded-full -mr-20 -mt-20 blur-2xl"></div>
+              <div className="absolute top-0 right-0 w-40 h-40 bg-primary-light/5 rounded-full -mr-20 -mt-20 blur-2xl"></div>
               
               <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start md:items-center">
-                <div className="bg-[#0055a5] text-white p-4 rounded-sm shadow-md shrink-0">
+                <div className="bg-primary-light text-white p-4 rounded-sm shadow-md shrink-0">
                   <GraduationCap size={32} className="animate-bounce" style={{ animationDuration: '3s' }} />
                 </div>
                 <div>
                   <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <span className="bg-blue-100 text-blue-900 text-[9px] font-black px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                    <span className="bg-surface text-primary text-[9px] font-black px-2 py-0.5 rounded-sm uppercase tracking-wider">
                       {language === 'hi' ? 'प्रवेश 2026-27' : language === 'gu' ? 'પ્રવેશ 2026-27' : 'Admissions 2026-27'}
                     </span>
                     <span className="bg-amber-100 text-amber-900 text-[9px] font-black px-2 py-0.5 rounded-sm uppercase tracking-wider flex items-center gap-1">
@@ -110,7 +110,7 @@ const MainContent: React.FC = () => {
                       ? 'શૈક્ષણિક અભ્યાસક્રમો અને પ્રવેશ ટૂંક સમયમાં આવી રહ્યા છે'
                       : 'Academic Curriculums & Admissions Coming Soon'}
                   </h4>
-                  <p className="text-[13px] text-gray-600 leading-relaxed max-w-2xl">
+                  <p className="text-[13px] text-text-muted leading-relaxed max-w-2xl">
                     {language === 'hi'
                       ? 'हमारी प्रतिष्ठित शैक्षणिक परिषद वर्तमान में पाठ्यक्रम रूपरेखा को अंतिम रूप दे रही है जो पारंपरिक वैदिक ज्ञानमीमांसा को समकालीन वैज्ञानिक मॉडलों (एआई नैतिकता, क्वांटम तर्क और विरासत शासन) के साथ सहजता से एकीकृत करती है। सीधे प्रवेश आवेदन पोर्टल जल्द ही खुलेंगे।'
                       : language === 'gu'
@@ -181,29 +181,29 @@ const MainContent: React.FC = () => {
                   status: language === 'hi' ? "संरचना को अंतिम रूप देना" : language === 'gu' ? "માળખાને આખરી ઓપ આપવો" : "Finalizing Structure"
                 }
               ].map((prog, idx) => (
-                <div key={idx} className="group relative bg-[#fffdfa] border border-[#eee6d8] hover:border-blue-900/60 p-5 rounded-sm shadow-sm transition-all duration-300 hover:-translate-y-0.5 flex flex-col justify-between overflow-hidden">
-                  <div className="absolute top-0 right-0 w-16 h-16 bg-blue-50/50 -mr-8 -mt-8 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                <div key={idx} className="group relative bg-background border border-border-main hover:border-secondary/60 p-5 rounded-sm shadow-sm transition-all duration-300 hover:-translate-y-0.5 flex flex-col justify-between overflow-hidden">
+                  <div className="absolute top-0 right-0 w-16 h-16 bg-surface/50 -mr-8 -mt-8 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
                   
                   <div className="relative z-10">
                     <div className="flex justify-between items-start mb-3">
                       <span className="text-[9px] font-bold text-orange-800 bg-orange-50 px-2 py-0.5 rounded-sm uppercase tracking-wider">{prog.type}</span>
-                      <span className="text-[9px] font-black text-gray-500 flex items-center gap-1">
+                      <span className="text-[9px] font-black text-text-muted flex items-center gap-1">
                         <Clock size={10} className="text-amber-600 animate-spin" style={{ animationDuration: '8s' }} /> {prog.status}
                       </span>
                     </div>
-                    <h5 className="text-[14px] font-serif font-black text-blue-900 group-hover:text-blue-700 transition-colors mb-2 leading-tight">
+                    <h5 className="text-[14px] font-serif font-black text-primary group-hover:text-blue-700 transition-colors mb-2 leading-tight">
                       {prog.title}
                     </h5>
-                    <p className="text-[11px] text-gray-500 leading-relaxed mb-4">
+                    <p className="text-[11px] text-text-muted leading-relaxed mb-4">
                       {prog.desc}
                     </p>
                   </div>
 
-                  <div className="relative z-10 pt-3 border-t border-dashed border-gray-100 flex justify-between items-center text-[10px] font-bold text-[#0055a5]/80">
-                    <span className="flex items-center gap-1.5 group-hover:text-blue-900">
+                  <div className="relative z-10 pt-3 border-t border-dashed border-border-main flex justify-between items-center text-[10px] font-bold text-primary-light/80">
+                    <span className="flex items-center gap-1.5 group-hover:text-primary">
                       <Lock size={10} /> {language === 'hi' ? 'पाठ्यक्रम लॉक हो रहा है' : language === 'gu' ? 'અભ્યાસક્રમ લોક થઈ રહ્યો છે' : 'Course Syllabus Locking'}
                     </span>
-                    <span className="text-gray-400 group-hover:text-blue-900 transition-colors flex items-center gap-0.5 font-medium cursor-pointer">
+                    <span className="text-gray-400 group-hover:text-primary transition-colors flex items-center gap-0.5 font-medium cursor-pointer">
                       {language === 'hi' ? 'मुझे सूचित करें' : language === 'gu' ? 'મને જાણ કરો' : 'Notify Me'} <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </span>
                   </div>
@@ -212,7 +212,7 @@ const MainContent: React.FC = () => {
             </div>
 
             {/* Email Subscription Interactive Widget */}
-            <div className="bg-blue-950 text-white rounded-sm p-6 relative overflow-hidden shadow-md">
+            <div className="bg-primary-dark text-white rounded-sm p-6 relative overflow-hidden shadow-md">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,85,165,0.15),transparent)] pointer-events-none"></div>
               <div className="absolute right-0 bottom-0 opacity-10 translate-x-12 translate-y-12">
                 <Mail size={160} />
@@ -222,7 +222,7 @@ const MainContent: React.FC = () => {
                 <h4 className="font-serif font-black text-base md:text-lg mb-2 text-amber-400">
                   {language === 'hi' ? 'सबसे पहले जानने वाले बनें' : language === 'gu' ? 'સૌથી પહેલા જાણો' : 'Be the First to Know'}
                 </h4>
-                <p className="text-[12px] text-blue-100/90 leading-relaxed mb-4">
+                <p className="text-[12px] text-white/90 leading-relaxed mb-4">
                   {language === 'hi'
                     ? 'प्राथमिकता प्रवेश सूचनाएं, डाउनलोड करने योग्य पाठ्यक्रम ब्रोशर और मुफ्त वेबिनार के शुरुआती निमंत्रण प्राप्त करने के लिए हमारे वीआईपी घोषणाएं न्यूज़लेटर में शामिल हों।'
                     : language === 'gu'
@@ -237,26 +237,26 @@ const MainContent: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
             {EDUCATION_ITEMS.map((edu, i) => (
               <div key={i} className="institutional-card group hover:border-blue-900 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between p-6">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 -mr-12 -mt-12 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-surface -mr-12 -mt-12 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
                 
                 <div className="relative z-10">
-                  <div className="bg-[#0055a5] text-white p-4 rounded-sm w-fit mb-6 group-hover:scale-110 transition-transform">
+                  <div className="bg-primary-light text-white p-4 rounded-sm w-fit mb-6 group-hover:scale-110 transition-transform">
                     <Globe size={24} />
                   </div>
-                  <h4 className="text-[15px] font-serif font-black text-blue-900 leading-tight group-hover:text-blue-700 mb-3">
+                  <h4 className="text-[15px] font-serif font-black text-primary leading-tight group-hover:text-blue-700 mb-3">
                     {edu.title.split('\n').map((line: string, idx: number) => <span key={idx} className="block">{line}</span>)}
                   </h4>
-                  <p className="text-[12px] text-gray-500 mb-6 font-medium italic">{edu.subtitle}</p>
+                  <p className="text-[12px] text-text-muted mb-6 font-medium italic">{edu.subtitle}</p>
                 </div>
 
-                <div className="relative z-10 pt-6 border-t border-gray-100 flex items-center justify-between">
+                <div className="relative z-10 pt-6 border-t border-border-main flex items-center justify-between">
                   {edu.new ? (
                     <div className="flex items-center gap-3">
                       <span className="bg-red-600 text-white text-[9px] font-black px-2 py-1 rounded-sm uppercase animate-pulse">New Admission</span>
                       <p className="text-[10px] text-green-700 font-bold">{edu.tag}</p>
                     </div>
                   ) : <div />}
-                  <ArrowRight size={20} className="text-blue-300 group-hover:text-blue-900 group-hover:translate-x-1 transition-all" />
+                  <ArrowRight size={20} className="text-secondary-light group-hover:text-primary group-hover:translate-x-1 transition-all" />
                 </div>
               </div>
             ))}
@@ -277,7 +277,7 @@ const MainContent: React.FC = () => {
                      : 'Explore our upcoming MOOC on \'Vedic AI Ethics\' and be part of the future of intelligent tradition.'}
                  </p>
               </div>
-              <button className="w-full lg:w-auto px-10 py-4 bg-orange-600 text-white font-bold text-xs uppercase tracking-[0.2em] hover:bg-orange-700 transition-all shadow-lg rounded-sm whitespace-nowrap cursor-pointer">
+              <button className="w-full lg:w-auto px-10 py-4 bg-accent text-white font-bold text-xs uppercase tracking-[0.2em] hover:bg-orange-700 transition-all shadow-lg rounded-sm whitespace-nowrap cursor-pointer">
                 {language === 'hi' ? 'अभी पंजीकरण करें' : language === 'gu' ? 'હમણાં જ નોંધણી કરો' : 'Register Now'}
               </button>
            </div>
@@ -285,14 +285,14 @@ const MainContent: React.FC = () => {
       </section>
 
       {/* Foundation Message Section */}
-      <section className="bg-blue-900 text-white p-6 md:p-10 rounded-sm relative overflow-hidden">
+      <section className="bg-primary text-white p-6 md:p-10 rounded-sm relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
         <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-10">
           <div className="flex-1">
-            <h3 className="font-serif font-black text-2xl mb-6 border-l-4 border-orange-500 pl-4">
+            <h3 className="font-serif font-black text-2xl mb-6 border-l-4 border-secondary pl-4">
               {language === 'hi' ? 'फाउंडेशन संदेश' : language === 'gu' ? 'ફાઉન્ડેશન સંદેશ' : 'Foundation Message'}
             </h3>
-            <p className="text-lg text-blue-100 leading-relaxed italic font-light">
+            <p className="text-lg text-white leading-relaxed italic font-light">
               {language === 'hi'
                 ? '"हमारा मिशन गुरुकुल प्रणाली के गहन ज्ञान को पुनर्जीवित करना और इसे आधुनिक वैज्ञानिक अन्वेषण की सटीकता के साथ एकीकृत करना है। हमारा मानना है कि परंपरा और तकनीक का अभिसरण वैश्विक कल्याण की कुंजी है।"'
                 : language === 'gu'
@@ -300,7 +300,7 @@ const MainContent: React.FC = () => {
                 : '"Our mission is to resurrect the profound wisdom of the Gurukulam system and integrate it with the precision of modern inquiry. We believe that the convergence of tradition and technology is the key to global well-being."'}
             </p>
           </div>
-          <button className="w-full md:w-auto justify-center px-8 py-4 border-2 border-white/30 text-white text-xs font-black uppercase tracking-widest hover:bg-white hover:text-blue-900 transition-all rounded-sm flex items-center gap-3 cursor-pointer">
+          <button className="w-full md:w-auto justify-center px-8 py-4 border-2 border-white/30 text-white text-xs font-black uppercase tracking-widest hover:bg-white hover:text-primary transition-all rounded-sm flex items-center gap-3 cursor-pointer">
             {language === 'hi' ? 'हमारा इतिहास जानें' : language === 'gu' ? 'અમારો ઇતિહાસ જાણો' : 'Learn Our History'} <ArrowRight size={16} />
           </button>
         </div>

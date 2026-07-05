@@ -28,7 +28,7 @@ const AboutUsPage: React.FC = () => {
       title: t("about.value1Title"),
       desc: t("about.value1Desc"),
       icon: BookOpen,
-      color: "from-orange-500 to-amber-500",
+      color: "from-secondary to-amber-500",
       glow: "shadow-orange-500/10"
     },
     {
@@ -37,7 +37,7 @@ const AboutUsPage: React.FC = () => {
       desc: t("about.value2Desc"),
       icon: Shield,
       color: "from-blue-600 to-indigo-600",
-      glow: "shadow-blue-500/10"
+      glow: "shadow-secondary/10"
     },
     {
       num: "03",
@@ -69,12 +69,12 @@ const AboutUsPage: React.FC = () => {
     {
       title: t("about.whatWeDo1Title"),
       desc: t("about.whatWeDo1Desc"),
-      color: "border-orange-500"
+      color: "border-secondary"
     },
     {
       title: t("about.whatWeDo2Title"),
       desc: t("about.whatWeDo2Desc"),
-      color: "border-blue-500"
+      color: "border-secondary"
     },
     {
       title: t("about.whatWeDo3Title"),
@@ -109,10 +109,10 @@ const AboutUsPage: React.FC = () => {
       <Header />
       <Navbar />
 
-      <main className="flex-grow bg-[#002147] text-white py-16 relative overflow-hidden">
+      <main className="flex-grow bg-primary-dark text-white py-16 relative overflow-hidden">
         {/* Decorative Background Elements */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-800/15 rounded-full blur-[140px] -mr-80 -mt-80 z-0 pointer-events-none"></div>
-        <div className="absolute top-[30%] left-0 w-[450px] h-[450px] bg-orange-600/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-dark/15 rounded-full blur-[140px] -mr-80 -mt-80 z-0 pointer-events-none"></div>
+        <div className="absolute top-[30%] left-0 w-[450px] h-[450px] bg-accent/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
         <div className="absolute bottom-10 right-[20%] w-[500px] h-[500px] bg-teal-600/5 rounded-full blur-[130px] z-0 pointer-events-none"></div>
 
         <div className="institutional-container relative z-10">
@@ -123,7 +123,7 @@ const AboutUsPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             onClick={() => window.dispatchEvent(new CustomEvent('navigateToHome'))}
-            className="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
+            className="inline-flex items-center gap-2 text-secondary-light hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform" />
             {language === 'hi' ? 'मुख्य पृष्ठ पर वापस' : language === 'gu' ? 'મુખ્ય પૃષ્ઠ પર પાછા' : 'Back to Home'}
@@ -139,14 +139,14 @@ const AboutUsPage: React.FC = () => {
               
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-serif font-black text-white leading-tight uppercase tracking-tight">
                 {t('about.title')} <br/>
-                <span className="text-orange-500 underline decoration-wavy decoration-orange-600/30">{t('about.subtitle')}</span>
+                <span className="text-secondary underline decoration-wavy decoration-orange-600/30">{t('about.subtitle')}</span>
               </h1>
               
-              <h2 className="text-lg sm:text-xl font-serif font-bold text-blue-200 leading-relaxed border-l-4 border-orange-500 pl-4">
+              <h2 className="text-lg sm:text-xl font-serif font-bold text-secondary-light leading-relaxed border-l-4 border-secondary pl-4">
                 {t('about.descTitle')}
               </h2>
               
-              <div className="space-y-4 text-blue-100/80 text-sm sm:text-base leading-relaxed">
+              <div className="space-y-4 text-white/80 text-sm sm:text-base leading-relaxed">
                 <p>
                   {t('about.desc1')}
                 </p>
@@ -167,7 +167,7 @@ const AboutUsPage: React.FC = () => {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6 }}
-                  className="absolute top-0 left-0 w-[75%] h-[280px] rounded-sm overflow-hidden border-2 border-orange-500/60 shadow-2xl z-10"
+                  className="absolute top-0 left-0 w-[75%] h-[280px] rounded-sm overflow-hidden border-2 border-secondary/60 shadow-2xl z-10"
                 >
                   <img 
                     src={aboutStudents} 
@@ -185,7 +185,7 @@ const AboutUsPage: React.FC = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="absolute bottom-2 right-0 w-[65%] h-[200px] rounded-sm overflow-hidden border-2 border-blue-500/60 shadow-2xl z-20"
+                  className="absolute bottom-2 right-0 w-[65%] h-[200px] rounded-sm overflow-hidden border-2 border-secondary/60 shadow-2xl z-20"
                 >
                   <img 
                     src={aboutCommunity} 
@@ -193,13 +193,13 @@ const AboutUsPage: React.FC = () => {
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" 
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
-                    <p className="text-xs font-bold uppercase tracking-wider text-blue-300">{t('about.whatWeDo2Title')}</p>
+                    <p className="text-xs font-bold uppercase tracking-wider text-secondary-light">{t('about.whatWeDo2Title')}</p>
                     <p className="text-[10px] text-white/70">{t('about.whatWeDo2Desc')}</p>
                   </div>
                 </motion.div>
 
                 {/* Micro floating info chip */}
-                <div className="absolute top-1/2 right-[68%] translate-x-1/2 bg-[#003366]/90 backdrop-blur-md border border-white/10 px-4 py-2 rounded-sm shadow-xl z-30 hidden sm:flex items-center gap-2">
+                <div className="absolute top-1/2 right-[68%] translate-x-1/2 bg-primary/90 backdrop-blur-md border border-white/10 px-4 py-2 rounded-sm shadow-xl z-30 hidden sm:flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-green-400 animate-ping"></div>
                   <span className="text-[10px] font-black uppercase tracking-wider text-white">{language === 'hi' ? '१००% विश्वसनीय संगठन' : language === 'gu' ? '૧૦૦% વિશ્વસનીય સંગઠન' : '100% Trusted Org'}</span>
                 </div>
@@ -215,19 +215,19 @@ const AboutUsPage: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-white/5 backdrop-blur-md border border-white/10 p-8 sm:p-10 rounded-sm border-t-4 border-orange-500 relative overflow-hidden group shadow-2xl flex flex-col justify-between"
+              className="bg-white/5 backdrop-blur-md border border-white/10 p-8 sm:p-10 rounded-sm border-t-4 border-secondary relative overflow-hidden group shadow-2xl flex flex-col justify-between"
             >
               {/* Background gradient on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-orange-600/[0.02] via-transparent to-transparent pointer-events-none"></div>
               
               <div>
-                <div className="w-12 h-12 bg-orange-600/15 border border-orange-500/30 rounded-sm flex items-center justify-center mb-6 text-orange-400 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 bg-accent/15 border border-secondary/30 rounded-sm flex items-center justify-center mb-6 text-orange-400 group-hover:scale-110 transition-transform">
                   <Target size={24} />
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-serif font-black text-white uppercase tracking-wide mb-4">
                   {t('about.missionTitle')}
                 </h3>
-                <p className="text-blue-100/90 text-sm sm:text-base leading-relaxed">
+                <p className="text-white/90 text-sm sm:text-base leading-relaxed">
                   {t('about.missionText')}
                 </p>
               </div>
@@ -242,22 +242,22 @@ const AboutUsPage: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white/5 backdrop-blur-md border border-white/10 p-8 sm:p-10 rounded-sm border-t-4 border-blue-500 relative overflow-hidden group shadow-2xl flex flex-col justify-between"
+              className="bg-white/5 backdrop-blur-md border border-white/10 p-8 sm:p-10 rounded-sm border-t-4 border-secondary relative overflow-hidden group shadow-2xl flex flex-col justify-between"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-600/[0.02] via-transparent to-transparent pointer-events-none"></div>
 
               <div>
-                <div className="w-12 h-12 bg-blue-600/15 border border-blue-500/30 rounded-sm flex items-center justify-center mb-6 text-blue-400 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 bg-primary-light/15 border border-secondary/30 rounded-sm flex items-center justify-center mb-6 text-secondary group-hover:scale-110 transition-transform">
                   <Eye size={24} />
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-serif font-black text-white uppercase tracking-wide mb-4">
                   {t('about.visionTitle')}
                 </h3>
-                <p className="text-blue-100/90 text-sm sm:text-base leading-relaxed">
+                <p className="text-white/90 text-sm sm:text-base leading-relaxed">
                   {t('about.visionText')}
                 </p>
               </div>
-              <div className="mt-8 border-t border-white/5 pt-4 text-xs font-bold text-blue-400 uppercase tracking-widest flex items-center gap-2">
+              <div className="mt-8 border-t border-white/5 pt-4 text-xs font-bold text-secondary uppercase tracking-widest flex items-center gap-2">
                 {language === 'hi' ? 'समावेशिता • विरासत • नवाचार' : language === 'gu' ? 'સમાવેશીતા • વિરાસત • નવીનતા' : 'Inclusivity • Heritage • Innovation'}
               </div>
             </motion.div>
@@ -266,13 +266,13 @@ const AboutUsPage: React.FC = () => {
           {/* 3. CORE VALUES SECTION */}
           <div className="mb-24">
             <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-              <span className="text-xs font-bold text-orange-400 uppercase tracking-[0.2em] bg-orange-600/10 border border-orange-500/20 px-3.5 py-1.5 rounded-sm">
+              <span className="text-xs font-bold text-orange-400 uppercase tracking-[0.2em] bg-accent/10 border border-secondary/20 px-3.5 py-1.5 rounded-sm">
                 {t('about.valuesBadge')}
               </span>
               <h2 className="text-3xl sm:text-4xl xl:text-5xl font-serif font-black uppercase text-white tracking-tight">
                 {t('about.valuesTitle')}
               </h2>
-              <p className="text-blue-100/70 text-xs sm:text-sm">
+              <p className="text-white/70 text-xs sm:text-sm">
                 {t('about.valuesDesc')}
               </p>
             </div>
@@ -302,7 +302,7 @@ const AboutUsPage: React.FC = () => {
                       <h4 className="text-xs sm:text-sm font-black uppercase tracking-wider text-white">
                         {val.title}
                       </h4>
-                      <p className="text-blue-100/70 text-[11px] sm:text-xs leading-relaxed">
+                      <p className="text-white/70 text-[11px] sm:text-xs leading-relaxed">
                         {val.desc}
                       </p>
                     </div>
@@ -318,13 +318,13 @@ const AboutUsPage: React.FC = () => {
             {/* Left Column: What We Do (Col-span 7) */}
             <div className="lg:col-span-7 space-y-8">
               <div>
-                <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest border border-orange-500/20 bg-orange-600/10 px-3.5 py-1.5 rounded-sm">
+                <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest border border-secondary/20 bg-accent/10 px-3.5 py-1.5 rounded-sm">
                   {t('about.whatWeDoBadge')}
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-serif font-black uppercase text-white tracking-tight mt-4">
                   {t('about.whatWeDoTitle')}
                 </h2>
-                <p className="text-blue-100/70 text-xs sm:text-sm mt-2">
+                <p className="text-white/70 text-xs sm:text-sm mt-2">
                   {t('about.whatWeDoDesc')}
                 </p>
               </div>
@@ -340,14 +340,14 @@ const AboutUsPage: React.FC = () => {
                     transition={{ duration: 0.4, delay: idx * 0.05 }}
                     className={`bg-white/[0.02] border border-white/5 hover:border-white/10 p-5 rounded-sm flex items-start gap-4 transition-all duration-300 hover:bg-white/[0.04] border-l-4 ${item.color} group`}
                   >
-                    <div className="bg-[#002147] border border-white/10 w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-black text-white/70 select-none group-hover:bg-white group-hover:text-[#002147] transition-all">
+                    <div className="bg-primary-dark border border-white/10 w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-black text-white/70 select-none group-hover:bg-white group-hover:text-[#002147] transition-all">
                       {idx + 1}
                     </div>
                     <div className="space-y-1 flex-1">
                       <h4 className="text-xs sm:text-sm font-black uppercase text-white tracking-wider">
                         {item.title}
                       </h4>
-                      <p className="text-blue-100/70 text-[11px] sm:text-xs leading-relaxed">
+                      <p className="text-white/70 text-[11px] sm:text-xs leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
@@ -394,7 +394,7 @@ const AboutUsPage: React.FC = () => {
                   {areasOfLearning.map((foc, idx) => (
                     <span 
                       key={idx}
-                      className="text-[10px] sm:text-[11px] font-bold text-blue-200 hover:text-white uppercase tracking-wider bg-blue-900/40 hover:bg-blue-900/60 border border-blue-500/20 px-3.5 py-1.5 rounded-full transition-all cursor-default select-none shadow-sm hover:shadow-md"
+                      className="text-[10px] sm:text-[11px] font-bold text-secondary-light hover:text-white uppercase tracking-wider bg-primary/40 hover:bg-primary/60 border border-secondary/20 px-3.5 py-1.5 rounded-full transition-all cursor-default select-none shadow-sm hover:shadow-md"
                     >
                       {foc}
                     </span>
@@ -407,13 +407,13 @@ const AboutUsPage: React.FC = () => {
           </div>
 
           {/* 5. WHY GURUKULAM EDITORIAL SECTION */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-white/[0.02] border border-white/10 rounded-sm overflow-hidden p-8 sm:p-12 mb-24 relative shadow-2xl border-l-4 border-orange-500">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-white/[0.02] border border-white/10 rounded-sm overflow-hidden p-8 sm:p-12 mb-24 relative shadow-2xl border-l-4 border-secondary">
             {/* Background pattern */}
             <div className="absolute inset-0 bg-gradient-to-r from-orange-600/[0.01] to-blue-600/[0.01] pointer-events-none"></div>
 
             {/* Left Content (Col-span 7) */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 bg-[#003366] border border-blue-500/30 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-blue-300">
+              <div className="inline-flex items-center gap-2 bg-primary border border-secondary/30 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-secondary-light">
                 <Award size={12} className="text-orange-400" /> {t('about.whyBadge')}
               </div>
 
@@ -421,11 +421,11 @@ const AboutUsPage: React.FC = () => {
                 {t('about.whyTitle')}
               </h2>
 
-              <blockquote className="text-blue-100 font-serif italic text-base sm:text-lg leading-relaxed relative pl-6 border-l-2 border-orange-500/40">
+              <blockquote className="text-white font-serif italic text-base sm:text-lg leading-relaxed relative pl-6 border-l-2 border-secondary/40">
                 "{t('about.whyQuote')}"
               </blockquote>
 
-              <p className="text-blue-200/70 text-xs sm:text-sm leading-relaxed">
+              <p className="text-secondary-light/70 text-xs sm:text-sm leading-relaxed">
                 {t('about.whyDesc')}
               </p>
             </div>
@@ -436,7 +436,7 @@ const AboutUsPage: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-5 border border-white/10 p-2 rounded-sm shadow-xl bg-[#002147]/80 backdrop-blur-md"
+              className="lg:col-span-5 border border-white/10 p-2 rounded-sm shadow-xl bg-primary-dark/80 backdrop-blur-md"
             >
               <div className="h-[250px] rounded-sm overflow-hidden relative">
                 <img 
@@ -460,18 +460,18 @@ const AboutUsPage: React.FC = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-gradient-to-br from-[#003366] to-[#001f3f] border border-white/10 p-8 sm:p-10 rounded-sm relative overflow-hidden shadow-2xl flex flex-col justify-between"
+              className="bg-gradient-to-br from-primary-dark to-primary-dark border border-white/10 p-8 sm:p-10 rounded-sm relative overflow-hidden shadow-2xl flex flex-col justify-between"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
 
               <div className="space-y-4">
-                <span className="text-[9px] font-black uppercase text-orange-400 tracking-widest border border-orange-500/30 px-2.5 py-1 rounded-full">
+                <span className="text-[9px] font-black uppercase text-orange-400 tracking-widest border border-secondary/30 px-2.5 py-1 rounded-full">
                   {t('about.roadmapBadge')}
                 </span>
                 <h3 className="text-xl sm:text-2xl font-serif font-black text-white uppercase tracking-wider">
                   {t('about.roadmapTitle')}
                 </h3>
-                <p className="text-blue-100/80 text-xs sm:text-sm leading-relaxed">
+                <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
                   {t('about.roadmapDesc')}
                 </p>
               </div>
@@ -487,7 +487,7 @@ const AboutUsPage: React.FC = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#0d0d0d]/90 border border-white/10 p-8 sm:p-10 rounded-sm border-l-4 border-orange-500 relative overflow-hidden shadow-2xl flex flex-col justify-between"
+              className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#0d0d0d]/90 border border-white/10 p-8 sm:p-10 rounded-sm border-l-4 border-secondary relative overflow-hidden shadow-2xl flex flex-col justify-between"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -498,7 +498,7 @@ const AboutUsPage: React.FC = () => {
                 <h3 className="text-xl sm:text-2xl font-serif font-black text-white uppercase tracking-wider">
                   {t('about.ctaTitle')}
                 </h3>
-                <p className="text-blue-100/80 text-xs sm:text-sm leading-relaxed">
+                <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
                   {t('about.ctaDesc')}
                 </p>
               </div>
@@ -514,7 +514,7 @@ const AboutUsPage: React.FC = () => {
                 </button>
                 <button 
                   onClick={() => window.dispatchEvent(new Event('openDonateModal'))}
-                  className="bg-orange-600 hover:bg-orange-700 text-white font-black text-[10px] uppercase tracking-wider px-3 py-2.5 rounded-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-lg hover:shadow-orange-600/20"
+                  className="bg-accent hover:bg-orange-700 text-white font-black text-[10px] uppercase tracking-wider px-3 py-2.5 rounded-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-lg hover:shadow-orange-600/20"
                 >
                   <Users size={12} />
                   {t('about.ctaBtnDonate')}

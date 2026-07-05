@@ -211,7 +211,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans selection:bg-blue-100 selection:text-blue-900">
+    <div className="min-h-screen bg-white flex flex-col font-sans selection:bg-surface selection:text-primary">
       {currentPage === 'home' ? (
         <Home />
       ) : currentPage === 'events' ? (

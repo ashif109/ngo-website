@@ -28,7 +28,7 @@ const DonateModal: React.FC = () => {
   const copyIcon = (text: string, field: string) => (
     <button 
       onClick={() => handleCopy(text, field)}
-      className="ml-2 text-gray-400 hover:text-orange-500 transition-colors focus:outline-none"
+      className="ml-2 text-gray-400 hover:text-secondary transition-colors focus:outline-none"
       title="Copy to clipboard"
     >
       {copiedField === field ? <CheckCircle size={16} className="text-green-500" /> : <Copy size={16} />}
@@ -68,7 +68,7 @@ const DonateModal: React.FC = () => {
             className="bg-white rounded-xl shadow-2xl w-full max-w-3xl overflow-hidden relative flex flex-col max-h-[90vh]"
           >
             {/* Header */}
-            <div className="bg-[#0055a5] p-6 text-white relative flex-shrink-0">
+            <div className="bg-primary-light p-6 text-white relative flex-shrink-0">
               <button 
                 onClick={() => setIsOpen(false)}
                 className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
@@ -85,14 +85,14 @@ const DonateModal: React.FC = () => {
               {!showForm ? (
                 <>
                   {/* Sanskrit Quote Section */}
-                  <div className="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-r-lg mb-8 shadow-sm">
-                    <p className="text-xl md:text-2xl font-serif text-center text-[#006400] font-bold mb-4 leading-relaxed">
+                  <div className="bg-orange-50 border-l-4 border-secondary p-6 rounded-r-lg mb-8 shadow-sm">
+                    <p className="text-xl md:text-2xl font-serif text-center text-primary font-bold mb-4 leading-relaxed">
                       "अन्नदानं परं दानं विद्यादानं अतः परम् |<br/>
                       अन्नेन क्षणिका तृप्तिः यावज्जीवं च विद्यया ||"
                     </p>
-                    <div className="space-y-3 text-sm text-gray-700">
-                      <p><span className="font-bold text-gray-900">Hindi Meaning:</span> अन्नदान श्रेष्ठ दान है, परंतु विद्यादान उससे भी श्रेष्ठ है। क्योंकि अन्न से क्षणिक (थोड़ी देर की) तृप्ति होती है, जबकि विद्या से जीवन भर की तृप्ति होती है。</p>
-                      <p><span className="font-bold text-gray-900">English Meaning:</span> Donating food is a great charity, but donating knowledge is even greater. Because food gives temporary satisfaction, whereas knowledge provides lifelong fulfillment.</p>
+                    <div className="space-y-3 text-sm text-text-muted">
+                      <p><span className="font-bold text-text-main">Hindi Meaning:</span> अन्नदान श्रेष्ठ दान है, परंतु विद्यादान उससे भी श्रेष्ठ है। क्योंकि अन्न से क्षणिक (थोड़ी देर की) तृप्ति होती है, जबकि विद्या से जीवन भर की तृप्ति होती है。</p>
+                      <p><span className="font-bold text-text-main">English Meaning:</span> Donating food is a great charity, but donating knowledge is even greater. Because food gives temporary satisfaction, whereas knowledge provides lifelong fulfillment.</p>
                     </div>
                   </div>
 
@@ -102,12 +102,12 @@ const DonateModal: React.FC = () => {
                     {/* Bank Details */}
                     <div className="space-y-6">
                       <div>
-                        <h3 className="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center">
-                          <span className="bg-[#0055a5] w-2 h-6 mr-2 rounded-sm"></span> Organization Details
+                        <h3 className="text-lg font-bold text-text-main border-b pb-2 mb-4 flex items-center">
+                          <span className="bg-primary-light w-2 h-6 mr-2 rounded-sm"></span> Organization Details
                         </h3>
-                        <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                          <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Account Name / Trust Name</p>
-                          <p className="font-bold text-gray-900 text-lg flex items-center justify-between">
+                        <div className="bg-background p-4 rounded-lg border border-border-main">
+                          <p className="text-xs text-text-muted uppercase tracking-wider mb-1">Account Name / Trust Name</p>
+                          <p className="font-bold text-text-main text-lg flex items-center justify-between">
                             TRIYAMBAKAM GURUKULAM ASSOCIATION
                             {copyIcon("TRIYAMBAKAM GURUKULAM ASSOCIATION", "trustName")}
                           </p>
@@ -115,17 +115,17 @@ const DonateModal: React.FC = () => {
                       </div>
 
                       <div>
-                        <h3 className="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center">
-                          <span className="bg-orange-500 w-2 h-6 mr-2 rounded-sm"></span> Bank Details
+                        <h3 className="text-lg font-bold text-text-main border-b pb-2 mb-4 flex items-center">
+                          <span className="bg-secondary w-2 h-6 mr-2 rounded-sm"></span> Bank Details
                         </h3>
-                        <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 space-y-4">
+                        <div className="bg-background p-4 rounded-lg border border-border-main space-y-4">
                           <div>
-                            <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Bank</p>
-                            <p className="font-bold text-gray-900">HDFC Bank</p>
+                            <p className="text-xs text-text-muted uppercase tracking-wider mb-1">Bank</p>
+                            <p className="font-bold text-text-main">HDFC Bank</p>
                           </div>
                           <div>
-                            <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Account Number</p>
-                            <p className="font-bold text-gray-900 text-xl tracking-widest text-[#0055a5] flex items-center justify-between">
+                            <p className="text-xs text-text-muted uppercase tracking-wider mb-1">Account Number</p>
+                            <p className="font-bold text-text-main text-xl tracking-widest text-primary-light flex items-center justify-between">
                               50200119100544
                               {copyIcon("50200119100544", "accountNumber")}
                             </p>
@@ -137,12 +137,12 @@ const DonateModal: React.FC = () => {
                     {/* Contact Details */}
                     <div className="space-y-6">
                       <div>
-                        <h3 className="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center">
+                        <h3 className="text-lg font-bold text-text-main border-b pb-2 mb-4 flex items-center">
                           <span className="bg-green-600 w-2 h-6 mr-2 rounded-sm"></span> Contact Details
                         </h3>
-                        <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                          <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Mobile Number</p>
-                          <p className="font-bold text-gray-900 text-lg flex items-center justify-between">
+                        <div className="bg-background p-4 rounded-lg border border-border-main">
+                          <p className="text-xs text-text-muted uppercase tracking-wider mb-1">Mobile Number</p>
+                          <p className="font-bold text-text-main text-lg flex items-center justify-between">
                             +91 94121 62807
                             {copyIcon("+91 94121 62807", "mobile")}
                           </p>
@@ -150,11 +150,11 @@ const DonateModal: React.FC = () => {
                       </div>
 
                       <div>
-                        <h3 className="text-lg font-bold text-gray-900 border-b pb-2 mb-4 flex items-center">
+                        <h3 className="text-lg font-bold text-text-main border-b pb-2 mb-4 flex items-center">
                           <span className="bg-gray-600 w-2 h-6 mr-2 rounded-sm"></span> Address
                         </h3>
-                        <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                          <p className="text-gray-800 leading-relaxed">
+                        <div className="bg-background p-4 rounded-lg border border-border-main">
+                          <p className="text-text-main leading-relaxed">
                             F No 1006, 10th Floor, BL-A, OM Shree Platinum Basai<br />
                             Agra – 282001<br />
                             Uttar Pradesh, India
@@ -170,7 +170,7 @@ const DonateModal: React.FC = () => {
                         </div>
                         <button 
                           onClick={() => setShowForm(true)}
-                          className="w-full bg-[#0055a5] text-white px-6 py-3 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-[#003366] transition-colors"
+                          className="w-full bg-primary-light text-white px-6 py-3 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-primary transition-colors"
                         >
                           I have made a donation
                         </button>
@@ -183,21 +183,21 @@ const DonateModal: React.FC = () => {
                   {status === 'success' ? (
                     <div className="text-center py-8">
                       <CheckCircle className="mx-auto text-green-500 mb-4" size={64} />
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank You for Your Donation!</h3>
-                      <p className="text-gray-600 mb-6">We have received your transaction details. Your support means everything to us.</p>
+                      <h3 className="text-2xl font-bold text-text-main mb-2">Thank You for Your Donation!</h3>
+                      <p className="text-text-muted mb-6">We have received your transaction details. Your support means everything to us.</p>
                       <button 
                         onClick={() => { setIsOpen(false); setStatus('idle'); setShowForm(false); setFormData({ donorName: '', phone: '', email: '', transactionId: '', amount: '' }); }}
-                        className="bg-[#0055a5] text-white px-6 py-2 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-[#003366] transition-colors"
+                        className="bg-primary-light text-white px-6 py-2 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-primary transition-colors"
                       >
                         Close
                       </button>
                     </div>
                   ) : (
                     <>
-                      <button onClick={() => setShowForm(false)} className="text-[#0055a5] text-sm font-bold mb-6 hover:underline flex items-center">
+                      <button onClick={() => setShowForm(false)} className="text-primary-light text-sm font-bold mb-6 hover:underline flex items-center">
                         &larr; Back to Bank Details
                       </button>
-                      <h3 className="text-xl font-bold text-gray-900 mb-6 border-b pb-2">Notify us of your donation</h3>
+                      <h3 className="text-xl font-bold text-text-main mb-6 border-b pb-2">Notify us of your donation</h3>
                       <form onSubmit={handleSubmit} className="space-y-4">
                         {status === 'error' && (
                           <div className="bg-red-50 text-red-600 p-3 rounded text-sm border border-red-200">
@@ -205,34 +205,34 @@ const DonateModal: React.FC = () => {
                           </div>
                         )}
                         <div>
-                          <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Donor Name *</label>
-                          <input required type="text" value={formData.donorName} onChange={e => setFormData({...formData, donorName: e.target.value})} className="w-full p-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-[#0055a5] focus:border-transparent outline-none transition-all" placeholder="John Doe" />
+                          <label className="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1">Donor Name *</label>
+                          <input required type="text" value={formData.donorName} onChange={e => setFormData({...formData, donorName: e.target.value})} className="w-full p-3 border border-border-main rounded-sm focus:ring-2 focus:ring-[#9D2928] focus:border-transparent outline-none transition-all" placeholder="John Doe" />
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Phone *</label>
-                            <input required type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full p-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-[#0055a5] focus:border-transparent outline-none transition-all" placeholder="+91 9876543210" />
+                            <label className="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1">Phone *</label>
+                            <input required type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full p-3 border border-border-main rounded-sm focus:ring-2 focus:ring-[#9D2928] focus:border-transparent outline-none transition-all" placeholder="+91 9876543210" />
                           </div>
                           <div>
-                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Email</label>
-                            <input type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full p-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-[#0055a5] focus:border-transparent outline-none transition-all" placeholder="john@example.com" />
+                            <label className="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1">Email</label>
+                            <input type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full p-3 border border-border-main rounded-sm focus:ring-2 focus:ring-[#9D2928] focus:border-transparent outline-none transition-all" placeholder="john@example.com" />
                           </div>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Transaction ID / UTR *</label>
-                            <input required type="text" value={formData.transactionId} onChange={e => setFormData({...formData, transactionId: e.target.value})} className="w-full p-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-[#0055a5] focus:border-transparent outline-none transition-all" placeholder="e.g. UPI123456789" />
+                            <label className="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1">Transaction ID / UTR *</label>
+                            <input required type="text" value={formData.transactionId} onChange={e => setFormData({...formData, transactionId: e.target.value})} className="w-full p-3 border border-border-main rounded-sm focus:ring-2 focus:ring-[#9D2928] focus:border-transparent outline-none transition-all" placeholder="e.g. UPI123456789" />
                           </div>
                           <div>
-                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Amount (₹) *</label>
-                            <input required type="number" min="1" value={formData.amount} onChange={e => setFormData({...formData, amount: e.target.value})} className="w-full p-3 border border-gray-300 rounded-sm focus:ring-2 focus:ring-[#0055a5] focus:border-transparent outline-none transition-all" placeholder="5000" />
+                            <label className="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1">Amount (₹) *</label>
+                            <input required type="number" min="1" value={formData.amount} onChange={e => setFormData({...formData, amount: e.target.value})} className="w-full p-3 border border-border-main rounded-sm focus:ring-2 focus:ring-[#9D2928] focus:border-transparent outline-none transition-all" placeholder="5000" />
                           </div>
                         </div>
                         
                         <button 
                           disabled={status === 'loading'}
                           type="submit" 
-                          className="w-full mt-4 bg-[#0055a5] text-white px-8 py-4 rounded-sm font-black text-sm uppercase tracking-wider hover:bg-[#003366] transition-all shadow-xl hover:-translate-y-1 flex justify-center items-center disabled:opacity-70 disabled:hover:translate-y-0"
+                          className="w-full mt-4 bg-primary-light text-white px-8 py-4 rounded-sm font-black text-sm uppercase tracking-wider hover:bg-primary transition-all shadow-xl hover-lift flex justify-center items-center disabled:opacity-70 disabled:hover:translate-y-0"
                         >
                           {status === 'loading' ? <Loader2 className="animate-spin mr-2" size={20} /> : 'Submit Transaction Details'}
                         </button>

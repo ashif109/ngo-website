@@ -51,7 +51,7 @@ const ResourcesPage: React.FC = () => {
       desc: t('resources.cat1Desc'),
       icon: BookOpen,
       tag: 'Education',
-      color: "border-orange-500/30",
+      color: "border-secondary/30",
       accent: "text-orange-400"
     },
     {
@@ -59,8 +59,8 @@ const ResourcesPage: React.FC = () => {
       desc: t('resources.cat2Desc'),
       icon: Compass,
       tag: 'Culture',
-      color: "border-blue-500/30",
-      accent: "text-blue-400"
+      color: "border-secondary/30",
+      accent: "text-secondary"
     },
     {
       title: t('resources.cat3Title'),
@@ -109,9 +109,9 @@ const ResourcesPage: React.FC = () => {
       <Header />
       <Navbar />
 
-      <main className="flex-grow bg-[#002147] text-white py-16 relative overflow-hidden" id="resources-main-content">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-800/15 rounded-full blur-[140px] -mr-80 -mt-80 z-0 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-orange-600/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
+      <main className="flex-grow bg-primary-dark text-white py-16 relative overflow-hidden" id="resources-main-content">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-dark/15 rounded-full blur-[140px] -mr-80 -mt-80 z-0 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-accent/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
 
         <div className="institutional-container relative z-10">
           {/* Breadcrumb Navigation */}
@@ -120,7 +120,7 @@ const ResourcesPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             onClick={() => window.dispatchEvent(new CustomEvent('navigateToHome'))}
-            className="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
+            className="inline-flex items-center gap-2 text-secondary-light hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
             aria-label="Navigate back to homepage"
             id="back-to-home-btn"
           >
@@ -136,7 +136,7 @@ const ResourcesPage: React.FC = () => {
             <h1 className="text-4xl sm:text-5xl font-serif font-black text-white leading-tight uppercase tracking-tight">
               {t('resources.title')}
             </h1>
-            <p className="text-blue-100/80 text-sm sm:text-base leading-relaxed">
+            <p className="text-white/80 text-sm sm:text-base leading-relaxed">
               {t('resources.descTitle')}
             </p>
           </div>
@@ -154,9 +154,9 @@ const ResourcesPage: React.FC = () => {
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   placeholder={`${t('resources.searchPlaceholder')}...`}
-                  className="w-full pl-10 pr-4 py-3 bg-blue-950/80 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none text-sm text-white"
+                  className="w-full pl-10 pr-4 py-3 bg-primary-dark/80 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 outline-none text-sm text-white"
                 />
-                <Search size={18} className="absolute left-3.5 top-3.5 text-blue-300/60" />
+                <Search size={18} className="absolute left-3.5 top-3.5 text-secondary-light/60" />
               </div>
 
               {/* Tag filters */}
@@ -171,8 +171,8 @@ const ResourcesPage: React.FC = () => {
                       onClick={() => setSelectedTag(tag)}
                       className={`px-4 py-2 text-[10px] font-black uppercase tracking-wider rounded-full border transition-all cursor-pointer ${
                         selectedTag === tag 
-                          ? 'bg-orange-600 border-transparent text-white' 
-                          : 'bg-white/5 border-white/10 text-blue-200 hover:bg-white/10 hover:text-white'
+                          ? 'bg-accent border-transparent text-white' 
+                          : 'bg-white/5 border-white/10 text-secondary-light hover:bg-white/10 hover:text-white'
                       }`}
                     >
                       {tagText}
@@ -201,16 +201,16 @@ const ResourcesPage: React.FC = () => {
                       className={`bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 p-6 sm:p-8 rounded-sm shadow-xl transition-all duration-300 relative group ${cat.color}`}
                     >
                       <div className="flex justify-between items-start mb-6">
-                        <div className="w-10 h-10 rounded-sm bg-blue-950/80 border border-white/10 flex items-center justify-center text-xl shadow-md group-hover:bg-orange-600 group-hover:border-transparent transition-all">
+                        <div className="w-10 h-10 rounded-sm bg-primary-dark/80 border border-white/10 flex items-center justify-center text-xl shadow-md group-hover:bg-accent group-hover:border-transparent transition-all">
                           <IconComp size={20} className={`${cat.accent} group-hover:text-white transition-colors`} />
                         </div>
-                        <span className="text-[9px] font-black uppercase tracking-wider text-orange-400 bg-orange-600/10 border border-orange-500/20 px-2 py-0.5 rounded-sm">{cat.tag}</span>
+                        <span className="text-[9px] font-black uppercase tracking-wider text-orange-400 bg-accent/10 border border-secondary/20 px-2 py-0.5 rounded-sm">{cat.tag}</span>
                       </div>
                       <div className="space-y-2">
                         <h4 className="text-base font-serif font-bold text-white group-hover:text-orange-400 transition-colors">
                           {cat.title}
                         </h4>
-                        <p className="text-blue-100/70 text-xs leading-relaxed">
+                        <p className="text-white/70 text-xs leading-relaxed">
                           {cat.desc}
                         </p>
                       </div>
@@ -232,17 +232,17 @@ const ResourcesPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-orange-500/5 border border-orange-500/20 p-8 rounded-sm mb-24 flex flex-col md:flex-row gap-6 items-center justify-between shadow-lg border-l-4 border-orange-500"
+            className="bg-secondary/5 border border-secondary/20 p-8 rounded-sm mb-24 flex flex-col md:flex-row gap-6 items-center justify-between shadow-lg border-l-4 border-secondary"
           >
             <div className="flex items-center gap-4 text-center md:text-left">
-              <div className="w-10 h-10 rounded-full bg-orange-600/15 border border-orange-500/30 flex items-center justify-center text-orange-400 shrink-0 mx-auto md:mx-0">
+              <div className="w-10 h-10 rounded-full bg-accent/15 border border-secondary/30 flex items-center justify-center text-orange-400 shrink-0 mx-auto md:mx-0">
                 <Info size={18} />
               </div>
               <div>
                 <h4 className="text-sm font-black uppercase tracking-wider text-white">
                   {language === 'hi' ? 'संसाधन क्यूरेशन' : language === 'gu' ? 'સંસાધન ક્યુરેશન' : 'Resource Curation'}
                 </h4>
-                <p className="text-blue-100/80 text-xs mt-1 leading-relaxed">
+                <p className="text-white/80 text-xs mt-1 leading-relaxed">
                   {t('resources.statusText')}
                 </p>
               </div>
@@ -250,7 +250,7 @@ const ResourcesPage: React.FC = () => {
 
             <button 
               onClick={() => window.dispatchEvent(new Event('openVolunteerModal'))}
-              className="bg-orange-600 hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] px-6 py-3 rounded-sm transition-all shadow-md shrink-0 cursor-pointer flex items-center gap-2"
+              className="bg-accent hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] px-6 py-3 rounded-sm transition-all shadow-md shrink-0 cursor-pointer flex items-center gap-2"
               id="resource-download-btn"
             >
               <Download size={14} /> {t('resources.btnDownload')}
@@ -262,9 +262,9 @@ const ResourcesPage: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white/5 border border-white/10 rounded-sm p-8 sm:p-10 shadow-2xl relative border-t-4 border-orange-500"
+            className="bg-white/5 border border-white/10 rounded-sm p-8 sm:p-10 shadow-2xl relative border-t-4 border-secondary"
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl pointer-events-none"></div>
 
             {status === 'success' ? (
               <motion.div 
@@ -277,7 +277,7 @@ const ResourcesPage: React.FC = () => {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-2xl font-serif font-black text-white uppercase tracking-wider">{language === 'hi' ? 'अनुरोध दर्ज किया गया!' : language === 'gu' ? 'વિનંતી સબમિટ થઈ!' : 'Request Registered!'}</h3>
-                  <p className="text-blue-200 text-sm max-w-md mx-auto leading-relaxed">
+                  <p className="text-secondary-light text-sm max-w-md mx-auto leading-relaxed">
                     {language === 'hi' ? 'संसाधन अनुरोध के लिए धन्यवाद। हमारा अकादमिक विंग आपके अनुरोध की जांच करेगा।' : language === 'gu' ? 'સંસાધન વિનંતી બદલ આભાર. આપણી શૈક્ષણિક વિંગ તમારી વિનંતીની તપાસ કરશે.' : 'Thank you for your resource request. Our academic wing will process your request.'}
                   </p>
                 </div>
@@ -294,45 +294,45 @@ const ResourcesPage: React.FC = () => {
                   <h3 className="text-lg font-serif font-black text-white uppercase tracking-wide border-b border-white/10 pb-3 mb-2">
                     {t('resources.ctaTitle')}
                   </h3>
-                  <p className="text-xs text-blue-200/70">{t('resources.ctaDesc')}</p>
+                  <p className="text-xs text-secondary-light/70">{t('resources.ctaDesc')}</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name-input" className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{language === 'hi' ? 'पूरा नाम *' : language === 'gu' ? 'પૂરું નામ *' : 'Full Name *'}</label>
+                    <label htmlFor="name-input" className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{language === 'hi' ? 'पूरा नाम *' : language === 'gu' ? 'પૂરું નામ *' : 'Full Name *'}</label>
                     <input 
                       id="name-input"
                       required 
                       type="text" 
                       value={requestData.name} 
                       onChange={e => setRequestData({...requestData, name: e.target.value})} 
-                      className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
+                      className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
                       placeholder={language === 'hi' ? 'आपका नाम' : language === 'gu' ? 'તમારું નામ' : 'Your Name'} 
                     />
                   </div>
                   <div>
-                    <label htmlFor="email-input" className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{language === 'hi' ? 'ईमेल *' : language === 'gu' ? 'ઇમેઇલ *' : 'Email *'}</label>
+                    <label htmlFor="email-input" className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{language === 'hi' ? 'ईमेल *' : language === 'gu' ? 'ઇમેઇલ *' : 'Email *'}</label>
                     <input 
                       id="email-input"
                       required 
                       type="email" 
                       value={requestData.email} 
                       onChange={e => setRequestData({...requestData, email: e.target.value})} 
-                      className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
+                      className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
                       placeholder="example@mail.com" 
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="details-input" className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{language === 'hi' ? 'सामग्री का विवरण *' : language === 'gu' ? 'સામગ્રીની વિગતો *' : 'Material Details / Topic Description *'}</label>
+                  <label htmlFor="details-input" className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{language === 'hi' ? 'सामग्री का विवरण *' : language === 'gu' ? 'સામગ્રીની વિગતો *' : 'Material Details / Topic Description *'}</label>
                   <textarea 
                     id="details-input"
                     required
                     rows={4} 
                     value={requestData.details} 
                     onChange={e => setRequestData({...requestData, details: e.target.value})} 
-                    className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white resize-none" 
+                    className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white resize-none" 
                     placeholder={language === 'hi' ? 'कृपया उल्लेख करें कि आपको किस पुस्तक या विषय सामग्री की आवश्यकता है...' : language === 'gu' ? 'કૃપા કરીને ઉલ્લેખ કરો કે તમને કઈ પુસ્તક અથવા વિષય સામગ્રીની જરૂર છે...' : 'Please specify what book, study guide, or topic reference you require...'}
                   ></textarea>
                 </div>
@@ -340,7 +340,7 @@ const ResourcesPage: React.FC = () => {
                 <button 
                   disabled={status === 'loading'}
                   type="submit" 
-                  className="w-full bg-orange-600 hover:bg-orange-700 text-white py-4 rounded-sm font-black text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xl disabled:opacity-75"
+                  className="w-full bg-accent hover:bg-orange-700 text-white py-4 rounded-sm font-black text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xl disabled:opacity-75"
                 >
                   {status === 'loading' ? t('admissions.btnSubmitting') : t('resources.btnDownload')}
                 </button>

@@ -7,14 +7,14 @@ const Sidebar: React.FC = () => {
   const { language } = useLanguage();
 
   return (
-    <aside className="lg:col-span-1 space-y-10 bg-[#fffdfa] p-5 border border-[#eee6d8] shadow-sm rounded-sm">
+    <aside className="lg:col-span-1 space-y-10 bg-background p-5 border border-border-main shadow-sm rounded-sm">
       {/* Gurukulam Greetings */}
       <div>
-        <h3 className="section-title text-[#006400] text-[13px] font-black bg-[#f2fcf2] p-2 rounded-sm border-l-4 border-green-700">
+        <h3 className="section-title text-primary text-[13px] font-black bg-surface p-2 rounded-sm border-l-4 border-secondary">
           {language === 'hi' ? 'गुरुकुल संदेश' : language === 'gu' ? 'ગુરુકુલમ સંદેશ' : 'GURUKULAM GREETINGS'}
         </h3>
         <div className="mt-6">
-          <h4 className="text-[11px] font-bold text-green-800 border-b border-gray-200 pb-1 mb-4 uppercase tracking-tighter">
+          <h4 className="text-[11px] font-bold text-green-800 border-b border-border-main pb-1 mb-4 uppercase tracking-tighter">
             {language === 'hi' ? 'ताज़ा समाचार' : language === 'gu' ? 'તાજા સમાચાર' : 'Latest News'}
           </h4>
           <div className="space-y-4">
@@ -36,7 +36,7 @@ const Sidebar: React.FC = () => {
 
       {/* Publications */}
       <div>
-        <h4 className="text-[11px] font-bold text-red-900 border-b border-gray-200 pb-1 mb-4 uppercase tracking-tighter">
+        <h4 className="text-[11px] font-bold text-red-900 border-b border-border-main pb-1 mb-4 uppercase tracking-tighter">
           {language === 'hi' ? 'नवीनतम प्रकाशन' : language === 'gu' ? 'નવીનતમ પ્રકાશનો' : 'Latest Publications'}
         </h4>
         {PUBLICATIONS.length === 0 ? (
@@ -45,7 +45,7 @@ const Sidebar: React.FC = () => {
             <p className="text-[10px] text-red-900 font-black uppercase tracking-wider">
               {language === 'hi' ? 'प्रकाशन जल्द ही आ रहे हैं' : language === 'gu' ? 'પ્રકાશનો ટૂંક સમયમાં આવી રહ્યા છે' : 'Publications Coming Soon'}
             </p>
-            <p className="text-[9px] text-gray-500 mt-1 leading-relaxed">
+            <p className="text-[9px] text-text-muted mt-1 leading-relaxed">
               {language === 'hi'
                 ? 'मोनोग्राफ, शोध पत्र और वैदिक पत्रिकाओं को प्रकाशन के लिए अंतिम रूप दिया जा रहा है।'
                 : language === 'gu'
@@ -57,11 +57,11 @@ const Sidebar: React.FC = () => {
           <div className="grid grid-cols-3 gap-3">
             {PUBLICATIONS.map((pub: any, i) => (
               <div key={i} className="text-center group cursor-pointer">
-                <div className="relative overflow-hidden border border-gray-200 rounded-sm shadow-sm group-hover:border-blue-600 transition-all">
+                <div className="relative overflow-hidden border border-border-main rounded-sm shadow-sm group-hover:border-blue-600 transition-all">
                   <img src={pub.img} alt={pub.title} className="w-full aspect-[3/4] object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </div>
-                <p className="text-[9px] font-bold mt-2 text-gray-700 leading-tight line-clamp-2">{pub.title}</p>
+                <p className="text-[9px] font-bold mt-2 text-text-muted leading-tight line-clamp-2">{pub.title}</p>
               </div>
             ))}
           </div>
@@ -70,16 +70,16 @@ const Sidebar: React.FC = () => {
 
       {/* Policy Briefs */}
       <div>
-        <h4 className="text-[11px] font-bold text-blue-900 border-b border-gray-200 pb-1 mb-4 uppercase tracking-tighter">
+        <h4 className="text-[11px] font-bold text-primary border-b border-border-main pb-1 mb-4 uppercase tracking-tighter">
           {language === 'hi' ? 'नीति विवरण' : language === 'gu' ? 'નીતિ પત્રો' : 'Policy Briefs'}
         </h4>
         {POLICY_BRIEFS.length === 0 ? (
-          <div className="p-4 bg-blue-50/40 border border-blue-100 rounded-sm text-center flex flex-col items-center">
+          <div className="p-4 bg-surface/40 border border-blue-100 rounded-sm text-center flex flex-col items-center">
             <FileText size={18} className="text-blue-700/60 mb-2" />
-            <p className="text-[10px] text-blue-900 font-black uppercase tracking-wider">
+            <p className="text-[10px] text-primary font-black uppercase tracking-wider">
               {language === 'hi' ? 'नीति विवरण जल्द ही आ रहे हैं' : language === 'gu' ? 'નીતિ પત્રો ટૂંક સમયમાં આવી રહ્યા છે' : 'Policy Briefs Coming Soon'}
             </p>
-            <p className="text-[9px] text-gray-500 mt-1 leading-relaxed">
+            <p className="text-[9px] text-text-muted mt-1 leading-relaxed">
               {language === 'hi'
                 ? 'विशेषज्ञ टिप्पणियां, शिक्षा मसौदे और अनुसंधान विवरण तैयार किए जा रहे हैं।'
                 : language === 'gu'
@@ -91,10 +91,10 @@ const Sidebar: React.FC = () => {
           <div className="grid grid-cols-3 gap-3">
             {POLICY_BRIEFS.map((pub: any, i) => (
               <div key={i} className="text-center group cursor-pointer">
-                <div className="relative overflow-hidden border border-gray-200 rounded-sm shadow-sm group-hover:border-blue-600 transition-all">
+                <div className="relative overflow-hidden border border-border-main rounded-sm shadow-sm group-hover:border-blue-600 transition-all">
                   <img src={pub.img} alt={pub.title} className="w-full aspect-[3/4] object-cover group-hover:scale-110 transition-transform duration-500" />
                 </div>
-                <p className="text-[9px] font-bold mt-2 text-gray-700 leading-tight line-clamp-2">{pub.title}</p>
+                <p className="text-[9px] font-bold mt-2 text-text-muted leading-tight line-clamp-2">{pub.title}</p>
               </div>
             ))}
           </div>
@@ -103,7 +103,7 @@ const Sidebar: React.FC = () => {
 
       {/* Newsletter */}
       <div>
-        <h4 className="text-[11px] font-bold text-orange-800 border-b border-gray-200 pb-1 mb-4 uppercase tracking-tighter">
+        <h4 className="text-[11px] font-bold text-orange-800 border-b border-border-main pb-1 mb-4 uppercase tracking-tighter">
           {language === 'hi' ? 'न्यूज़लेटर्स' : language === 'gu' ? 'ન્યૂઝલેટર્સ' : 'Newsletters'}
         </h4>
         {NEWSLETTERS.length === 0 ? (
@@ -112,7 +112,7 @@ const Sidebar: React.FC = () => {
             <p className="text-[10px] text-orange-900 font-black uppercase tracking-wider">
               {language === 'hi' ? 'न्यूज़लेटर्स जल्द ही आ रहे हैं' : language === 'gu' ? 'ન્યૂઝલેટર્સ ટૂંક સમયમાં આવી રહ્યા છે' : 'Newsletters Coming Soon'}
             </p>
-            <p className="text-[9px] text-gray-500 mt-1 leading-relaxed">
+            <p className="text-[9px] text-text-muted mt-1 leading-relaxed">
               {language === 'hi'
                 ? 'हमारे गुरुकुलों से मासिक हाइलाइट्स के साथ अपडेट रहने के लिए सदस्यता लें।'
                 : language === 'gu'
@@ -124,14 +124,14 @@ const Sidebar: React.FC = () => {
           <div className="space-y-4">
             {NEWSLETTERS.map((item: any, i) => (
               <div key={i} className="flex gap-3 items-center group cursor-pointer p-1 hover:bg-orange-50 rounded-sm transition-colors">
-                <div className="bg-orange-100 p-2 rounded-full text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-all">
+                <div className="bg-orange-100 p-2 rounded-full text-accent group-hover:bg-accent group-hover:text-white transition-all">
                   <Mail size={14} />
                 </div>
                 <div className="flex-1">
                   <p className="text-[10px] font-bold text-blue-800 group-hover:underline">{item.title}</p>
                   <p className="text-[9px] text-gray-400 font-semibold">{item.date}</p>
                 </div>
-                <ChevronRight size={12} className="text-gray-300 group-hover:text-orange-600" />
+                <ChevronRight size={12} className="text-gray-300 group-hover:text-accent" />
               </div>
             ))}
           </div>
@@ -140,7 +140,7 @@ const Sidebar: React.FC = () => {
 
       {/* Key Resources */}
       <div>
-        <h4 className="text-[11px] font-bold text-slate-800 border-b border-gray-200 pb-1 mb-4 uppercase tracking-tighter">
+        <h4 className="text-[11px] font-bold text-slate-800 border-b border-border-main pb-1 mb-4 uppercase tracking-tighter">
           {language === 'hi' ? 'प्रमुख संसाधन' : language === 'gu' ? 'મુખ્ય સંસાધનો' : 'Key Resources'}
         </h4>
         {KEY_RESOURCES.length === 0 ? (
@@ -149,7 +149,7 @@ const Sidebar: React.FC = () => {
             <p className="text-[10px] text-slate-800 font-black uppercase tracking-wider">
               {language === 'hi' ? 'संसाधन जल्द ही आ रहे हैं' : language === 'gu' ? 'સંસાધનો ટૂંક સમયમાં આવી રહ્યા છે' : 'Resources Coming Soon'}
             </p>
-            <p className="text-[9px] text-gray-500 mt-1 leading-relaxed">
+            <p className="text-[9px] text-text-muted mt-1 leading-relaxed">
               {language === 'hi'
                 ? 'अकादमिक कैलेंडर, पाठ्यक्रम दिशानिर्देश और रिपोर्ट जल्द ही डाउनलोड करने योग्य होंगे।'
                 : language === 'gu'
@@ -161,10 +161,10 @@ const Sidebar: React.FC = () => {
           <div className="grid grid-cols-3 gap-3">
             {KEY_RESOURCES.map((pub: any, i) => (
               <div key={i} className="text-center group cursor-pointer">
-                <div className="w-full aspect-square bg-gray-50 border border-gray-200 rounded-sm group-hover:bg-blue-600 group-hover:border-blue-600 flex items-center justify-center transition-all shadow-sm">
+                <div className="w-full aspect-square bg-background border border-border-main rounded-sm group-hover:bg-primary-light group-hover:border-blue-600 flex items-center justify-center transition-all shadow-sm">
                   <Download size={20} className="text-gray-400 group-hover:text-white transition-colors" />
                 </div>
-                <p className="text-[9px] font-bold mt-2 text-gray-700 leading-tight">{pub.title}</p>
+                <p className="text-[9px] font-bold mt-2 text-text-muted leading-tight">{pub.title}</p>
               </div>
             ))}
           </div>

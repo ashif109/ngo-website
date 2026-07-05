@@ -66,9 +66,9 @@ const ImportantLinksPage: React.FC = () => {
       <Header />
       <Navbar />
 
-      <main className="flex-grow bg-[#002147] text-white py-16 relative overflow-hidden" id="important-links-content">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-800/10 rounded-full blur-[120px] -mr-60 -mt-60 z-0 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-orange-600/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
+      <main className="flex-grow bg-primary-dark text-white py-16 relative overflow-hidden" id="important-links-content">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-dark/10 rounded-full blur-[120px] -mr-60 -mt-60 z-0 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-accent/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
 
         <div className="institutional-container relative z-10">
           {/* Breadcrumb Navigation */}
@@ -77,7 +77,7 @@ const ImportantLinksPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             onClick={() => window.dispatchEvent(new CustomEvent('navigateToHome'))}
-            className="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
+            className="inline-flex items-center gap-2 text-secondary-light hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform" />
             {language === 'hi' ? 'मुख्य पृष्ठ पर वापस' : language === 'gu' ? 'મુખ્ય પૃષ્ઠ પર પાછા' : 'Back to Home'}
@@ -91,14 +91,14 @@ const ImportantLinksPage: React.FC = () => {
             <h1 className="text-4xl sm:text-5xl font-serif font-black text-white leading-tight uppercase tracking-tight">
               {t('importantLinks.title')}
             </h1>
-            <p className="text-blue-100/80 text-sm sm:text-base leading-relaxed">
+            <p className="text-white/80 text-sm sm:text-base leading-relaxed">
               {t('importantLinks.desc')}
             </p>
           </div>
 
           {/* SEARCH BAR */}
           <div className="max-w-xl mb-12 relative">
-            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-300/60" />
+            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary-light/60" />
             <input
               type="text"
               value={searchQuery}
@@ -123,13 +123,13 @@ const ImportantLinksPage: React.FC = () => {
                           onClick={() => {
                             window.location.hash = link.hash;
                           }}
-                          className="w-full text-left p-3 rounded-sm bg-white/[0.01] hover:bg-white/[0.04] transition-all flex items-center justify-between text-xs sm:text-sm text-blue-100/85 hover:text-white cursor-pointer group/link border border-transparent hover:border-white/5"
+                          className="w-full text-left p-3 rounded-sm bg-white/[0.01] hover:bg-white/[0.04] transition-all flex items-center justify-between text-xs sm:text-sm text-white/85 hover:text-white cursor-pointer group/link border border-transparent hover:border-white/5"
                         >
                           <span className="font-bold flex items-center gap-2">
                             <ChevronRight size={14} className="text-orange-400/80 group-hover/link:translate-x-1 transition-transform" />
                             {link.label}
                           </span>
-                          <ExternalLink size={12} className="opacity-0 group-hover/link:opacity-100 text-blue-300 transition-opacity" />
+                          <ExternalLink size={12} className="opacity-0 group-hover/link:opacity-100 text-secondary-light transition-opacity" />
                         </button>
                       </li>
                     ))}
@@ -138,7 +138,7 @@ const ImportantLinksPage: React.FC = () => {
               ))
             ) : (
               <div className="col-span-2 text-center py-16 bg-white/[0.01] border border-white/5 rounded-sm">
-                <span className="text-xs font-bold text-blue-200/50">
+                <span className="text-xs font-bold text-secondary-light/50">
                   {language === 'hi' ? 'कोई लिंक नहीं मिला।' : 'No links match your search query.'}
                 </span>
               </div>

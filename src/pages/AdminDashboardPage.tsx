@@ -55,8 +55,8 @@ function useSaveStatus() {
 }
 
 // ─── Input style helper ───────────────────────────────────────────────────────
-const inputCls = "w-full p-3 bg-blue-950/40 border border-white/10 rounded-sm text-white text-xs outline-none focus:ring-1 focus:ring-orange-500 placeholder:text-white/30";
-const labelCls = "block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-1.5";
+const inputCls = "w-full p-3 bg-primary-dark/40 border border-white/10 rounded-sm text-white text-xs outline-none focus:ring-1 focus:ring-orange-500 placeholder:text-white/30";
+const labelCls = "block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-1.5";
 const sectionHeaderCls = "text-base font-serif font-black text-white uppercase tracking-wide border-b border-white/10 pb-3 mb-5";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -286,7 +286,7 @@ const AdminDashboardPage: React.FC = () => {
       type="button"
       onClick={onClick}
       disabled={status.status === 'saving'}
-      className="flex items-center gap-2 px-5 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-sm font-black text-xs uppercase tracking-wider transition-all cursor-pointer shadow-md hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
+      className="flex items-center gap-2 px-5 py-2.5 bg-accent hover:bg-orange-700 text-white rounded-sm font-black text-xs uppercase tracking-wider transition-all cursor-pointer shadow-md hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
     >
       {status.status === 'saving' ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />}
       {status.status === 'saving' ? 'Saving...' : status.status === 'saved' ? 'Saved!' : 'Save Changes'}
@@ -316,9 +316,9 @@ const AdminDashboardPage: React.FC = () => {
         )}
       </AnimatePresence>
 
-      <main className="flex-grow bg-[#002147] text-white py-12 relative overflow-hidden" id="admin-dashboard-content">
-        <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-blue-800/15 rounded-full blur-[130px] -mr-72 -mt-72 z-0 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-orange-600/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
+      <main className="flex-grow bg-primary-dark text-white py-12 relative overflow-hidden" id="admin-dashboard-content">
+        <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-primary-dark/15 rounded-full blur-[130px] -mr-72 -mt-72 z-0 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-accent/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
 
         <div className="institutional-container relative z-10">
 
@@ -329,16 +329,16 @@ const AdminDashboardPage: React.FC = () => {
                 <ShieldAlert size={16} /> Administrative Console
               </div>
               <h1 className="text-3xl sm:text-4xl font-serif font-black uppercase text-white tracking-tight">
-                Admin <span className="text-orange-500">Dashboard</span>
+                Admin <span className="text-secondary">Dashboard</span>
               </h1>
-              <p className="text-blue-200 text-xs mt-1">
+              <p className="text-secondary-light text-xs mt-1">
                 Logged in as: <span className="text-white font-bold">{localStorage.getItem('adminEmail')}</span>
               </p>
             </div>
             <div className="flex gap-3">
               <button
                 onClick={fetchAllData}
-                className="px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 text-blue-200 hover:text-white rounded-sm font-bold text-[10px] uppercase tracking-widest flex items-center gap-2 transition-all cursor-pointer"
+                className="px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 text-secondary-light hover:text-white rounded-sm font-bold text-[10px] uppercase tracking-widest flex items-center gap-2 transition-all cursor-pointer"
               >
                 <RefreshCw size={12} /> Refresh
               </button>
@@ -354,17 +354,17 @@ const AdminDashboardPage: React.FC = () => {
           {loading ? (
             <div className="py-24 text-center space-y-4">
               <Loader2 className="animate-spin text-orange-400 mx-auto" size={48} />
-              <p className="text-blue-200 text-xs uppercase tracking-widest font-black">Loading dashboard data...</p>
+              <p className="text-secondary-light text-xs uppercase tracking-widest font-black">Loading dashboard data...</p>
             </div>
           ) : (
             <>
               {/* Metrics Row */}
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
                 {[
-                  { label: 'Volunteers', value: submissions.volunteers.length, color: 'text-orange-400', bg: 'bg-orange-600/15', border: 'border-orange-500/20', icon: Users },
+                  { label: 'Volunteers', value: submissions.volunteers.length, color: 'text-orange-400', bg: 'bg-accent/15', border: 'border-secondary/20', icon: Users },
                   { label: 'Donations', value: submissions.donations.length, color: 'text-green-400', bg: 'bg-green-600/15', border: 'border-green-500/20', icon: HeartHandshake },
                   { label: 'Grievances', value: submissions.generals.filter((s: any) => s.formType === 'Grievance Submission').length, color: 'text-indigo-400', bg: 'bg-indigo-600/15', border: 'border-indigo-500/20', icon: Scale },
-                  { label: 'Contacts', value: submissions.contacts.length, color: 'text-blue-400', bg: 'bg-blue-600/15', border: 'border-blue-500/20', icon: Mail },
+                  { label: 'Contacts', value: submissions.contacts.length, color: 'text-secondary', bg: 'bg-primary-light/15', border: 'border-secondary/20', icon: Mail },
                   { label: 'Programs', value: programs.length, color: 'text-amber-400', bg: 'bg-amber-600/15', border: 'border-amber-500/20', icon: Calendar },
                   { label: 'Gallery', value: galleryImages.length, color: 'text-pink-400', bg: 'bg-pink-600/15', border: 'border-pink-500/20', icon: Image },
                 ].map((m, i) => {
@@ -375,7 +375,7 @@ const AdminDashboardPage: React.FC = () => {
                         <Icon size={16} />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[9px] font-black text-blue-200 uppercase truncate">{m.label}</p>
+                        <p className="text-[9px] font-black text-secondary-light uppercase truncate">{m.label}</p>
                         <p className="text-xl font-serif font-bold text-white">{m.value}</p>
                       </div>
                     </div>
@@ -393,11 +393,11 @@ const AdminDashboardPage: React.FC = () => {
                       onClick={() => setActiveTab(tab.id)}
                       className={`px-4 py-3 text-[10px] font-black uppercase tracking-wider border-b-2 transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap rounded-t-sm ${
                         activeTab === tab.id
-                          ? 'border-orange-500 text-white bg-white/[0.03]'
-                          : 'border-transparent text-blue-300 hover:text-white hover:bg-white/[0.02]'
+                          ? 'border-secondary text-white bg-white/[0.03]'
+                          : 'border-transparent text-secondary-light hover:text-white hover:bg-white/[0.02]'
                       }`}
                     >
-                      <Icon size={12} className={activeTab === tab.id ? 'text-orange-400' : 'text-blue-400'} />
+                      <Icon size={12} className={activeTab === tab.id ? 'text-orange-400' : 'text-secondary'} />
                       {tab.label}
                     </button>
                   );
@@ -416,7 +416,7 @@ const AdminDashboardPage: React.FC = () => {
                           key={st}
                           onClick={() => { setSubmissionSubTab(st as any); setExpandedSubId(null); }}
                           className={`px-4 py-2 text-[10px] font-black uppercase tracking-wider rounded-full border transition-all cursor-pointer capitalize ${
-                            submissionSubTab === st ? 'bg-orange-600 border-transparent text-white' : 'bg-white/5 border-white/10 text-blue-200 hover:bg-white/10'
+                            submissionSubTab === st ? 'bg-accent border-transparent text-white' : 'bg-white/5 border-white/10 text-secondary-light hover:bg-white/10'
                           }`}
                         >
                           {st === 'generals' ? 'General' : st}
@@ -427,7 +427,7 @@ const AdminDashboardPage: React.FC = () => {
                       {submissionSubTab === 'volunteers' && (
                         submissions.volunteers.length > 0 ? (
                           <table className="w-full text-left text-xs border-collapse">
-                            <thead><tr className="border-b border-white/15 text-[10px] font-black uppercase tracking-wider text-blue-300">
+                            <thead><tr className="border-b border-white/15 text-[10px] font-black uppercase tracking-wider text-secondary-light">
                               <th className="pb-3 pr-4">Name</th><th className="pb-3 pr-4">Email</th><th className="pb-3 pr-4">Phone</th><th className="pb-3 pr-4">Interests</th><th className="pb-3 pr-4">Date</th><th className="pb-3 text-right">Msg</th>
                             </tr></thead>
                             <tbody>
@@ -435,25 +435,25 @@ const AdminDashboardPage: React.FC = () => {
                                 <React.Fragment key={v._id}>
                                   <tr className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
                                     <td className="py-3 pr-4 font-bold text-white">{v.name}</td>
-                                    <td className="py-3 pr-4 text-blue-200">{v.email}</td>
-                                    <td className="py-3 pr-4 text-blue-200">{v.phone}</td>
-                                    <td className="py-3 pr-4"><span className="bg-orange-600/10 border border-orange-500/20 text-orange-400 px-2 py-0.5 rounded-sm font-black text-[9px] uppercase">{Array.isArray(v.interests) ? v.interests.join(', ') : v.interests}</span></td>
-                                    <td className="py-3 pr-4 text-blue-300/70">{new Date(v.createdAt).toLocaleDateString()}</td>
+                                    <td className="py-3 pr-4 text-secondary-light">{v.email}</td>
+                                    <td className="py-3 pr-4 text-secondary-light">{v.phone}</td>
+                                    <td className="py-3 pr-4"><span className="bg-accent/10 border border-secondary/20 text-orange-400 px-2 py-0.5 rounded-sm font-black text-[9px] uppercase">{Array.isArray(v.interests) ? v.interests.join(', ') : v.interests}</span></td>
+                                    <td className="py-3 pr-4 text-secondary-light/70">{new Date(v.createdAt).toLocaleDateString()}</td>
                                     <td className="py-3 text-right"><button onClick={() => setExpandedSubId(expandedSubId === v._id ? null : v._id)} className="text-orange-400 hover:underline font-black text-[10px] uppercase cursor-pointer">{expandedSubId === v._id ? 'Close' : 'View'}</button></td>
                                   </tr>
                                   {expandedSubId === v._id && (
-                                    <tr><td colSpan={6} className="bg-white/[0.02] border-b border-white/5 p-4 text-blue-100 italic text-xs"><strong>Message:</strong> {v.message || 'N/A'}</td></tr>
+                                    <tr><td colSpan={6} className="bg-white/[0.02] border-b border-white/5 p-4 text-white italic text-xs"><strong>Message:</strong> {v.message || 'N/A'}</td></tr>
                                   )}
                                 </React.Fragment>
                               ))}
                             </tbody>
                           </table>
-                        ) : <p className="text-center py-10 text-blue-300 font-bold">No volunteer applications found.</p>
+                        ) : <p className="text-center py-10 text-secondary-light font-bold">No volunteer applications found.</p>
                       )}
                       {submissionSubTab === 'contacts' && (
                         submissions.contacts.length > 0 ? (
                           <table className="w-full text-left text-xs border-collapse">
-                            <thead><tr className="border-b border-white/15 text-[10px] font-black uppercase tracking-wider text-blue-300">
+                            <thead><tr className="border-b border-white/15 text-[10px] font-black uppercase tracking-wider text-secondary-light">
                               <th className="pb-3 pr-4">Name</th><th className="pb-3 pr-4">Email</th><th className="pb-3 pr-4">Subject</th><th className="pb-3 pr-4">Date</th><th className="pb-3 text-right">Msg</th>
                             </tr></thead>
                             <tbody>
@@ -461,45 +461,45 @@ const AdminDashboardPage: React.FC = () => {
                                 <React.Fragment key={c._id}>
                                   <tr className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
                                     <td className="py-3 pr-4 font-bold text-white">{c.name}</td>
-                                    <td className="py-3 pr-4 text-blue-200">{c.email}</td>
+                                    <td className="py-3 pr-4 text-secondary-light">{c.email}</td>
                                     <td className="py-3 pr-4 text-orange-400 font-bold">{c.subject || 'General'}</td>
-                                    <td className="py-3 pr-4 text-blue-300/70">{new Date(c.createdAt).toLocaleDateString()}</td>
+                                    <td className="py-3 pr-4 text-secondary-light/70">{new Date(c.createdAt).toLocaleDateString()}</td>
                                     <td className="py-3 text-right"><button onClick={() => setExpandedSubId(expandedSubId === c._id ? null : c._id)} className="text-orange-400 hover:underline font-black text-[10px] uppercase cursor-pointer">{expandedSubId === c._id ? 'Close' : 'View'}</button></td>
                                   </tr>
                                   {expandedSubId === c._id && (
-                                    <tr><td colSpan={5} className="bg-white/[0.02] border-b border-white/5 p-4 text-blue-100 italic text-xs"><strong>Message:</strong> {c.message}</td></tr>
+                                    <tr><td colSpan={5} className="bg-white/[0.02] border-b border-white/5 p-4 text-white italic text-xs"><strong>Message:</strong> {c.message}</td></tr>
                                   )}
                                 </React.Fragment>
                               ))}
                             </tbody>
                           </table>
-                        ) : <p className="text-center py-10 text-blue-300 font-bold">No contact queries.</p>
+                        ) : <p className="text-center py-10 text-secondary-light font-bold">No contact queries.</p>
                       )}
                       {submissionSubTab === 'donations' && (
                         submissions.donations.length > 0 ? (
                           <table className="w-full text-left text-xs border-collapse">
-                            <thead><tr className="border-b border-white/15 text-[10px] font-black uppercase tracking-wider text-blue-300">
+                            <thead><tr className="border-b border-white/15 text-[10px] font-black uppercase tracking-wider text-secondary-light">
                               <th className="pb-3 pr-4">Donor</th><th className="pb-3 pr-4">Phone</th><th className="pb-3 pr-4">Email</th><th className="pb-3 pr-4">UTR/TXN ID</th><th className="pb-3 pr-4">Amount</th><th className="pb-3 pr-4">Date</th>
                             </tr></thead>
                             <tbody>
                               {submissions.donations.map((d: any) => (
                                 <tr key={d._id} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
                                   <td className="py-3 pr-4 font-bold text-white">{d.donorName}</td>
-                                  <td className="py-3 pr-4 text-blue-200">{d.phone}</td>
-                                  <td className="py-3 pr-4 text-blue-200">{d.email || 'N/A'}</td>
+                                  <td className="py-3 pr-4 text-secondary-light">{d.phone}</td>
+                                  <td className="py-3 pr-4 text-secondary-light">{d.email || 'N/A'}</td>
                                   <td className="py-3 pr-4 text-orange-400 font-mono font-bold">{d.transactionId}</td>
                                   <td className="py-3 pr-4 font-black text-green-400">₹{d.amount}</td>
-                                  <td className="py-3 pr-4 text-blue-300/70">{new Date(d.createdAt).toLocaleDateString()}</td>
+                                  <td className="py-3 pr-4 text-secondary-light/70">{new Date(d.createdAt).toLocaleDateString()}</td>
                                 </tr>
                               ))}
                             </tbody>
                           </table>
-                        ) : <p className="text-center py-10 text-blue-300 font-bold">No donation records.</p>
+                        ) : <p className="text-center py-10 text-secondary-light font-bold">No donation records.</p>
                       )}
                       {submissionSubTab === 'generals' && (
                         submissions.generals.length > 0 ? (
                           <table className="w-full text-left text-xs border-collapse">
-                            <thead><tr className="border-b border-white/15 text-[10px] font-black uppercase tracking-wider text-blue-300">
+                            <thead><tr className="border-b border-white/15 text-[10px] font-black uppercase tracking-wider text-secondary-light">
                               <th className="pb-3 pr-4">Form Type</th><th className="pb-3 pr-4">Name</th><th className="pb-3 pr-4">Contact</th><th className="pb-3 pr-4">Date</th><th className="pb-3 text-right">Details</th>
                             </tr></thead>
                             <tbody>
@@ -508,14 +508,14 @@ const AdminDashboardPage: React.FC = () => {
                                   <tr className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
                                     <td className="py-3 pr-4 font-bold text-orange-400 text-[10px] uppercase">{g.formType}</td>
                                     <td className="py-3 pr-4 font-bold text-white">{g.data?.name || 'N/A'}</td>
-                                    <td className="py-3 pr-4 text-blue-200">{g.data?.email || g.data?.phone || 'N/A'}</td>
-                                    <td className="py-3 pr-4 text-blue-300/70">{new Date(g.createdAt).toLocaleDateString()}</td>
+                                    <td className="py-3 pr-4 text-secondary-light">{g.data?.email || g.data?.phone || 'N/A'}</td>
+                                    <td className="py-3 pr-4 text-secondary-light/70">{new Date(g.createdAt).toLocaleDateString()}</td>
                                     <td className="py-3 text-right"><button onClick={() => setExpandedSubId(expandedSubId === g._id ? null : g._id)} className="text-orange-400 hover:underline font-black text-[10px] uppercase cursor-pointer">{expandedSubId === g._id ? 'Close' : 'View'}</button></td>
                                   </tr>
                                   {expandedSubId === g._id && (
                                     <tr><td colSpan={5} className="bg-white/[0.02] border-b border-white/5 p-4">
-                                      <div className="text-xs space-y-1.5 text-blue-100">{Object.entries(g.data || {}).map(([k, v]: any) => (
-                                        <div key={k}><strong className="text-[10px] text-blue-300 uppercase">{k.replace(/([A-Z])/g, ' $1')}: </strong>{String(v)}</div>
+                                      <div className="text-xs space-y-1.5 text-white">{Object.entries(g.data || {}).map(([k, v]: any) => (
+                                        <div key={k}><strong className="text-[10px] text-secondary-light uppercase">{k.replace(/([A-Z])/g, ' $1')}: </strong>{String(v)}</div>
                                       ))}</div>
                                     </td></tr>
                                   )}
@@ -523,7 +523,7 @@ const AdminDashboardPage: React.FC = () => {
                               ))}
                             </tbody>
                           </table>
-                        ) : <p className="text-center py-10 text-blue-300 font-bold">No general submissions.</p>
+                        ) : <p className="text-center py-10 text-secondary-light font-bold">No general submissions.</p>
                       )}
                     </div>
                   </div>
@@ -534,7 +534,7 @@ const AdminDashboardPage: React.FC = () => {
                   <div className="space-y-5">
                     <div className="flex justify-between items-center border-b border-white/10 pb-4">
                       <h3 className={sectionHeaderCls}>Forthcoming Programs</h3>
-                      <button onClick={handleOpenAddModal} className="bg-orange-600 hover:bg-orange-700 text-white font-black text-[10px] uppercase tracking-wider px-4 py-2.5 rounded-sm transition-all shadow-md hover:-translate-y-0.5 flex items-center gap-1.5 cursor-pointer">
+                      <button onClick={handleOpenAddModal} className="bg-accent hover:bg-orange-700 text-white font-black text-[10px] uppercase tracking-wider px-4 py-2.5 rounded-sm transition-all shadow-md hover:-translate-y-0.5 flex items-center gap-1.5 cursor-pointer">
                         <Plus size={14} /> Add Program
                       </button>
                     </div>
@@ -544,13 +544,13 @@ const AdminDashboardPage: React.FC = () => {
                           <div key={prog._id} className="bg-white/[0.02] border border-white/5 hover:border-white/10 p-5 rounded-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-all">
                             <div className="space-y-1.5 max-w-xl">
                               <div className="flex items-center gap-1.5 text-[9px] font-black text-orange-400 uppercase tracking-widest"><BookOpen size={12} /> Active Program</div>
-                              <div className="text-sm font-semibold text-white"><span className="text-[10px] text-blue-300 uppercase font-black pr-2">EN:</span>{prog.textEn}</div>
-                              <div className="text-xs text-blue-200"><span className="text-[10px] text-blue-300 uppercase font-black pr-2">HI:</span>{prog.textHi}</div>
-                              {prog.link && <span className="text-[10px] text-blue-300 font-bold">📄 PDF linked</span>}
-                              {prog.websiteLink && <span className="text-[10px] text-blue-300 font-bold ml-2">🌐 Website linked</span>}
+                              <div className="text-sm font-semibold text-white"><span className="text-[10px] text-secondary-light uppercase font-black pr-2">EN:</span>{prog.textEn}</div>
+                              <div className="text-xs text-secondary-light"><span className="text-[10px] text-secondary-light uppercase font-black pr-2">HI:</span>{prog.textHi}</div>
+                              {prog.link && <span className="text-[10px] text-secondary-light font-bold">📄 PDF linked</span>}
+                              {prog.websiteLink && <span className="text-[10px] text-secondary-light font-bold ml-2">🌐 Website linked</span>}
                             </div>
                             <div className="flex gap-2.5 self-end sm:self-center">
-                              <button onClick={() => handleOpenEditModal(prog)} className="p-2.5 bg-white/5 hover:bg-white/10 text-blue-300 hover:text-white rounded-sm border border-white/5 transition-all cursor-pointer"><Edit size={14} /></button>
+                              <button onClick={() => handleOpenEditModal(prog)} className="p-2.5 bg-white/5 hover:bg-white/10 text-secondary-light hover:text-white rounded-sm border border-white/5 transition-all cursor-pointer"><Edit size={14} /></button>
                               <button onClick={() => handleDeleteProgram(prog._id)} className="p-2.5 bg-red-600/10 hover:bg-red-600 text-red-300 hover:text-white rounded-sm border border-red-500/10 transition-all cursor-pointer"><Trash2 size={14} /></button>
                             </div>
                           </div>
@@ -558,7 +558,7 @@ const AdminDashboardPage: React.FC = () => {
                       </div>
                     ) : (
                       <div className="border border-white/5 p-10 rounded-sm text-center bg-white/[0.01]">
-                        <p className="text-blue-200/50 text-xs font-bold uppercase tracking-wider">No programs. Add one to display it on the homepage.</p>
+                        <p className="text-secondary-light/50 text-xs font-bold uppercase tracking-wider">No programs. Add one to display it on the homepage.</p>
                       </div>
                     )}
                   </div>
@@ -623,7 +623,7 @@ const AdminDashboardPage: React.FC = () => {
                       {causesContent.map((cause: any, idx: number) => (
                         <div key={idx} className="bg-white/[0.02] border border-white/5 rounded-sm p-5 space-y-4">
                           <div className="flex items-center gap-2 mb-2">
-                            <span className="w-6 h-6 rounded-full bg-orange-600/20 border border-orange-500/30 text-orange-400 flex items-center justify-center text-xs font-black">{idx + 1}</span>
+                            <span className="w-6 h-6 rounded-full bg-accent/20 border border-secondary/30 text-orange-400 flex items-center justify-center text-xs font-black">{idx + 1}</span>
                             <span className="text-sm font-serif font-bold text-white">{cause.titleEn || `Cause ${idx + 1}`}</span>
                           </div>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -674,7 +674,7 @@ const AdminDashboardPage: React.FC = () => {
                         <select
                           value={gallerySection}
                           onChange={async e => { setGallerySection(e.target.value); await refreshGallery(e.target.value); }}
-                          className="p-2 bg-blue-950/40 border border-white/10 rounded-sm text-white text-xs outline-none focus:ring-1 focus:ring-orange-500 cursor-pointer"
+                          className="p-2 bg-primary-dark/40 border border-white/10 rounded-sm text-white text-xs outline-none focus:ring-1 focus:ring-orange-500 cursor-pointer"
                         >
                           <option value="campus-life">Campus Life</option>
                           <option value="hero">Hero</option>
@@ -682,7 +682,7 @@ const AdminDashboardPage: React.FC = () => {
                           <option value="team">Team</option>
                           <option value="other">Other</option>
                         </select>
-                        <button onClick={() => setGalleryAddMode(!galleryAddMode)} className="bg-orange-600 hover:bg-orange-700 text-white font-black text-[10px] uppercase tracking-wider px-4 py-2.5 rounded-sm transition-all flex items-center gap-1.5 cursor-pointer">
+                        <button onClick={() => setGalleryAddMode(!galleryAddMode)} className="bg-accent hover:bg-orange-700 text-white font-black text-[10px] uppercase tracking-wider px-4 py-2.5 rounded-sm transition-all flex items-center gap-1.5 cursor-pointer">
                           {galleryAddMode ? <><X size={12} /> Cancel</> : <><Plus size={12} /> Add Image</>}
                         </button>
                       </div>
@@ -690,7 +690,7 @@ const AdminDashboardPage: React.FC = () => {
 
                     {/* Add image form */}
                     {galleryAddMode && (
-                      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="bg-blue-950/40 border border-white/10 rounded-sm p-5 space-y-4">
+                      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="bg-primary-dark/40 border border-white/10 rounded-sm p-5 space-y-4">
                         <h4 className="text-xs font-black text-white uppercase tracking-wider">Add New Gallery Image</h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div className="space-y-3">
@@ -710,7 +710,7 @@ const AdminDashboardPage: React.FC = () => {
                                 type="file"
                                 accept="image/*"
                                 onChange={e => setGalleryFile(e.target.files?.[0] || null)}
-                                className="w-full text-xs text-blue-200 file:mr-3 file:py-2 file:px-3 file:rounded-sm file:border-0 file:text-[10px] file:font-black file:uppercase file:bg-orange-600 file:text-white file:cursor-pointer cursor-pointer"
+                                className="w-full text-xs text-secondary-light file:mr-3 file:py-2 file:px-3 file:rounded-sm file:border-0 file:text-[10px] file:font-black file:uppercase file:bg-accent file:text-white file:cursor-pointer cursor-pointer"
                               />
                               {galleryFile && <p className="text-[10px] text-green-400 font-bold mt-1">✓ {galleryFile.name}</p>}
                             </div>
@@ -740,7 +740,7 @@ const AdminDashboardPage: React.FC = () => {
                             </div>
                           </div>
                         </div>
-                        <button onClick={handleGalleryAdd} disabled={galleryAdding} className="bg-orange-600 hover:bg-orange-700 text-white font-black text-xs uppercase tracking-wider px-6 py-2.5 rounded-sm transition-all cursor-pointer flex items-center gap-2 disabled:opacity-60">
+                        <button onClick={handleGalleryAdd} disabled={galleryAdding} className="bg-accent hover:bg-orange-700 text-white font-black text-xs uppercase tracking-wider px-6 py-2.5 rounded-sm transition-all cursor-pointer flex items-center gap-2 disabled:opacity-60">
                           {galleryAdding ? <><Loader2 size={12} className="animate-spin" /> Adding...</> : <><Plus size={12} /> Add to Gallery</>}
                         </button>
                       </motion.div>
@@ -750,14 +750,14 @@ const AdminDashboardPage: React.FC = () => {
                     {galleryImages.length > 0 ? (
                       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                         {galleryImages.map((img: any) => (
-                          <div key={img._id} className="group relative rounded-sm overflow-hidden border border-white/10 bg-blue-950/30">
+                          <div key={img._id} className="group relative rounded-sm overflow-hidden border border-white/10 bg-primary-dark/30">
                             {editingGallery?._id === img._id ? (
-                              <div className="p-3 space-y-2 bg-blue-950/80">
-                                <input className="w-full p-2 bg-blue-900/60 border border-white/10 rounded-sm text-white text-[10px] outline-none" value={editingGallery.captionEn} onChange={e => setEditingGallery({ ...editingGallery, captionEn: e.target.value })} placeholder="Caption EN" />
-                                <input className="w-full p-2 bg-blue-900/60 border border-white/10 rounded-sm text-white text-[10px] outline-none" value={editingGallery.captionHi} onChange={e => setEditingGallery({ ...editingGallery, captionHi: e.target.value })} placeholder="Caption HI" />
-                                <input className="w-full p-2 bg-blue-900/60 border border-white/10 rounded-sm text-white text-[10px] outline-none" value={editingGallery.captionGu} onChange={e => setEditingGallery({ ...editingGallery, captionGu: e.target.value })} placeholder="Caption GU" />
+                              <div className="p-3 space-y-2 bg-primary-dark/80">
+                                <input className="w-full p-2 bg-primary/60 border border-white/10 rounded-sm text-white text-[10px] outline-none" value={editingGallery.captionEn} onChange={e => setEditingGallery({ ...editingGallery, captionEn: e.target.value })} placeholder="Caption EN" />
+                                <input className="w-full p-2 bg-primary/60 border border-white/10 rounded-sm text-white text-[10px] outline-none" value={editingGallery.captionHi} onChange={e => setEditingGallery({ ...editingGallery, captionHi: e.target.value })} placeholder="Caption HI" />
+                                <input className="w-full p-2 bg-primary/60 border border-white/10 rounded-sm text-white text-[10px] outline-none" value={editingGallery.captionGu} onChange={e => setEditingGallery({ ...editingGallery, captionGu: e.target.value })} placeholder="Caption GU" />
                                 <div className="flex gap-2">
-                                  <button onClick={handleGalleryEditSave} className="flex-1 py-1.5 bg-orange-600 hover:bg-orange-700 text-white rounded-sm text-[10px] font-black uppercase cursor-pointer"><Save size={10} className="inline mr-1" />Save</button>
+                                  <button onClick={handleGalleryEditSave} className="flex-1 py-1.5 bg-accent hover:bg-orange-700 text-white rounded-sm text-[10px] font-black uppercase cursor-pointer"><Save size={10} className="inline mr-1" />Save</button>
                                   <button onClick={() => setEditingGallery(null)} className="flex-1 py-1.5 bg-white/10 hover:bg-white/20 text-white rounded-sm text-[10px] font-black uppercase cursor-pointer">Cancel</button>
                                 </div>
                               </div>
@@ -765,9 +765,9 @@ const AdminDashboardPage: React.FC = () => {
                               <>
                                 <img src={img.url} alt={img.captionEn || 'Gallery'} className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-500" onError={(e: any) => { e.target.style.display = 'none'; }} />
                                 {img.captionEn && (
-                                  <div className="p-2 bg-blue-950/80">
-                                    <p className="text-[10px] text-blue-200 truncate">{img.captionEn}</p>
-                                    <p className="text-[9px] text-blue-400 uppercase font-bold">{img.section}</p>
+                                  <div className="p-2 bg-primary-dark/80">
+                                    <p className="text-[10px] text-secondary-light truncate">{img.captionEn}</p>
+                                    <p className="text-[9px] text-secondary uppercase font-bold">{img.section}</p>
                                   </div>
                                 )}
                                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
@@ -781,8 +781,8 @@ const AdminDashboardPage: React.FC = () => {
                       </div>
                     ) : (
                       <div className="border border-white/5 p-12 rounded-sm text-center bg-white/[0.01]">
-                        <Image size={32} className="text-blue-300/30 mx-auto mb-3" />
-                        <p className="text-blue-200/50 text-xs font-bold uppercase tracking-wider">No images in this section. Click "Add Image" above.</p>
+                        <Image size={32} className="text-secondary-light/30 mx-auto mb-3" />
+                        <p className="text-secondary-light/50 text-xs font-bold uppercase tracking-wider">No images in this section. Click "Add Image" above.</p>
                       </div>
                     )}
                   </div>
@@ -799,7 +799,7 @@ const AdminDashboardPage: React.FC = () => {
                       {statsContent.map((stat: any, idx: number) => (
                         <div key={idx} className="bg-white/[0.02] border border-white/5 rounded-sm p-5 space-y-3">
                           <div className="flex items-center gap-2 mb-1">
-                            <span className="w-6 h-6 rounded-sm bg-orange-600/20 border border-orange-500/30 text-orange-400 flex items-center justify-center text-xs font-black">{idx + 1}</span>
+                            <span className="w-6 h-6 rounded-sm bg-accent/20 border border-secondary/30 text-orange-400 flex items-center justify-center text-xs font-black">{idx + 1}</span>
                             <span className="text-sm font-bold text-white">{stat.labelEn || `Stat ${idx + 1}`}</span>
                           </div>
                           <div className="grid grid-cols-2 gap-3">
@@ -910,7 +910,7 @@ const AdminDashboardPage: React.FC = () => {
                           <label className={labelCls}>Confirm New Password</label>
                           <input required type="password" className={inputCls} value={passwordForm.confirmPassword} onChange={e => setPasswordForm({ ...passwordForm, confirmPassword: e.target.value })} placeholder="Confirm New Password" />
                         </div>
-                        <button disabled={securityStatus === 'loading'} type="submit" className="w-full bg-orange-600 hover:bg-orange-700 text-white py-4 rounded-sm font-black text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xl hover:-translate-y-0.5 disabled:opacity-70">
+                        <button disabled={securityStatus === 'loading'} type="submit" className="w-full bg-accent hover:bg-orange-700 text-white py-4 rounded-sm font-black text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xl hover:-translate-y-0.5 disabled:opacity-70">
                           {securityStatus === 'loading' ? <Loader2 className="animate-spin" size={14} /> : 'Update Password'}
                         </button>
                       </form>
@@ -930,11 +930,11 @@ const AdminDashboardPage: React.FC = () => {
       <AnimatePresence>
         {isProgramModalOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-            <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="bg-[#002147] border border-white/10 rounded-sm shadow-2xl w-full max-w-lg overflow-hidden relative flex flex-col max-h-[90vh] border-t-4 border-orange-500">
-              <div className="bg-blue-950 p-6 text-white relative flex-shrink-0 border-b border-white/10">
+            <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="bg-primary-dark border border-white/10 rounded-sm shadow-2xl w-full max-w-lg overflow-hidden relative flex flex-col max-h-[90vh] border-t-4 border-secondary">
+              <div className="bg-primary-dark p-6 text-white relative flex-shrink-0 border-b border-white/10">
                 <button onClick={() => setIsProgramModalOpen(false)} className="absolute top-4 right-4 text-white/80 hover:text-white cursor-pointer font-bold text-lg leading-none">✕</button>
                 <h2 className="text-xl font-serif font-black uppercase text-white tracking-wide">{editingProgram ? 'Edit Program' : 'Add Forthcoming Program'}</h2>
-                <p className="text-blue-300 text-xs mt-1">Configure in English, Hindi, and Gujarati.</p>
+                <p className="text-secondary-light text-xs mt-1">Configure in English, Hindi, and Gujarati.</p>
               </div>
               <form onSubmit={handleProgramSubmit} className="p-6 overflow-y-auto space-y-4 text-left">
                 {[{ lang: 'English', key: 'textEn', required: true }, { lang: 'Hindi', key: 'textHi', required: true }, { lang: 'Gujarati', key: 'textGu', required: true }].map(({ lang, key, required }) => (
@@ -953,7 +953,7 @@ const AdminDashboardPage: React.FC = () => {
                 </div>
                 <div className="pt-4 border-t border-white/10 flex justify-end gap-3">
                   <button type="button" onClick={() => setIsProgramModalOpen(false)} className="px-5 py-3 bg-white/5 hover:bg-white/10 text-white rounded-sm font-bold text-xs uppercase tracking-wider cursor-pointer">Cancel</button>
-                  <button type="submit" className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-sm font-black text-xs uppercase tracking-wider cursor-pointer shadow-lg">{editingProgram ? 'Save Changes' : 'Create Program'}</button>
+                  <button type="submit" className="bg-accent hover:bg-orange-700 text-white px-6 py-3 rounded-sm font-black text-xs uppercase tracking-wider cursor-pointer shadow-lg">{editingProgram ? 'Save Changes' : 'Create Program'}</button>
                 </div>
               </form>
             </motion.div>

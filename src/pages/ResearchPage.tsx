@@ -55,15 +55,15 @@ const ResearchPage: React.FC = () => {
       title: t('research.focusArea1Title'),
       desc: t('research.focusArea1Desc'),
       icon: Globe,
-      color: "border-orange-500/30",
+      color: "border-secondary/30",
       accent: "text-orange-400"
     },
     {
       title: t('research.focusArea2Title'),
       desc: t('research.focusArea2Desc'),
       icon: BookOpen,
-      color: "border-blue-500/30",
-      accent: "text-blue-400"
+      color: "border-secondary/30",
+      accent: "text-secondary"
     },
     {
       title: t('research.focusArea3Title'),
@@ -100,9 +100,9 @@ const ResearchPage: React.FC = () => {
       <Header />
       <Navbar />
 
-      <main className="flex-grow bg-[#002147] text-white py-16 relative overflow-hidden" id="research-main-content">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-800/15 rounded-full blur-[140px] -mr-80 -mt-80 z-0 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-orange-600/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
+      <main className="flex-grow bg-primary-dark text-white py-16 relative overflow-hidden" id="research-main-content">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-dark/15 rounded-full blur-[140px] -mr-80 -mt-80 z-0 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-accent/5 rounded-full blur-[110px] -ml-60 z-0 pointer-events-none"></div>
 
         <div className="institutional-container relative z-10">
           {/* Breadcrumb Navigation */}
@@ -111,7 +111,7 @@ const ResearchPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             onClick={() => window.dispatchEvent(new CustomEvent('navigateToHome'))}
-            className="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
+            className="inline-flex items-center gap-2 text-secondary-light hover:text-white transition-all text-xs font-black uppercase tracking-widest mb-10 cursor-pointer group"
             aria-label="Navigate back to homepage"
             id="back-to-home-btn"
           >
@@ -128,10 +128,10 @@ const ResearchPage: React.FC = () => {
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-serif font-black text-white leading-tight uppercase tracking-tight">
                 {t('research.title')}
               </h1>
-              <h2 className="text-lg sm:text-xl font-serif font-bold text-blue-200 leading-relaxed border-l-4 border-orange-500 pl-4">
+              <h2 className="text-lg sm:text-xl font-serif font-bold text-secondary-light leading-relaxed border-l-4 border-secondary pl-4">
                 {t('research.descTitle')}
               </h2>
-              <p className="text-blue-100/80 text-sm sm:text-base leading-relaxed">
+              <p className="text-white/80 text-sm sm:text-base leading-relaxed">
                 {t('research.desc')}
               </p>
             </div>
@@ -157,13 +157,13 @@ const ResearchPage: React.FC = () => {
           {/* FOCUS AREAS */}
           <div className="mb-24">
             <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-              <span className="text-xs font-bold text-orange-400 uppercase tracking-[0.2em] bg-orange-600/10 border border-orange-500/20 px-3.5 py-1.5 rounded-sm">
+              <span className="text-xs font-bold text-orange-400 uppercase tracking-[0.2em] bg-accent/10 border border-secondary/20 px-3.5 py-1.5 rounded-sm">
                 {t('research.badge')}
               </span>
               <h2 className="text-3xl sm:text-4xl font-serif font-black uppercase text-white tracking-tight">
                 {t('research.focusTitle')}
               </h2>
-              <p className="text-blue-100/70 text-xs sm:text-sm">
+              <p className="text-white/70 text-xs sm:text-sm">
                 {t('research.focusDesc')}
               </p>
             </div>
@@ -182,16 +182,16 @@ const ResearchPage: React.FC = () => {
                     className={`bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 p-6 sm:p-8 rounded-sm shadow-xl transition-all duration-300 relative group ${area.color}`}
                   >
                     <div className="flex justify-between items-start mb-6">
-                      <div className="w-10 h-10 rounded-sm bg-blue-950/80 border border-white/10 flex items-center justify-center text-xl shadow-md group-hover:bg-orange-600 group-hover:border-transparent transition-all">
+                      <div className="w-10 h-10 rounded-sm bg-primary-dark/80 border border-white/10 flex items-center justify-center text-xl shadow-md group-hover:bg-accent group-hover:border-transparent transition-all">
                         <IconComp size={20} className={`${area.accent} group-hover:text-white transition-colors`} />
                       </div>
-                      <span className="text-[10px] font-black text-white/20 select-none group-hover:text-orange-500/30 transition-colors">0{idx+1}</span>
+                      <span className="text-[10px] font-black text-white/20 select-none group-hover:text-secondary/30 transition-colors">0{idx+1}</span>
                     </div>
                     <div className="space-y-2">
                       <h4 className="text-base font-serif font-bold text-white group-hover:text-orange-400 transition-colors">
                         {area.title}
                       </h4>
-                      <p className="text-blue-100/70 text-xs sm:text-sm leading-relaxed">
+                      <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
                         {area.desc}
                       </p>
                     </div>
@@ -206,17 +206,17 @@ const ResearchPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-[#003366] to-[#001f3f] border border-white/10 p-8 sm:p-12 rounded-sm mb-24 shadow-2xl border-l-4 border-orange-500 relative"
+            className="bg-gradient-to-br from-primary-dark to-primary-dark border border-white/10 p-8 sm:p-12 rounded-sm mb-24 shadow-2xl border-l-4 border-secondary relative"
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
             <div className="space-y-4 max-w-2xl">
-              <div className="inline-flex items-center gap-1.5 bg-[#002147] border border-white/10 px-3.5 py-1.5 rounded-full text-xs font-black uppercase text-orange-400 tracking-wider">
+              <div className="inline-flex items-center gap-1.5 bg-primary-dark border border-white/10 px-3.5 py-1.5 rounded-full text-xs font-black uppercase text-orange-400 tracking-wider">
                 {t('research.ctaSubtitle')}
               </div>
               <h3 className="text-2xl sm:text-3xl font-serif font-black text-white uppercase tracking-wider">
                 {t('research.statusTitle')}
               </h3>
-              <ul className="space-y-3 text-blue-100/80 text-sm sm:text-base list-disc pl-5">
+              <ul className="space-y-3 text-white/80 text-sm sm:text-base list-disc pl-5">
                 <li>{t('research.statusText1')}</li>
                 <li>{t('research.statusText2')}</li>
               </ul>
@@ -233,21 +233,21 @@ const ResearchPage: React.FC = () => {
                   {t('research.repoTitle')}
                 </h3>
               </div>
-              <p className="text-blue-100/70 text-xs sm:text-sm">
+              <p className="text-white/70 text-xs sm:text-sm">
                 {t('research.repoDesc')}
               </p>
 
               <div className="space-y-3">
                 {repoTypes.map((repo, idx) => (
                   <div key={idx} className="bg-white/[0.02] border border-white/5 p-4 rounded-sm flex items-center justify-between hover:bg-white/[0.04] transition-all">
-                    <span className="text-sm font-bold text-blue-100/90">{repo.name}</span>
-                    <span className="text-xs font-black text-orange-400 bg-orange-600/10 px-2 py-0.5 rounded-sm border border-orange-500/20">{repo.count}</span>
+                    <span className="text-sm font-bold text-white/90">{repo.name}</span>
+                    <span className="text-xs font-black text-orange-400 bg-accent/10 px-2 py-0.5 rounded-sm border border-secondary/20">{repo.count}</span>
                   </div>
                 ))}
               </div>
 
               {/* Empty state disclaimer */}
-              <div className="bg-orange-500/5 border border-orange-500/10 p-5 rounded-sm text-center">
+              <div className="bg-secondary/5 border border-secondary/10 p-5 rounded-sm text-center">
                 <p className="text-orange-400/90 text-xs font-medium leading-relaxed">
                   {t('research.repoPlaceholder')}
                 </p>
@@ -259,9 +259,9 @@ const ResearchPage: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="lg:col-span-7 bg-white/5 backdrop-blur-md border border-white/10 rounded-sm p-8 sm:p-10 shadow-2xl relative border-t-4 border-orange-500"
+              className="lg:col-span-7 bg-white/5 backdrop-blur-md border border-white/10 rounded-sm p-8 sm:p-10 shadow-2xl relative border-t-4 border-secondary"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600/10 rounded-full blur-2xl pointer-events-none"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl pointer-events-none"></div>
 
               {status === 'success' ? (
                 <motion.div 
@@ -274,7 +274,7 @@ const ResearchPage: React.FC = () => {
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-2xl font-serif font-black text-white uppercase tracking-wider">{language === 'hi' ? 'प्रस्ताव जमा किया गया!' : language === 'gu' ? 'પ્રસ્તાવ સબમિટ થયો!' : 'Proposal Submitted!'}</h3>
-                    <p className="text-blue-200 text-sm max-w-md mx-auto leading-relaxed">
+                    <p className="text-secondary-light text-sm max-w-md mx-auto leading-relaxed">
                       {language === 'hi' ? 'आपके शोध प्रस्ताव के लिए धन्यवाद। हमारी शैक्षणिक समिति जल्द ही इसकी समीक्षा करेगी।' : language === 'gu' ? 'તમારા સંશોધન પ્રસ્તાવ બદલ આભાર. અમારી શૈક્ષણિક સમિતિ ટૂંક સમયમાં તેની સમીક્ષા કરશે.' : 'Thank you for your research proposal. Our academic committee will review it shortly.'}
                     </p>
                   </div>
@@ -291,58 +291,58 @@ const ResearchPage: React.FC = () => {
                     <h3 className="text-lg font-serif font-black text-white uppercase tracking-wide border-b border-white/10 pb-3 mb-2">
                       {t('research.collaborateTitle')}
                     </h3>
-                    <p className="text-xs text-blue-200/70">{t('research.collaborateDesc')}</p>
+                    <p className="text-xs text-secondary-light/70">{t('research.collaborateDesc')}</p>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name-input" className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{language === 'hi' ? 'पूरा नाम *' : language === 'gu' ? 'પૂરું નામ *' : 'Full Name *'}</label>
+                      <label htmlFor="name-input" className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{language === 'hi' ? 'पूरा नाम *' : language === 'gu' ? 'પૂરું નામ *' : 'Full Name *'}</label>
                       <input 
                         id="name-input"
                         required 
                         type="text" 
                         value={formData.name} 
                         onChange={e => setFormData({...formData, name: e.target.value})} 
-                        className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
+                        className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
                         placeholder={language === 'hi' ? 'अन्वेषक का नाम' : language === 'gu' ? 'અન્વેષકનું નામ' : 'Researcher Name'} 
                       />
                     </div>
                     <div>
-                      <label htmlFor="email-input" className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{language === 'hi' ? 'ईमेल *' : language === 'gu' ? 'ઇમેઇલ *' : 'Email *'}</label>
+                      <label htmlFor="email-input" className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{language === 'hi' ? 'ईमेल *' : language === 'gu' ? 'ઇમેઇલ *' : 'Email *'}</label>
                       <input 
                         id="email-input"
                         required 
                         type="email" 
                         value={formData.email} 
                         onChange={e => setFormData({...formData, email: e.target.value})} 
-                        className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
+                        className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
                         placeholder="researcher@mail.com" 
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="topic-input" className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{language === 'hi' ? 'अनुसंधान विषय *' : language === 'gu' ? 'સંશોધન વિષય *' : 'Research Topic *'}</label>
+                    <label htmlFor="topic-input" className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{language === 'hi' ? 'अनुसंधान विषय *' : language === 'gu' ? 'સંશોધન વિષય *' : 'Research Topic *'}</label>
                     <input 
                       id="topic-input"
                       required 
                       type="text" 
                       value={formData.topic} 
                       onChange={e => setFormData({...formData, topic: e.target.value})} 
-                      className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
+                      className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white" 
                       placeholder={language === 'hi' ? 'उदा. वैदिक गणित और आधुनिक कंप्यूटर प्रणाली' : language === 'gu' ? 'દા.ત. વૈદિક ગણિત અને આધુનિક કોમ્પ્યુટર પ્રણાલી' : 'e.g. Vedic Mathematics and Modern Computing'} 
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="proposal-input" className="block text-[10px] font-black text-blue-300 uppercase tracking-wider mb-2">{language === 'hi' ? 'संक्षिप्त विवरण / प्रस्ताव *' : language === 'gu' ? 'સંક્ષિપ્ત વિગત / પ્રસ્તાવ *' : 'Brief Abstract / Proposal *'}</label>
+                    <label htmlFor="proposal-input" className="block text-[10px] font-black text-secondary-light uppercase tracking-wider mb-2">{language === 'hi' ? 'संक्षिप्त विवरण / प्रस्ताव *' : language === 'gu' ? 'સંક્ષિપ્ત વિગત / પ્રસ્તાવ *' : 'Brief Abstract / Proposal *'}</label>
                     <textarea 
                       id="proposal-input"
                       required
                       rows={4} 
                       value={formData.proposal} 
                       onChange={e => setFormData({...formData, proposal: e.target.value})} 
-                      className="w-full p-3.5 bg-blue-950/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white resize-none" 
+                      className="w-full p-3.5 bg-primary-dark/40 border border-white/10 rounded-sm focus:ring-1 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm text-white resize-none" 
                       placeholder={language === 'hi' ? 'अपने प्रस्तावित कार्य का एक संक्षिप्त विवरण प्रस्तुत करें...' : language === 'gu' ? 'તમારા પ્રસ્તાવિત કાર્યની ટૂંકી વિગત રજૂ કરો...' : 'Describe your proposed research objectives and significance...'}
                     ></textarea>
                   </div>
@@ -351,7 +351,7 @@ const ResearchPage: React.FC = () => {
                     <button 
                       disabled={status === 'loading'}
                       type="submit" 
-                      className="bg-orange-600 hover:bg-orange-700 text-white py-3.5 rounded-sm font-black text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xl disabled:opacity-75"
+                      className="bg-accent hover:bg-orange-700 text-white py-3.5 rounded-sm font-black text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xl disabled:opacity-75"
                     >
                       {status === 'loading' ? (
                         <span>{t('admissions.btnSubmitting')}</span>
