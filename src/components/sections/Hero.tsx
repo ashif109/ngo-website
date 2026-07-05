@@ -29,16 +29,16 @@ const Hero: React.FC = () => {
     <div className="relative w-full min-h-[500px] sm:min-h-[550px] md:min-h-[60vh] lg:min-h-[70vh] flex items-center overflow-hidden bg-primary-dark py-16 md:py-20 lg:py-24">
       {/* Background Image & Overlays */}
       {/* Background Image Container restricted to right side for better sizing and masking */}
-      <div className="absolute inset-y-0 right-0 w-full sm:w-[90%] md:w-[75%] lg:w-[65%]">
-        <div
-          className="absolute inset-0 bg-cover bg-no-repeat transition-all duration-700 opacity-90"
+      <div className="absolute inset-y-0 right-0 w-full sm:w-[90%] md:w-[75%] lg:w-[65%] flex justify-end items-center overflow-hidden">
+        <img
+          src={heroBg}
+          alt="Hero Background"
+          className="h-full w-auto max-w-full object-contain opacity-90 transition-all duration-700"
           style={{ 
-            backgroundImage: `url("${heroBg}")`, 
-            backgroundPosition: 'center center',
             WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 100%)',
             maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 100%)'
           }}
-        ></div>
+        />
       </div>
 
       {/* Rich gradient overlays matching the reference - adjusted for better face visibility */}
