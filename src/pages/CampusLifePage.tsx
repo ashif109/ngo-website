@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { 
-  ArrowLeft, Sparkles, Calendar, Compass, Award, 
+import {
+  ArrowLeft, Sparkles, Calendar, Compass, Award,
   Heart, Users, Star, UserPlus, Image, Maximize2, X, ChevronLeft, ChevronRight
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -30,7 +30,7 @@ const CampusLifePage: React.FC = () => {
   useEffect(() => {
     getGallery('campus-life').then(res => {
       if (res.success && Array.isArray(res.data)) setCmsGallery(res.data);
-    }).catch(() => {});
+    }).catch(() => { });
   }, []);
 
   useEffect(() => {
@@ -188,7 +188,7 @@ const CampusLifePage: React.FC = () => {
 
         <div className="institutional-container relative z-10">
           {/* Breadcrumb Navigation */}
-          <motion.button 
+          <motion.button
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -237,7 +237,7 @@ const CampusLifePage: React.FC = () => {
                       <div className="w-10 h-10 rounded-sm bg-primary-dark/80 border border-white/10 flex items-center justify-center text-xl shadow-md group-hover:bg-accent group-hover:border-transparent transition-all">
                         <IconComp size={20} className={`${sec.accent} group-hover:text-white transition-colors`} />
                       </div>
-                      <span className="text-[10px] font-black text-white/20 select-none group-hover:text-secondary/30 transition-colors">0{idx+1}</span>
+                      <span className="text-[10px] font-black text-white/20 select-none group-hover:text-secondary/30 transition-colors">0{idx + 1}</span>
                     </div>
                     <div className="space-y-2">
                       <h4 className="text-base font-serif font-bold text-white group-hover:text-orange-400 transition-colors">
@@ -331,11 +331,10 @@ const CampusLifePage: React.FC = () => {
                   <button
                     key={idx}
                     onClick={() => setActiveIdx(idx)}
-                    className={`flex items-center gap-4 p-4 rounded-sm border transition-all text-left relative overflow-hidden w-full h-[22%] cursor-pointer group ${
-                      activeIdx === idx
+                    className={`flex items-center gap-4 p-4 rounded-sm border transition-all text-left relative overflow-hidden w-full h-[22%] cursor-pointer group ${activeIdx === idx
                         ? 'bg-white/[0.08] border-secondary/50 shadow-lg shadow-orange-500/5'
                         : 'bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:border-white/15'
-                    }`}
+                      }`}
                   >
                     {activeIdx === idx && (
                       <motion.div
@@ -368,30 +367,31 @@ const CampusLifePage: React.FC = () => {
             <div className="block md:hidden space-y-6">
               {/* Carousel Container */}
               <div className="relative">
-                <style dangerouslySetInnerHTML={{__html: `
+                <style dangerouslySetInnerHTML={{
+                  __html: `
                   .no-scrollbar::-webkit-scrollbar {
                     display: none;
                   }
                 `}} />
-                <div 
+                <div
                   ref={carouselRef}
                   onScroll={handleScroll}
                   className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar w-full h-[280px] rounded-sm border border-white/10 bg-primary-dark/40 relative shadow-xl"
                   style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
                   {galleryItems.map((item, idx) => (
-                    <div 
-                      key={idx} 
+                    <div
+                      key={idx}
                       className="w-full h-full flex-shrink-0 snap-start snap-always relative"
                     >
                       <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
-                      
+
                       {/* Floating Category Tag */}
                       <span className="absolute top-4 left-4 bg-accent text-white font-black text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-sm shadow-md">
                         {item.tag}
                       </span>
-                      
+
                       {/* Fullscreen Maximize Action */}
                       <button
                         onClick={() => setSelectedIdx(idx)}
@@ -411,9 +411,8 @@ const CampusLifePage: React.FC = () => {
                   <button
                     key={idx}
                     onClick={() => scrollToIdx(idx)}
-                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                      activeIdx === idx ? 'bg-secondary w-7 shadow-md shadow-orange-500/20' : 'bg-white/20 w-2 hover:bg-white/40'
-                    }`}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeIdx === idx ? 'bg-secondary w-7 shadow-md shadow-orange-500/20' : 'bg-white/20 w-2 hover:bg-white/40'
+                      }`}
                     aria-label={`Go to slide ${idx + 1}`}
                   />
                 ))}
@@ -442,7 +441,7 @@ const CampusLifePage: React.FC = () => {
           </div>
 
           {/* CALL TO ACTION */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -460,7 +459,7 @@ const CampusLifePage: React.FC = () => {
                 {t('campusLife.ctaDesc')}
               </p>
               <div className="flex justify-center pt-2">
-                <button 
+                <button
                   onClick={() => window.dispatchEvent(new Event('openVolunteerModal'))}
                   className="bg-accent hover:bg-orange-700 text-white font-black text-xs uppercase tracking-[0.2em] px-8 py-3.5 rounded-sm transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
                   id="become-volunteer-btn"
@@ -477,7 +476,7 @@ const CampusLifePage: React.FC = () => {
       {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedIdx !== null && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -488,7 +487,7 @@ const CampusLifePage: React.FC = () => {
             aria-label="Image gallery lightbox"
           >
             {/* Close Button */}
-            <button 
+            <button
               onClick={() => setSelectedIdx(null)}
               className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-full transition-all cursor-pointer z-50 shadow-lg"
               aria-label="Close Lightbox"
@@ -497,7 +496,7 @@ const CampusLifePage: React.FC = () => {
             </button>
 
             {/* Navigation Buttons */}
-            <button 
+            <button
               onClick={handlePrev}
               className="absolute left-4 sm:left-8 text-white/70 hover:text-white bg-white/5 hover:bg-white/10 p-3 rounded-full transition-all cursor-pointer z-40"
               aria-label="Previous Image"
@@ -505,7 +504,7 @@ const CampusLifePage: React.FC = () => {
               <ChevronLeft size={24} />
             </button>
 
-            <button 
+            <button
               onClick={handleNext}
               className="absolute right-4 sm:right-8 text-white/70 hover:text-white bg-white/5 hover:bg-white/10 p-3 rounded-full transition-all cursor-pointer z-40"
               aria-label="Next Image"
@@ -514,7 +513,7 @@ const CampusLifePage: React.FC = () => {
             </button>
 
             {/* Selected Image Wrapper */}
-            <motion.div 
+            <motion.div
               onClick={(e) => e.stopPropagation()}
               className="max-w-4xl w-full flex flex-col items-center gap-4 relative z-30"
             >
@@ -539,14 +538,14 @@ const CampusLifePage: React.FC = () => {
                     }}
                     className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing touch-pan-y"
                   >
-                    <img 
-                      src={galleryItems[selectedIdx].src} 
-                      alt={galleryItems[selectedIdx].title} 
+                    <img
+                      src={galleryItems[selectedIdx].src}
+                      alt={galleryItems[selectedIdx].title}
                       className="max-h-[50vh] sm:max-h-[60vh] max-w-full object-contain pointer-events-none select-none"
                     />
                   </motion.div>
                 </AnimatePresence>
-                
+
                 {/* Floating category tag */}
                 <span className="absolute top-4 left-4 bg-accent/90 text-white font-black text-[10px] uppercase tracking-wider px-3 py-1 rounded-sm shadow-md z-20">
                   {galleryItems[selectedIdx].tag}
