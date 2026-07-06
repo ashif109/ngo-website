@@ -14,7 +14,7 @@ import ContactSection from '../components/sections/ContactSection';
 import DonateModal from '../components/common/DonateModal';
 import VolunteerModal from '../components/common/VolunteerModal';
 
-import aboutConference from '../assets/about-conference.jpg';
+import aboutConference from '../assets/main image inhanced.png';
 import aboutCommunity from '../assets/about-community.jpg';
 import aboutStudents from '../assets/about-students.jpg';
 import aboutMango from '../assets/about-mango.jpg';
