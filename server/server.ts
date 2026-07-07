@@ -53,7 +53,6 @@ import analyticsRoutes from './routes/analytics.js';
 
 app.use('/api/admin/pages', pagesRoutes);
 app.use('/api/admin/media', mediaRoutes);
-app.use('/api/admin/programs', programsRoutes);
 app.use('/api/admin/admissions', admissionsRoutes);
 app.use('/api/admin/donations', donationsRoutes);
 app.use('/api/admin/students', studentsRoutes);
