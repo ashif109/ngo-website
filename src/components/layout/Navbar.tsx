@@ -206,8 +206,7 @@ const Navbar: React.FC = () => {
                        else if (item === "HELP DESK") window.location.hash = '#/help-desk';
                        else if (item === "GRIEVANCE PORTAL") window.location.hash = '#/grievance-portal';
                        else if (item === "ADMIN PORTAL") {
-                         const token = localStorage.getItem('adminToken');
-                         window.location.hash = token ? '#/admin-dashboard' : '#/admin-login';
+                         window.location.href = '/admin/dashboard';
                        }
                      }}
                      className="text-[10px] font-bold text-white/80 hover:text-white cursor-pointer uppercase tracking-wider"
@@ -246,8 +245,7 @@ const Navbar: React.FC = () => {
                   else if (item === "HELP DESK") window.location.hash = '#/help-desk';
                   else if (item === "GRIEVANCE PORTAL") window.location.hash = '#/grievance-portal';
                   else if (item === "ADMIN PORTAL") {
-                    const token = localStorage.getItem('adminToken');
-                    window.location.hash = token ? '#/admin-dashboard' : '#/admin-login';
+                    window.location.href = '/admin/dashboard';
                   }
                 }}
                 className="hover:text-white transition-colors cursor-pointer uppercase tracking-wider relative group"

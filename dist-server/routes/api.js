@@ -61,7 +61,7 @@ router.post('/donations', async (req, res) => {
             return res.status(400).json({ success: false, error: 'Please provide all required donation details' });
         }
         const donation = await Donation.create({
-            donorName, phone, email, transactionId, amount
+            donorName, phone, email, razorpayOrderId: transactionId, amount
         });
         // Send email alert asynchronously
         sendNotificationEmail('Donation Alert', { donorName, phone, email, transactionId, amount }).catch(err => {

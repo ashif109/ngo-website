@@ -273,6 +273,7 @@ const CampusLifePage: React.FC = () => {
                       key={activeIdx}
                       src={galleryItems[activeIdx].src}
                       alt={galleryItems[activeIdx].title}
+                      loading="lazy"
                       initial={{ opacity: 0, scale: 1.03 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.98 }}
@@ -344,7 +345,7 @@ const CampusLifePage: React.FC = () => {
                       />
                     )}
                     <div className="w-20 h-14 rounded-sm overflow-hidden flex-shrink-0 border border-white/10 relative">
-                      <img src={item.src} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <img src={item.src} alt={item.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                       <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
                     </div>
                     <div className="flex-grow space-y-1 min-w-0">
@@ -384,7 +385,7 @@ const CampusLifePage: React.FC = () => {
                       key={idx}
                       className="w-full h-full flex-shrink-0 snap-start snap-always relative"
                     >
-                      <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
+                      <img src={item.src} alt={item.title} loading="lazy" className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
 
                       {/* Floating Category Tag */}
@@ -541,6 +542,7 @@ const CampusLifePage: React.FC = () => {
                     <img
                       src={galleryItems[selectedIdx].src}
                       alt={galleryItems[selectedIdx].title}
+                      loading="lazy"
                       className="max-h-[50vh] sm:max-h-[60vh] max-w-full object-contain pointer-events-none select-none"
                     />
                   </motion.div>

@@ -73,7 +73,7 @@ router.post('/donations', async (req: Request, res: Response): Promise<any> => {
     }
 
     const donation = await Donation.create({
-      donorName, phone, email, transactionId, amount
+      donorName, phone, email, razorpayOrderId: transactionId, amount
     });
 
     // Send email alert asynchronously

@@ -20,8 +20,8 @@ import ImportantLinksPage from './pages/ImportantLinksPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import DisclaimerPage from './pages/DisclaimerPage';
 import HowToReachPage from './pages/HowToReachPage';
-import AdminLoginPage from './pages/AdminLoginPage';
-import AdminDashboardPage from './pages/AdminDashboardPage';
+import FaqPage from './pages/FaqPage';
+import BlogPage from './pages/BlogPage';
 
 /**
  * App Component
@@ -33,7 +33,8 @@ export default function App() {
     'home' | 'events' | 'about' | 'admissions' | 'vedic-studies' |
     'research' | 'gurukulams' | 'publications' | 'campus-life' | 'resources' | 'announcements' |
     'media-room' | 'awards' | 'contact-us' | 'alumni-login' | 'help-desk' | 'grievance-portal' |
-    'important-links' | 'privacy-policy' | 'disclaimer' | 'how-to-reach' | 'admin-login' | 'admin-dashboard'
+    'important-links' | 'privacy-policy' | 'disclaimer' | 'how-to-reach' |
+    'faq' | 'blog'
   >('home');
 
   useEffect(() => {
@@ -121,10 +122,10 @@ export default function App() {
         setCurrentPage('disclaimer');
       } else if (hash === '#/how-to-reach' || path === '/how-to-reach') {
         setCurrentPage('how-to-reach');
-      } else if (hash === '#/admin-login' || path === '/admin-login') {
-        setCurrentPage('admin-login');
-      } else if (hash === '#/admin-dashboard' || path === '/admin-dashboard') {
-        setCurrentPage('admin-dashboard');
+      } else if (hash === '#/faq' || path === '/faq') {
+        setCurrentPage('faq');
+      } else if (hash === '#/blog' || path === '/blog') {
+        setCurrentPage('blog');
       } else {
         setCurrentPage('home');
       }
@@ -252,10 +253,10 @@ export default function App() {
         <PrivacyPolicyPage />
       ) : currentPage === 'disclaimer' ? (
         <DisclaimerPage />
-      ) : currentPage === 'admin-login' ? (
-        <AdminLoginPage />
-      ) : currentPage === 'admin-dashboard' ? (
-        <AdminDashboardPage />
+      ) : currentPage === 'faq' ? (
+        <FaqPage />
+      ) : currentPage === 'blog' ? (
+        <BlogPage />
       ) : (
         <HowToReachPage />
       )}

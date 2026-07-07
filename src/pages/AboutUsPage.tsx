@@ -172,6 +172,7 @@ const AboutUsPage: React.FC = () => {
                   <img 
                     src={aboutStudents} 
                     alt="Gurukulam Children" 
+                    loading="lazy"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" 
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
@@ -190,6 +191,7 @@ const AboutUsPage: React.FC = () => {
                   <img 
                     src={aboutCommunity} 
                     alt="Community Meeting" 
+                    loading="lazy"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" 
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
@@ -370,6 +372,7 @@ const AboutUsPage: React.FC = () => {
                   <img 
                     src={aboutMango} 
                     alt="Youth Empowerment" 
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-end p-6">
@@ -442,6 +445,7 @@ const AboutUsPage: React.FC = () => {
                 <img 
                   src={aboutConference} 
                   alt="Official Recognition" 
+                  loading="lazy"
                   className="w-full h-full object-cover" 
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4">
@@ -521,6 +525,40 @@ const AboutUsPage: React.FC = () => {
                 </button>
               </div>
             </motion.div>
+          </div>
+
+          {/* [ADDED] Foundation Story & Achievements */}
+          <div className="mb-24 space-y-16">
+            <div className="bg-white/[0.02] border border-white/10 p-8 sm:p-12 rounded-sm shadow-2xl">
+              <h3 className="text-2xl sm:text-3xl font-serif font-black uppercase text-white tracking-wide mb-4">Foundation Story</h3>
+              <p className="text-white/80 leading-relaxed">
+                Triyambakam Gurukulam Association was established with a singular vision to revive and preserve the ancient Indian Gurukulam system of learning. Emerging from a small assembly of Vedic scholars in Agra, the organization has grown into a premier academy that bridges classical knowledge with contemporary disciplines. Over the years, we have meticulously built an environment where students don't just study, but live the principles of Dharma, ethics, and rigorous academic inquiry.
+              </p>
+            </div>
+            
+            <div className="bg-white/[0.02] border border-white/10 p-8 sm:p-12 rounded-sm shadow-2xl">
+              <h3 className="text-2xl sm:text-3xl font-serif font-black uppercase text-white tracking-wide mb-4">Key Achievements</h3>
+              <ul className="list-disc pl-5 text-white/80 leading-relaxed space-y-2">
+                <li>Established comprehensive Vedic education programs accessible to students nationwide.</li>
+                <li>Pioneered the integration of Vedic Mathematics with modern computational logic.</li>
+                <li>Successfully preserved and documented numerous localized cultural heritage practices.</li>
+                <li>Fostered a growing alumni network of ethical leaders contributing globally.</li>
+              </ul>
+            </div>
+
+            <div className="bg-white/[0.02] border border-white/10 p-8 sm:p-12 rounded-sm shadow-2xl">
+              <h3 className="text-2xl sm:text-3xl font-serif font-black uppercase text-white tracking-wide mb-4">Our Team</h3>
+              <p className="text-white/80 leading-relaxed">
+                Our faculty comprises esteemed Acharyas, dedicated scholars, and modern academicians who work tirelessly to impart holistic education. Bound by a shared commitment to excellence and cultural preservation, our team is the driving force behind the academy's continuing success.
+              </p>
+            </div>
+          </div>
+
+          {/* [ADDED] Internal Links */}
+          <div className="mb-16 flex gap-4 text-sm font-bold flex-wrap">
+            <button onClick={() => window.location.hash = '#/forthcoming-programs'} className="text-secondary hover:text-white uppercase tracking-wider">Programs</button>
+            <button onClick={() => window.location.hash = '#/contact-us'} className="text-secondary hover:text-white uppercase tracking-wider">Contact</button>
+            <button onClick={() => window.location.hash = '#/blog'} className="text-secondary hover:text-white uppercase tracking-wider">Blog</button>
           </div>
 
         </div>

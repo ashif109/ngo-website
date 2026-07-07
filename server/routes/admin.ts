@@ -212,11 +212,15 @@ router.get('/programs', async (req: Request, res: Response): Promise<any> => {
 
 router.post('/programs', adminAuthMiddleware, async (req: Request, res: Response): Promise<any> => {
   try {
-    const { textEn, textHi, textGu, link, websiteLink } = req.body;
-    if (!textEn || !textHi || !textGu) {
+    const { textEn, textHi, textGu, titleEn, titleHi, titleGu, link, websiteLink } = req.body;
+    const finalTitleEn = titleEn || textEn;
+    const finalTitleHi = titleHi || textHi;
+    const finalTitleGu = titleGu || textGu;
+
+    if (!finalTitleEn || !finalTitleHi || !finalTitleGu) {
       return res.status(400).json({ success: false, error: 'Please provide program details in English, Hindi, and Gujarati' });
     }
-    const program = await Program.create({ textEn, textHi, textGu, link, websiteLink });
+    const program = await Program.create({ titleEn: finalTitleEn, titleHi: finalTitleHi, titleGu: finalTitleGu, link, websiteLink });
     return res.status(201).json({ success: true, data: program });
   } catch (error: any) {
     return res.status(500).json({ success: false, error: 'Server error while creating program' });
@@ -225,12 +229,16 @@ router.post('/programs', adminAuthMiddleware, async (req: Request, res: Response
 
 router.put('/programs/:id', adminAuthMiddleware, async (req: Request, res: Response): Promise<any> => {
   try {
-    const { textEn, textHi, textGu, link, websiteLink } = req.body;
+    const { textEn, textHi, textGu, titleEn, titleHi, titleGu, link, websiteLink } = req.body;
     const { id } = req.params;
-    if (!textEn || !textHi || !textGu) {
+    const finalTitleEn = titleEn || textEn;
+    const finalTitleHi = titleHi || textHi;
+    const finalTitleGu = titleGu || textGu;
+
+    if (!finalTitleEn || !finalTitleHi || !finalTitleGu) {
       return res.status(400).json({ success: false, error: 'Please provide program details in English, Hindi, and Gujarati' });
     }
-    const program = await Program.findByIdAndUpdate(id, { textEn, textHi, textGu, link, websiteLink }, { new: true });
+    const program = await Program.findByIdAndUpdate(id, { titleEn: finalTitleEn, titleHi: finalTitleHi, titleGu: finalTitleGu, link, websiteLink }, { new: true });
     if (!program) return res.status(404).json({ success: false, error: 'Program not found' });
     return res.status(200).json({ success: true, data: program });
   } catch (error: any) {
