@@ -62,10 +62,12 @@ const Hero: React.FC = () => {
 
           {/* Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] font-serif font-black leading-[1.05] mb-6 drop-shadow-2xl">
-            <span className="text-white block tracking-tight">PRESERVING</span>
-            <span className="text-white block tracking-tight">WISDOM,</span>
-            <span className="text-secondary block tracking-tight mt-1">EMPOWERING</span>
-            <span className="text-secondary block tracking-tight">THE FUTURE</span>
+            {language === 'hi' 
+              ? (content?.headlineHi || 'ज्ञान का संरक्षण, भविष्य का सशक्तिकरण').split(',').map((part: string, i: number) => <span key={i} className={`block tracking-tight ${i === 1 ? 'text-secondary mt-1' : 'text-white'}`}>{part}{i === 0 ? ',' : ''}</span>)
+              : language === 'gu'
+                ? (content?.headlineGu || 'જ્ઞાનનું સંરક્ષણ, ભવિષ્યનું સશક્તિકરણ').split(',').map((part: string, i: number) => <span key={i} className={`block tracking-tight ${i === 1 ? 'text-secondary mt-1' : 'text-white'}`}>{part}{i === 0 ? ',' : ''}</span>)
+                : (content?.headlineEn || 'PRESERVING WISDOM, EMPOWERING THE FUTURE').split(',').map((part: string, i: number) => <span key={i} className={`block tracking-tight ${i === 1 ? 'text-secondary mt-1' : 'text-white'}`}>{part}{i === 0 ? ',' : ''}</span>)
+            }
           </h1>
 
           {/* Decorative Line */}
@@ -78,10 +80,10 @@ const Hero: React.FC = () => {
           {/* Paragraph */}
           <p className="text-white/90 text-sm md:text-base leading-relaxed mb-10 max-w-lg font-medium">
             {language === 'hi'
-              ? 'प्राचीन ज्ञान को पोषित करने, वैदिक शिक्षा को बढ़ावा देने और एक उज्जवल, मूल्य-आधारित कल के निर्माण के हमारे मिशन में शामिल हों।'
+              ? (content?.descHi || 'प्राचीन ज्ञान को पोषित करने, वैदिक शिक्षा को बढ़ावा देने और एक उज्जवल, मूल्य-आधारित कल के निर्माण के हमारे मिशन में शामिल हों।')
               : language === 'gu'
-                ? 'પ્રાચીન જ્ઞાનને પોષવા, વૈદિક શિક્ષણને પ્રોત્સાહન આપવા અને ઉજ્જવળ, મૂલ્ય આધારિત આવતીકાલના નિર્માણના અમારા મિશનમાં જોડાઓ.'
-                : 'Join us in our mission to nurture ancient knowledge, promote Vedic education, and build a brighter, value-driven tomorrow.'}
+                ? (content?.descGu || 'પ્રાચીન જ્ઞાનને પોષવા, વૈદિક શિક્ષણને પ્રોત્સાહન આપવા અને ઉજ્જવળ, મૂલ્ય આધારિત આવતીકાલના નિર્માણના અમારા મિશનમાં જોડાઓ.')
+                : (content?.descEn || 'Join us in our mission to nurture ancient knowledge, promote Vedic education, and build a brighter, value-driven tomorrow.')}
           </p>
 
           {/* Buttons */}

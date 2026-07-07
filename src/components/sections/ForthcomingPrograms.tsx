@@ -12,7 +12,9 @@ const ForthcomingPrograms: React.FC = () => {
     const fetchPrograms = async () => {
       try {
         const res = await getPrograms();
-        if (res.success) {
+        if (Array.isArray(res)) {
+          setPrograms(res);
+        } else if (res && res.success) {
           setPrograms(res.data);
         }
       } catch (err) {

@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, Mail, Phone, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import { getSiteContent } from '../../services/api';
 
 const Footer: React.FC = () => {
   const { t, language } = useLanguage();
+  const [settings, setSettings] = useState<any>(null);
+
+  useEffect(() => {
+    getSiteContent('settings').then(res => {
+      if (res.success && res.data) {
+        setSettings(res.data);
+      }
+    }).catch(() => {});
+  }, []);
 
   return (
     <footer className="bg-text-main text-white pt-16 pb-8 mt-20 border-t-8 border-primary-light">
@@ -16,11 +26,11 @@ const Footer: React.FC = () => {
               {t('footer.aboutText')}
             </p>
             <div className="flex gap-4 flex-wrap">
-              {/* [ADDED] Social Media Links */}
-              <a href="https://www.facebook.com/gurukulamagra" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-[#1877F2] flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-80 transition-colors text-white text-[12px] font-bold" title="Facebook">f</a>
-              <a href="https://www.instagram.com/gurukulamagra" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-80 transition-colors text-white text-[12px] font-bold" title="Instagram">in</a>
-              <a href="https://www.youtube.com/gurukulamagra" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-[#FF0000] flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-80 transition-colors text-white text-[12px] font-bold" title="YouTube">yt</a>
-              <a href="https://www.linkedin.com/company/gurukulamagra" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-[#0A66C2] flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-80 transition-colors text-white text-[12px] font-bold" title="LinkedIn">li</a>
+              {/* Social Media Links */}
+              {(settings?.facebookUrl || "https://www.facebook.com/gurukulamagra") && <a href={settings?.facebookUrl || "https://www.facebook.com/gurukulamagra"} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-[#1877F2] flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-80 transition-colors text-white text-[12px] font-bold" title="Facebook">f</a>}
+              {(settings?.instagramUrl || "https://www.instagram.com/gurukulamagra") && <a href={settings?.instagramUrl || "https://www.instagram.com/gurukulamagra"} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-80 transition-colors text-white text-[12px] font-bold" title="Instagram">in</a>}
+              {(settings?.youtubeUrl || "https://www.youtube.com/gurukulamagra") && <a href={settings?.youtubeUrl || "https://www.youtube.com/gurukulamagra"} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-[#FF0000] flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-80 transition-colors text-white text-[12px] font-bold" title="YouTube">yt</a>}
+              {(settings?.twitterUrl || "https://www.linkedin.com/company/gurukulamagra") && <a href={settings?.twitterUrl || "https://www.linkedin.com/company/gurukulamagra"} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-[#0A66C2] flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-80 transition-colors text-white text-[12px] font-bold" title="LinkedIn">li</a>}
             </div>
           </div>
 
@@ -65,7 +75,7 @@ const Footer: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-[11px] font-bold uppercase mb-1">{t('footer.addressLabel')}</p>
-                  <p className="text-[12px] text-gray-400">F.No.1006 10th Floor BL-A, Om Shree Platinum Basai  Agra - 282001, Uttar Pradesh</p>
+                  <p className="text-[12px] text-gray-400">{settings?.address || 'F.No.1006 10th Floor BL-A, Om Shree Platinum Basai  Agra - 282001, Uttar Pradesh'}</p>
                 </div>
               </div>
               <div className="flex gap-4">
@@ -74,7 +84,16 @@ const Footer: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-[11px] font-bold uppercase mb-1">{t('footer.emailLabel')}</p>
-                  <p className="text-[12px] text-gray-400">croping@gmail.com</p>
+                  <p className="text-[12px] text-gray-400">{settings?.email || 'croping@gmail.com'}</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="bg-gray-800 p-3 rounded-sm h-fit">
+                  <Phone size={18} className="text-secondary" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-bold uppercase mb-1">Phone</p>
+                  <p className="text-[12px] text-gray-400">{settings?.phone || '+91 XXXXXXXXXX'}</p>
                 </div>
               </div>
             </div>
@@ -83,7 +102,7 @@ const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 mt-12 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4 text-[10px] font-bold text-text-muted uppercase tracking-widest">
-          <p>{t('footer.rights')}</p>
+          <p>{t('footer.rights').replace('2026', new Date().getFullYear().toString())} | {settings?.orgNameEn || 'Triyambakam Gurukulam'}</p>
         </div>
       </div>
     </footer>
