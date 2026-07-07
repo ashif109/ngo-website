@@ -41,12 +41,27 @@ export default function AdminLayout() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const token = localStorage.getItem('adminToken');
+  
   React.useEffect(() => {
-    const token = localStorage.getItem('adminToken');
     if (!token) {
       navigate('/admin/login', { replace: true });
+      return;
     }
-  }, [navigate]);
+    
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      if (payload.exp * 1000 < Date.now()) {
+        localStorage.removeItem('adminToken');
+        localStorage.removeItem('adminUser');
+        navigate('/admin/login', { replace: true });
+      }
+    } catch (e) {
+      localStorage.removeItem('adminToken');
+      localStorage.removeItem('adminUser');
+      navigate('/admin/login', { replace: true });
+    }
+  }, [navigate, token]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -95,11 +110,14 @@ export default function AdminLayout() {
                 {item.icon}
               </ListItemIcon>
               <ListItemText 
-                primary={item.text} 
-                primaryTypographyProps={{ 
-                  fontWeight: location.pathname === item.path ? 'bold' : 'normal',
-                  color: location.pathname === item.path ? '#B8860B' : 'inherit'
-                }} 
+                primary={
+                  <Typography sx={{ 
+                    fontWeight: location.pathname === item.path ? 'bold' : 'normal',
+                    color: location.pathname === item.path ? '#B8860B' : 'inherit'
+                  }}>
+                    {item.text}
+                  </Typography>
+                } 
               />
             </ListItemButton>
           </ListItem>
@@ -107,6 +125,18 @@ export default function AdminLayout() {
       </List>
     </div>
   );
+
+  if (!token) {
+    return null;
+  }
+  
+  // Prevent rendering if token is expired locally
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    if (payload.exp * 1000 < Date.now()) return null;
+  } catch (e) {
+    return null;
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
