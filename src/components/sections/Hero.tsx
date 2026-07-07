@@ -2,23 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import staticHeroBg from '../../assets/WhatsApp Image 2026-05-10 at 6.46.13 PM.jpeg';
 import { useLanguage } from '../../context/LanguageContext';
-import { getSiteContent } from '../../services/api';
+import { useSiteContent } from '../../context/SiteContentContext';
 import { Star, HeartHandshake, Users } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const { language } = useLanguage();
-  const [content, setContent] = useState<any>(null);
+  const { hero: content } = useSiteContent();
 
-  useEffect(() => {
-    getSiteContent('hero').then(res => {
-      if (res.success && res.data) {
-        setContent(res.data);
-      }
-    }).catch(() => { });
-  }, []);
-
-  // Forcing staticHeroBg to ensure the correct WhatsApp image is shown instead of an old CMS database image
-  const heroBg = staticHeroBg; // (content?.backgroundImageUrl) || staticHeroBg;
+  // Use CMS image if provided, otherwise fallback to static image
+  const heroBg = (content?.backgroundImageUrl) || staticHeroBg;
 
   const badge = language === 'hi'
     ? (content?.badgeHi || 'राष्ट्रीय पहल 2026')

@@ -25,7 +25,8 @@ export default function MediaLibrary() {
       const res = await axios.get('/api/admin/media', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setMedia(res.data);
+      const data = Array.isArray(res.data) ? res.data : (res.data?.data || []);
+      setMedia(data);
     } catch (err) {
       console.error('Error fetching media:', err);
     }

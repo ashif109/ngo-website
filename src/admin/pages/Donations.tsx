@@ -11,6 +11,12 @@ export default function Donations() {
   const [donations, setDonations] = useState<any[]>([]);
   const [selectedDonation, setSelectedDonation] = useState<any>(null);
   const [open, setOpen] = useState(false);
+  const [metrics, setMetrics] = useState({
+    totalAmount: 0,
+    totalDonors: 0,
+    verifiedDonations: 0,
+    failedDonations: 0
+  });
 
   useEffect(() => {
     fetchDonations();
@@ -22,10 +28,35 @@ export default function Donations() {
       const res = await axios.get('/api/admin/donations', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setDonations(res.data);
+      const data = Array.isArray(res.data) ? res.data : (res.data?.data || []);
+      setDonations(data);
+      calculateMetrics(data);
     } catch (err) {
       console.error('Error fetching donations:', err);
     }
+  };
+
+  const calculateMetrics = (data: any[]) => {
+    let total = 0;
+    let verified = 0;
+    let failed = 0;
+    
+    data.forEach(d => {
+      if (d.status === 'verified') {
+        total += d.amount || 0;
+        verified += 1;
+      }
+      if (d.status === 'failed' || d.status === 'rejected') {
+        failed += 1;
+      }
+    });
+
+    setMetrics({
+      totalAmount: total,
+      totalDonors: data.length,
+      verifiedDonations: verified,
+      failedDonations: failed
+    });
   };
 
   const handleStatusUpdate = async (id: string, status: string) => {
@@ -57,9 +88,37 @@ export default function Donations() {
     <Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
         <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-          Donations & Payments
+          Donations & Payments Dashboard
         </Typography>
       </Box>
+
+      {/* Metrics Grid */}
+      <Grid container spacing={3} sx={{ mb: 4 }}>
+        <Grid item xs={12} sm={6} md={3}>
+          <Box sx={{ p: 3, borderRadius: 2, bgcolor: 'success.light', color: 'success.contrastText' }}>
+            <Typography variant="subtitle2" sx={{ opacity: 0.9 }}>Total Amount Raised</Typography>
+            <Typography variant="h4" sx={{ fontWeight: 'bold' }}>₹{metrics.totalAmount.toLocaleString()}</Typography>
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <Box sx={{ p: 3, borderRadius: 2, bgcolor: 'info.main', color: 'info.contrastText' }}>
+            <Typography variant="subtitle2" sx={{ opacity: 0.9 }}>Total Transactions</Typography>
+            <Typography variant="h4" sx={{ fontWeight: 'bold' }}>{metrics.totalDonors}</Typography>
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <Box sx={{ p: 3, borderRadius: 2, bgcolor: 'primary.main', color: 'primary.contrastText' }}>
+            <Typography variant="subtitle2" sx={{ opacity: 0.9 }}>Verified Donations</Typography>
+            <Typography variant="h4" sx={{ fontWeight: 'bold' }}>{metrics.verifiedDonations}</Typography>
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <Box sx={{ p: 3, borderRadius: 2, bgcolor: 'error.main', color: 'error.contrastText' }}>
+            <Typography variant="subtitle2" sx={{ opacity: 0.9 }}>Failed / Rejected</Typography>
+            <Typography variant="h4" sx={{ fontWeight: 'bold' }}>{metrics.failedDonations}</Typography>
+          </Box>
+        </Grid>
+      </Grid>
 
       <TableContainer component={Paper} sx={{ borderRadius: 2, boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
         <Table sx={{ minWidth: 650 }}>

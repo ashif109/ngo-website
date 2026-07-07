@@ -17,6 +17,19 @@ router.get('/', authenticate, async (req, res) => {
   }
 });
 
+// @route   POST /api/admissions
+// @desc    Submit a new admission application
+// @access  Public
+router.post('/', async (req, res) => {
+  try {
+    const newAdmission = new Admission(req.body);
+    await newAdmission.save();
+    res.status(201).json({ success: true, data: newAdmission });
+  } catch (error: any) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+});
+
 // @route   PUT /api/admin/admissions/:id/status
 // @desc    Update admission status
 // @access  Admin/Editor

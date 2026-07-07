@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, ArrowLeft, ArrowRight, BookOpen, FileText, Globe, MapPin, Laptop, Sparkles, Info } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
+import { getPrograms } from '../services/api';
 
 import Header from '../components/layout/Header';
 import Navbar from '../components/layout/Navbar';
@@ -12,8 +13,26 @@ import VolunteerModal from '../components/common/VolunteerModal';
 
 const EventsPage: React.FC = () => {
   const { language } = useLanguage();
+  const [programs, setPrograms] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        const res = await getPrograms();
+        if (Array.isArray(res)) {
+          setPrograms(res);
+        } else if (res && res.success) {
+          setPrograms(res.data);
+        }
+      } catch (err) {
+        console.error('Error fetching programs:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPrograms();
+  }, []);
 
   return (
     <>
@@ -58,184 +77,131 @@ const EventsPage: React.FC = () => {
             </p>
           </div>
 
-          {/* UPCOMING EVENTS SECTION */}
+          {/* DYNAMIC PROGRAMS LIST */}
           <div className="space-y-8 mb-20">
-            <div className="border-b border-white/10 pb-6">
-              <h2 className="text-2xl font-serif font-black text-white uppercase">
-                {language === 'hi' ? 'आगामी कार्यक्रम' : language === 'gu' ? 'આગામી કાર્યક્રમો' : 'Upcoming Events'}
-              </h2>
-              <p className="text-xs text-secondary-light font-bold uppercase tracking-wider mt-1.5">
-                {language === 'hi' ? 'भविष्य की गतिविधियाँ' : language === 'gu' ? 'ભવિષ્યની પ્રવૃત્તિઓ' : 'Future Initiatives'}
-              </p>
-            </div>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white/5 backdrop-blur-md border border-white/10 p-8 sm:p-12 rounded-sm text-center relative overflow-hidden flex flex-col items-center justify-center border-l-4 border-secondary shadow-2xl"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-600/[0.03] via-transparent to-transparent pointer-events-none"></div>
-
-              <div className="bg-accent/15 border border-secondary/30 w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-xl shadow-orange-600/5">
-                <Sparkles size={28} className="text-orange-400 animate-pulse" />
+            {loading ? (
+              <div className="py-12 text-center text-secondary-light text-xs font-bold uppercase tracking-widest animate-pulse">
+                Loading Programs...
               </div>
+            ) : programs.length > 0 ? (
+              programs.map((prog: any, idx: number) => {
+                let translatedTitle = prog.titleEn;
+                let translatedDesc = prog.descriptionEn;
+                if (language === 'hi') {
+                  translatedTitle = prog.titleHi || prog.titleEn;
+                  translatedDesc = prog.descriptionHi || prog.descriptionEn;
+                } else if (language === 'gu') {
+                  translatedTitle = prog.titleGu || prog.titleEn;
+                  translatedDesc = prog.descriptionGu || prog.descriptionEn;
+                }
 
-              <h3 className="text-xl sm:text-2xl font-serif font-black text-white mb-4 uppercase tracking-tight">
-                {language === 'hi' ? 'नए कार्यक्रम जल्द ही घोषित किए जाएंगे' : language === 'gu' ? 'નવા કાર્યક્રમો ટૂંક સમયમાં જાહેર કરવામાં આવશે' : 'New Programs & Events Coming Soon'}
-              </h3>
-              
-              <p className="text-white/70 text-sm max-w-xl leading-relaxed mb-8">
-                {language === 'hi'
-                  ? 'हम वर्तमान में 2026 की दूसरी छमाही के लिए अकादमिक सम्मेलनों, राष्ट्रीय वैदिक विज्ञान संगोष्ठियों और तकनीकी नवाचार मंचों का नियोजन कर रहे हैं। पंजीकरण खुलने पर अपडेट प्राप्त करने के लिए हमारे साथ बने रहें।'
-                  : language === 'gu'
-                  ? 'અમે હાલમાં 2026 ના ઉત્તરાર્ધ માટે શૈક્ષણિક પરિષદો, રાષ્ટ્રીય વૈદિક વિજ્ઞાન પરિસંવાદો અને તકનીકી નવીનતા મંચોનું આયોજન અને શેડ્યૂલ કરી રહ્યા છીએ. નોંધણી ખુલવા પર અપડેટ્સ મેળવવા માટે અમારી સાથે જોડાયેલા રહો.'
-                  : 'We are currently curating and scheduling our series of academic conferences, national Vedic science colloquia, and technological innovation forums for the latter half of 2026. Stay tuned to receive updates as soon as registrations open.'}
-              </p>
+                // Determine if event is past or upcoming based on date
+                // Note: The CMS does not enforce start/end dates strictly in the current model,
+                // but we render them all gracefully.
+                return (
+                  <motion.div 
+                    key={prog._id || idx}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="bg-white/5 backdrop-blur-md border border-white/10 p-8 sm:p-10 rounded-sm relative overflow-hidden border-t-4 border-secondary shadow-2xl mb-12"
+                  >
+                    <div className="absolute top-0 right-0 w-48 h-48 bg-primary-light/10 rounded-full blur-3xl pointer-events-none"></div>
 
-              <div className="flex flex-wrap gap-4 justify-center">
-                <button 
-                  onClick={() => window.location.hash = '#/admissions'}
-                  className="bg-accent hover:bg-orange-700 text-white font-black text-xs uppercase tracking-widest px-8 py-3.5 rounded-sm transition-all flex items-center gap-2 cursor-pointer shadow-xl shadow-orange-600/10 hover:shadow-orange-600/30 hover:-translate-y-0.5"
-                >
-                  <Sparkles size={14} />
-                  {language === 'hi' ? 'प्रवेश एवं रुचि दर्ज करें' : language === 'gu' ? 'રસ અને પ્રવેશ નોંધાવો' : 'Register Interest & Admissions'}
-                </button>
-                
-                <button 
-                  onClick={() => window.location.hash = '#/contact-us'}
-                  className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-widest px-6 py-3.5 rounded-sm transition-all flex items-center gap-2 border border-white/10 hover:border-white/20 cursor-pointer shadow-lg"
-                >
-                  <Globe size={14} className="text-orange-400" />
-                  {language === 'hi' ? 'अकादमिक परिषद से संपर्क करें' : language === 'gu' ? 'શૈક્ષણિક પરિષદનો સંપર્ક કરો' : 'Contact Academic Council'}
-                </button>
-              </div>
-            </motion.div>
-          </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                      
+                      {/* Event Main Description */}
+                      <div className="lg:col-span-8 space-y-6">
+                        <div className="inline-flex items-center gap-2 bg-primary-light/20 text-secondary-light border border-secondary/30 text-[10px] font-bold uppercase tracking-widest py-1.5 px-3.5 rounded-sm">
+                          <Info size={12} /> {prog.status === 'published' ? (language === 'hi' ? 'सक्रिय कार्यक्रम' : 'Active Program') : (language === 'hi' ? 'मसौदा' : 'Draft')}
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-2xl sm:text-3xl font-serif font-black text-white leading-snug mb-2 uppercase">
+                            {translatedTitle}
+                          </h3>
+                        </div>
 
-          {/* PAST EVENTS SECTION */}
-          <div className="space-y-8">
-            <div className="border-b border-white/10 pb-6">
-              <h2 className="text-2xl font-serif font-black text-white uppercase">
-                {language === 'hi' ? 'पिछली गतिविधियाँ और मील के पत्थर' : language === 'gu' ? 'ભૂતકાળની ઇવેન્ટ્સ અને સીમાચિહ્નો' : 'Past Events & Milestones'}
-              </h2>
-              <p className="text-xs text-secondary-light font-bold uppercase tracking-wider mt-1.5">
-                {language === 'hi' ? 'सफल आयोजन इतिहास' : language === 'gu' ? 'સફળ ઇવેન્ટ ઇતિહાસ' : 'Successful Event History'}
-              </p>
-            </div>
+                        {translatedDesc && (
+                          <p className="text-white/90 text-sm leading-relaxed whitespace-pre-line">
+                            {translatedDesc}
+                          </p>
+                        )}
 
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-white/5 backdrop-blur-md border border-white/10 p-8 sm:p-10 rounded-sm relative overflow-hidden border-t-4 border-secondary shadow-2xl mb-12"
-            >
-              <div className="absolute top-0 right-0 w-48 h-48 bg-primary-light/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <div className="flex flex-wrap gap-4 pt-4">
+                          {prog.link && (
+                            <button 
+                              onClick={() => window.open(prog.link, '_blank')}
+                              className="flex-1 sm:flex-initial bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-widest px-6 py-3.5 rounded-sm transition-all flex items-center justify-center gap-2.5 border border-white/10 hover:border-white/20 cursor-pointer shadow-lg"
+                            >
+                              <FileText size={16} className="text-orange-400" />
+                              {language === 'hi' ? 'विवरण पढ़ें (PDF)' : language === 'gu' ? 'વિગતો વાંચો (PDF)' : 'Read Details (PDF)'}
+                            </button>
+                          )}
+                          
+                          {prog.websiteLink && (
+                            <button 
+                              onClick={() => window.open(prog.websiteLink, '_blank')}
+                              className="flex-1 sm:flex-initial bg-accent hover:bg-orange-700 text-white font-black text-xs uppercase tracking-widest px-8 py-3.5 rounded-sm transition-all flex items-center justify-center gap-2.5 cursor-pointer shadow-xl shadow-orange-600/10 hover:shadow-orange-600/30 hover:-translate-y-0.5"
+                            >
+                              <Globe size={16} />
+                              {language === 'hi' ? 'वेबसाइट पर जाएं' : language === 'gu' ? 'વેબસાઇટની મુલાકાત લો' : 'Visit Website'}
+                            </button>
+                          )}
+                        </div>
+                      </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                
-                {/* Event Main Description */}
-                <div className="lg:col-span-7 space-y-6">
-                  <div className="inline-flex items-center gap-2 bg-primary-light/20 text-secondary-light border border-secondary/30 text-[10px] font-bold uppercase tracking-widest py-1.5 px-3.5 rounded-sm">
-                    <Info size={12} /> {language === 'hi' ? 'सफलतापूर्वक संपन्न' : language === 'gu' ? 'સફળતાપૂર્વક પૂર્ણ' : 'Successfully Completed'}
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-2xl sm:text-3xl font-serif font-black text-white leading-snug mb-2 uppercase">
-                      {language === 'hi' ? 'BUILD WITH AI - 30, 31 मई 2026' : language === 'gu' ? 'BUILD WITH AI - 30, 31 મે 2026' : 'BUILD WITH AI - 30th, 31st May 2026'}
-                    </h3>
-                    <h4 className="text-lg font-bold text-secondary-light">
-                      {language === 'hi' ? 'हैकाडे आगरा - साझेदारी और सहयोग' : language === 'gu' ? 'હેકડે આગ્રા - ભાગીદારી અને સહયોગ' : 'HackDay Agra - Partnership & Collaboration'}
-                    </h4>
-                    <p className="text-xs text-orange-400 font-bold uppercase tracking-wider mt-1.5">
-                      {language === 'hi' ? 'त्र्यंबकम गुरुकुलम एसोसिएशन - आधिकारिक सह-आयोजक' : language === 'gu' ? 'ત્રણયંબકમ ગુરુકુલમ એસોસિએશન - સત્તાવાર સહ-આયોજક' : 'Triyambakam Gurukulam Association - Official Co-Organiser'}
-                    </p>
-                  </div>
+                      {/* We could render event images or extra metadata here if the model supported it. For now, we'll keep it clean. */}
+                      <div className="lg:col-span-4 flex items-center justify-center">
+                         <div className="bg-primary-dark/50 border border-white/10 w-full h-full min-h-[200px] rounded-sm flex items-center justify-center flex-col gap-3">
+                           <Calendar size={48} className="text-white/20" />
+                           <span className="text-white/40 text-xs font-bold uppercase tracking-widest">
+                             {language === 'hi' ? 'तिथि निर्धारित की जाएगी' : 'Schedule TBA'}
+                           </span>
+                         </div>
+                      </div>
 
-                  <p className="text-white/90 text-sm leading-relaxed">
-                    {language === 'hi' 
-                      ? 'त्र्यंबकम गुरुकुलम एसोसिएशन द्वारा सह-आयोजित एक प्रतिष्ठित राष्ट्रीय हैकाथॉन। इस मील का पत्थर पहल को भविष्य के लिए तैयार नवप्रवर्तकों, डेवलपर्स के दिमाग और पारंपरिक विचारकों को एक साथ आने और आधुनिक आर्टिफिशियल इंटेलिजेंस और प्राचीन भारतीय तर्कशास्त्र (तर्क शास्त्र) के अभिसरण पर तकनीकी अनुप्रयोगों का निर्माण करने के लिए प्रेरित करने के लिए डिज़ाइन किया गया था।'
-                      : language === 'gu'
-                      ? 'ત્રણ્યંબકમ ગુરુકુલમ એસોસિએશન દ્વારા સહ-આયોજિત એક પ્રતિષ્ઠિત રાષ્ટ્રીય હેકાથોન. આ સીમાચિહ્નરૂપ પહેલ ભવિષ્ય માટે તૈયાર નવા પ્રવાહના સર્જકો, ડેવલપરના મગજ અને પરંપરાગત વિચારકોને એકસાથે આવવા અને આધુનિક આર્ટિફિશિયલ ઇન્ટેલિજન્સ અને પ્રાચીન ભારતીય તર્કશાસ્ત્ર (તર્ક શાસ્ત્ર) ના મિલન પર ટેકનોલોજીકલ એપ્લિકેશન્સ બનાવવા માટે પ્રેરણા આપવા માટે રચાયેલ હતી.'
-                      : 'A prestigious national hackathon co-organised by Triyambakam Gurukulam Association. This milestone initiative was designed to inspire future-ready innovators, developer minds, and traditional thinkers to come together and build technical applications at the intersection of modern Artificial Intelligence and ancient Indian logic (Tarka Shastra).'}
-                  </p>
+                    </div>
+                  </motion.div>
+                );
+              })
+            ) : (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="bg-white/5 backdrop-blur-md border border-white/10 p-8 sm:p-12 rounded-sm text-center relative overflow-hidden flex flex-col items-center justify-center border-l-4 border-secondary shadow-2xl"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-600/[0.03] via-transparent to-transparent pointer-events-none"></div>
 
-                  <div className="flex flex-wrap gap-4 pt-4">
-                    <button 
-                      onClick={() => window.open('https://drive.google.com/file/d/1qh_i5m78sX6ffAlZGEzeinNaGFf2w_-C/view?usp=drive_link', '_blank')}
-                      className="flex-1 sm:flex-initial bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-widest px-6 py-3.5 rounded-sm transition-all flex items-center justify-center gap-2.5 border border-white/10 hover:border-white/20 cursor-pointer shadow-lg"
-                    >
-                      <FileText size={16} className="text-orange-400" />
-                      {language === 'hi' ? 'रिपोर्ट पढ़ें (PDF)' : language === 'gu' ? 'રિપોર્ટ વાંચો (PDF)' : 'Read Report (PDF)'}
-                    </button>
-                    
-                    <button 
-                      onClick={() => window.open('https://hackday-agra-2026-727545432353.us-west1.run.app/', '_blank')}
-                      className="flex-1 sm:flex-initial bg-accent hover:bg-orange-700 text-white font-black text-xs uppercase tracking-widest px-8 py-3.5 rounded-sm transition-all flex items-center justify-center gap-2.5 cursor-pointer shadow-xl shadow-orange-600/10 hover:shadow-orange-600/30 hover:-translate-y-0.5"
-                    >
-                      <Globe size={16} />
-                      {language === 'hi' ? 'हैकाथॉन वेबसाइट' : language === 'gu' ? 'હેકાથોન વેબસાઇટ' : 'Hackathon Website'}
-                    </button>
-                  </div>
+                <div className="bg-accent/15 border border-secondary/30 w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-xl shadow-orange-600/5">
+                  <Sparkles size={28} className="text-orange-400 animate-pulse" />
                 </div>
 
-                {/* Event Round Timelines */}
-                <div className="lg:col-span-5 bg-white/[0.02] border border-white/5 p-6 sm:p-8 rounded-sm space-y-6">
-                  <div className="flex items-center gap-2 border-b border-white/10 pb-4">
-                    <Info size={16} className="text-orange-400" />
-                    <h4 className="text-sm font-black uppercase tracking-wider text-white">
-                      {language === 'hi' ? 'आयोजित कार्यक्रम विवरण' : language === 'gu' ? 'આયોજિત ઇવેન્ટ વિગતો' : 'Event Milestones'}
-                    </h4>
-                  </div>
+                <h3 className="text-xl sm:text-2xl font-serif font-black text-white mb-4 uppercase tracking-tight">
+                  {language === 'hi' ? 'नए कार्यक्रम जल्द ही घोषित किए जाएंगे' : language === 'gu' ? 'નવા કાર્યક્રમો ટૂંક સમયમાં જાહેર કરવામાં આવશે' : 'New Programs & Events Coming Soon'}
+                </h3>
+                
+                <p className="text-white/70 text-sm max-w-xl leading-relaxed mb-8">
+                  {language === 'hi'
+                    ? 'हम वर्तमान में हमारी अकादमिक और सांस्कृतिक पहलों की नई श्रृंखला का नियोजन कर रहे हैं। आधिकारिक घोषणाओं के लिए हमारे साथ जुड़े रहें।'
+                    : language === 'gu'
+                    ? 'અમે હાલમાં અમારી શૈક્ષણિક અને સાંસ્કૃતિક પહેલોની નવી શ્રેણીનું આયોજન અને શેડ્યૂલ કરી રહ્યા છીએ. સત્તાવાર જાહેરાતો માટે અમારી સાથે જોડાયેલા રહો.'
+                    : 'We are currently curating and scheduling our new series of academic and cultural initiatives. Stay tuned to receive updates as soon as registrations open.'}
+                </p>
 
-                  <div className="relative border-l border-white/10 pl-5 ml-2.5 space-y-8 py-2">
-                    <div className="relative group/round">
-                      <div className="absolute -left-[31px] top-0 bg-primary-dark border-2 border-secondary rounded-full w-5 h-5 flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 bg-surface0 rounded-full"></div>
-                      </div>
-                      <div className="space-y-1.5">
-                        <span className="text-xs font-black uppercase text-secondary tracking-wider">
-                          {language === 'hi' ? 'ऑनलाइन दौर' : language === 'gu' ? 'ઓનલાઇન રાઉન્ડ' : 'Online Round'}
-                        </span>
-                        <div className="text-white font-serif font-black text-sm">
-                          {language === 'hi' ? '30 मई 2026' : language === 'gu' ? '30 મે 2026' : '30th May 2026'}
-                        </div>
-                        <p className="text-secondary-light/70 text-xs">
-                          {language === 'hi' 
-                            ? 'देश भर की टीमों ने प्रारंभिक विचारों और कोड को प्रस्तुत किया।'
-                            : language === 'gu'
-                            ? 'દેશભરની ટીમોએ પ્રારંભિક વિચારો અને કોડ સબમિટ કર્યો.'
-                            : 'Teams from across the country submitted initial ideas and source code.'}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="relative group/round">
-                      <div className="absolute -left-[31px] top-0 bg-primary-dark border-2 border-secondary rounded-full w-5 h-5 flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 bg-secondary rounded-full"></div>
-                      </div>
-                      <div className="space-y-1.5">
-                        <span className="text-xs font-black uppercase text-orange-400 tracking-wider">
-                          {language === 'hi' ? 'ऑफलाइन दौर' : language === 'gu' ? 'ઓફલાઇન રાઉન્ડ' : 'Offline Round'}
-                        </span>
-                        <div className="text-white font-serif font-black text-sm">
-                          {language === 'hi' ? '31 मई 2026' : language === 'gu' ? '31 મે 2026' : '31st May 2026'}
-                        </div>
-                        <p className="text-secondary-light/70 text-xs">
-                          {language === 'hi'
-                            ? 'शॉर्टलिस्ट किए गए फाइनलिस्ट ने आगरा में भव्य फिनाले में लाइव प्रदर्शन किया।'
-                            : language === 'gu'
-                            ? 'શોર્ટલિસ્ટ થયેલા ફાઇનલિસ્ટોએ આગ્રામાં ગ્રાન્ડ ફિનાલેમાં લાઇવ પ્રદર્શન કર્યું.'
-                            : 'Shortlisted finalists presented live demonstrations at the grand finale in Agra.'}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <button 
+                    onClick={() => window.location.hash = '#/admissions'}
+                    className="bg-accent hover:bg-orange-700 text-white font-black text-xs uppercase tracking-widest px-8 py-3.5 rounded-sm transition-all flex items-center gap-2 cursor-pointer shadow-xl shadow-orange-600/10 hover:shadow-orange-600/30 hover:-translate-y-0.5"
+                  >
+                    <Sparkles size={14} />
+                    {language === 'hi' ? 'प्रवेश एवं रुचि दर्ज करें' : language === 'gu' ? 'રસ અને પ્રવેશ નોંધાવો' : 'Register Interest & Admissions'}
+                  </button>
                 </div>
-
-              </div>
-            </motion.div>
+              </motion.div>
+            )}
           </div>
 
         </div>

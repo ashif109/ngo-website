@@ -27,6 +27,24 @@ export const submitDonationNotify = async (data: any) => {
   return response.json();
 };
 
+export const createRazorpayOrder = async (data: any) => {
+  const response = await fetch(`${API_BASE_URL}/donations/create-order`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+  return response.json();
+};
+
+export const verifyRazorpayPayment = async (data: any) => {
+  const response = await fetch(`${API_BASE_URL}/donations/verify`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+  return response.json();
+};
+
 export const submitGeneralForm = async (formType: string, data: any) => {
   const response = await fetch(`${API_BASE_URL}/submit-general`, {
     method: 'POST',
@@ -80,6 +98,13 @@ export const changeAdminPassword = async (data: any) => {
 
 export const getAdminSubmissions = async () => {
   const response = await fetch(`${API_BASE_URL}/admin/submissions`, {
+    headers: getAuthHeaders()
+  });
+  return response.json();
+};
+
+export const getAdminDonations = async () => {
+  const response = await fetch(`${API_BASE_URL}/admin/donations`, {
     headers: getAuthHeaders()
   });
   return response.json();

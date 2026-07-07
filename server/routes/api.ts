@@ -3,9 +3,27 @@ import Volunteer from '../models/Volunteer.js';
 import Contact from '../models/Contact.js';
 import Donation from '../models/Donation.js';
 import Submission from '../models/Submission.js';
+import Page from '../models/Page.js';
 import { sendNotificationEmail } from '../utils/email.js';
 
 const router = express.Router();
+
+// ----------------------
+// PAGES (CMS PUBLIC)
+// ----------------------
+router.get('/pages/:slug', async (req: Request, res: Response): Promise<any> => {
+  try {
+    const { slug } = req.params;
+    const page = await Page.findOne({ slug, status: 'published' });
+    if (!page) {
+      return res.status(404).json({ success: false, error: 'Page not found or not published' });
+    }
+    return res.status(200).json({ success: true, data: page });
+  } catch (error: any) {
+    console.error('Error in GET /pages/:slug:', error);
+    return res.status(500).json({ success: false, error: 'Server error while fetching page' });
+  }
+});
 
 // ----------------------
 // VOLUNTEER ROUTES

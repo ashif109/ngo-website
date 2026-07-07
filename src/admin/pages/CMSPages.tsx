@@ -29,7 +29,8 @@ export default function CMSPages() {
       const res = await axios.get('/api/admin/pages', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setPages(res.data);
+      const data = Array.isArray(res.data) ? res.data : (res.data?.data || []);
+      setPages(data);
       setLoading(false);
     } catch (err) {
       console.error('Error fetching pages:', err);

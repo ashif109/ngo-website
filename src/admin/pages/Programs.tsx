@@ -30,7 +30,8 @@ export default function Programs() {
       const res = await axios.get('/api/admin/programs', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setPrograms(res.data.data || res.data);
+      const data = Array.isArray(res.data) ? res.data : (res.data?.data || []);
+      setPrograms(data);
       setLoading(false);
     } catch (err) {
       console.error('Error fetching programs:', err);
@@ -177,8 +178,28 @@ export default function Programs() {
           </TextField>
           <TextField fullWidth label="Location" name="location" value={formData.location} onChange={handleChange} margin="normal" />
           <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-            <TextField fullWidth type="date" label="Start Date" name="startDate" value={formData.startDate} onChange={handleChange} margin="normal" slotProps={{ inputLabel: { shrink: true } }} />
-            <TextField fullWidth type="date" label="End Date" name="endDate" value={formData.endDate} onChange={handleChange} margin="normal" slotProps={{ inputLabel: { shrink: true } }} />
+            <TextField 
+              fullWidth 
+              label="Start Date" 
+              name="startDate" 
+              type={formData.startDate ? "date" : "text"}
+              onFocus={(e) => e.target.type = 'date'}
+              onBlur={(e) => { if (!e.target.value) e.target.type = 'text'; }}
+              value={formData.startDate} 
+              onChange={handleChange} 
+              margin="normal" 
+            />
+            <TextField 
+              fullWidth 
+              label="End Date" 
+              name="endDate" 
+              type={formData.endDate ? "date" : "text"}
+              onFocus={(e) => e.target.type = 'date'}
+              onBlur={(e) => { if (!e.target.value) e.target.type = 'text'; }}
+              value={formData.endDate} 
+              onChange={handleChange} 
+              margin="normal" 
+            />
           </Box>
           <TextField fullWidth multiline rows={3} label="Description (English)" name="descriptionEn" value={formData.descriptionEn} onChange={handleChange} margin="normal" />
           <TextField fullWidth multiline rows={3} label="Description (Hindi)" name="descriptionHi" value={formData.descriptionHi} onChange={handleChange} margin="normal" />

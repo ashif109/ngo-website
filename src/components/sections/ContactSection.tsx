@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Loader2, Send } from 'lucide-react';
 import { submitContact } from '../../services/api';
 import { useLanguage } from '../../context/LanguageContext';
+import { useSiteContent } from '../../context/SiteContentContext';
 
 const ContactSection: React.FC = () => {
   const { language } = useLanguage();
+  const { settings } = useSiteContent();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -46,8 +48,8 @@ const ContactSection: React.FC = () => {
                 : 'Have questions about our initiatives or want to collaborate? Send us a message and our team will get back to you promptly.'}
             </p>
             <div className="space-y-4">
-              <p className="flex items-center text-sm font-bold"><span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mr-3">📞</span> +91 94121 62807</p>
-              <p className="flex items-center text-sm font-bold"><span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mr-3">📍</span> {language === 'hi' ? 'आगरा, उत्तर प्रदेश' : language === 'gu' ? 'આગ્રા, ઉત્તર પ્રદેશ' : 'Agra, Uttar Pradesh'}</p>
+              <p className="flex items-center text-sm font-bold"><span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mr-3">📞</span> {settings?.phone || '+91 94121 62807'}</p>
+              <p className="flex items-center text-sm font-bold"><span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mr-3">📍</span> {settings?.address || (language === 'hi' ? 'आगरा, उत्तर प्रदेश' : language === 'gu' ? 'આગ્રા, ઉત્તર પ્રદેશ' : 'Agra, Uttar Pradesh')}</p>
             </div>
           </div>
 

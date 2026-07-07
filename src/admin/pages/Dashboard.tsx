@@ -63,7 +63,7 @@ export default function AdminDashboard() {
 
   return (
     <Box>
-      <Typography variant="h4" sx={{ mb: 4, fontWeight: 'bold', color: '#002147' }}>
+      <Typography variant="h4" sx={{ mb: 4, fontWeight: 'bold', color: 'primary.main' }}>
         Dashboard Overview
       </Typography>
       
@@ -98,7 +98,7 @@ export default function AdminDashboard() {
                 <Line 
                   type="monotone" 
                   dataKey="amount" 
-                  stroke="#ff6600" 
+                  stroke="#D97706" 
                   strokeWidth={3}
                   activeDot={{ r: 8 }} 
                   dot={{ r: 4, strokeWidth: 2 }}

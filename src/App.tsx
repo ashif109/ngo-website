@@ -22,6 +22,7 @@ import DisclaimerPage from './pages/DisclaimerPage';
 import HowToReachPage from './pages/HowToReachPage';
 import FaqPage from './pages/FaqPage';
 import BlogPage from './pages/BlogPage';
+import DynamicPage from './pages/DynamicPage';
 
 /**
  * App Component
@@ -29,13 +30,7 @@ import BlogPage from './pages/BlogPage';
  * Designed for production readiness with premium aesthetics.
  */
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<
-    'home' | 'events' | 'about' | 'admissions' | 'vedic-studies' |
-    'research' | 'gurukulams' | 'publications' | 'campus-life' | 'resources' | 'announcements' |
-    'media-room' | 'awards' | 'contact-us' | 'alumni-login' | 'help-desk' | 'grievance-portal' |
-    'important-links' | 'privacy-policy' | 'disclaimer' | 'how-to-reach' |
-    'faq' | 'blog'
-  >('home');
+  const [currentPage, setCurrentPage] = useState<string>('home');
 
   useEffect(() => {
     const checkRoute = () => {
@@ -126,6 +121,12 @@ export default function App() {
         setCurrentPage('faq');
       } else if (hash === '#/blog' || path === '/blog') {
         setCurrentPage('blog');
+      } else if (hash.startsWith('#/p/')) {
+        const slug = hash.replace('#/p/', '');
+        setCurrentPage(`page:${slug}`);
+      } else if (path.startsWith('/p/')) {
+        const slug = path.replace('/p/', '');
+        setCurrentPage(`page:${slug}`);
       } else {
         setCurrentPage('home');
       }
@@ -183,6 +184,12 @@ export default function App() {
       window.location.hash = '';
     };
 
+    const handleToDynamicPage = ((e: CustomEvent) => {
+      if (e.detail && e.detail.slug) {
+        window.location.hash = `#/p/${e.detail.slug}`;
+      }
+    }) as EventListener;
+
     window.addEventListener('navigateToEvents', handleToEvents);
     window.addEventListener('navigateToAbout', handleToAbout);
     window.addEventListener('navigateToAdmissions', handleToAdmissions);
@@ -194,6 +201,7 @@ export default function App() {
     window.addEventListener('navigateToResources', handleToResources);
     window.addEventListener('navigateToAnnouncements', handleToAnnouncements);
     window.addEventListener('navigateToHome', handleToHome);
+    window.addEventListener('navigateToDynamicPage', handleToDynamicPage);
 
     return () => {
       window.removeEventListener('hashchange', checkRoute);
@@ -208,58 +216,47 @@ export default function App() {
       window.removeEventListener('navigateToResources', handleToResources);
       window.removeEventListener('navigateToAnnouncements', handleToAnnouncements);
       window.removeEventListener('navigateToHome', handleToHome);
+      window.removeEventListener('navigateToDynamicPage', handleToDynamicPage);
     };
   }, []);
 
+  const renderPage = () => {
+    if (currentPage.startsWith('page:')) {
+      const slug = currentPage.split(':')[1];
+      return <DynamicPage slug={slug} />;
+    }
+
+    switch (currentPage) {
+      case 'home': return <Home />;
+      case 'events': return <EventsPage />;
+      case 'about': return <AboutUsPage />;
+      case 'admissions': return <AdmissionsPage />;
+      case 'vedic-studies': return <VedicStudiesPage />;
+      case 'research': return <ResearchPage />;
+      case 'gurukulams': return <GurukulamsPage />;
+      case 'publications': return <PublicationsPage />;
+      case 'campus-life': return <CampusLifePage />;
+      case 'resources': return <ResourcesPage />;
+      case 'announcements': return <AnnouncementsPage />;
+      case 'media-room': return <MediaRoomPage />;
+      case 'awards': return <AwardsPage />;
+      case 'contact-us': return <ContactPage />;
+      case 'alumni-login': return <AlumniLoginPage />;
+      case 'help-desk': return <HelpDeskPage />;
+      case 'grievance-portal': return <GrievancePortalPage />;
+      case 'important-links': return <ImportantLinksPage />;
+      case 'privacy-policy': return <PrivacyPolicyPage />;
+      case 'disclaimer': return <DisclaimerPage />;
+      case 'how-to-reach': return <HowToReachPage />;
+      case 'faq': return <FaqPage />;
+      case 'blog': return <BlogPage />;
+      default: return <Home />;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans selection:bg-surface selection:text-primary">
-      {currentPage === 'home' ? (
-        <Home />
-      ) : currentPage === 'events' ? (
-        <EventsPage />
-      ) : currentPage === 'about' ? (
-        <AboutUsPage />
-      ) : currentPage === 'admissions' ? (
-        <AdmissionsPage />
-      ) : currentPage === 'vedic-studies' ? (
-        <VedicStudiesPage />
-      ) : currentPage === 'research' ? (
-        <ResearchPage />
-      ) : currentPage === 'gurukulams' ? (
-        <GurukulamsPage />
-      ) : currentPage === 'publications' ? (
-        <PublicationsPage />
-      ) : currentPage === 'campus-life' ? (
-        <CampusLifePage />
-      ) : currentPage === 'resources' ? (
-        <ResourcesPage />
-      ) : currentPage === 'announcements' ? (
-        <AnnouncementsPage />
-      ) : currentPage === 'media-room' ? (
-        <MediaRoomPage />
-      ) : currentPage === 'awards' ? (
-        <AwardsPage />
-      ) : currentPage === 'contact-us' ? (
-        <ContactPage />
-      ) : currentPage === 'alumni-login' ? (
-        <AlumniLoginPage />
-      ) : currentPage === 'help-desk' ? (
-        <HelpDeskPage />
-      ) : currentPage === 'grievance-portal' ? (
-        <GrievancePortalPage />
-      ) : currentPage === 'important-links' ? (
-        <ImportantLinksPage />
-      ) : currentPage === 'privacy-policy' ? (
-        <PrivacyPolicyPage />
-      ) : currentPage === 'disclaimer' ? (
-        <DisclaimerPage />
-      ) : currentPage === 'faq' ? (
-        <FaqPage />
-      ) : currentPage === 'blog' ? (
-        <BlogPage />
-      ) : (
-        <HowToReachPage />
-      )}
+      {renderPage()}
     </div>
   );
 }

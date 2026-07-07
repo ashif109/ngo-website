@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, Mail, Phone, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
-import { getSiteContent } from '../../services/api';
+import { useSiteContent } from '../../context/SiteContentContext';
 
 const Footer: React.FC = () => {
   const { t, language } = useLanguage();
-  const [settings, setSettings] = useState<any>(null);
-
-  useEffect(() => {
-    getSiteContent('settings').then(res => {
-      if (res.success && res.data) {
-        setSettings(res.data);
-      }
-    }).catch(() => {});
-  }, []);
+  const { settings } = useSiteContent();
 
   return (
     <footer className="bg-text-main text-white pt-16 pb-8 mt-20 border-t-8 border-primary-light">
