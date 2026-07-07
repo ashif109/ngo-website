@@ -30,7 +30,7 @@ export default function Programs() {
       const res = await axios.get('/api/admin/programs', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setPrograms(res.data);
+      setPrograms(res.data.data || res.data);
       setLoading(false);
     } catch (err) {
       console.error('Error fetching programs:', err);
@@ -49,11 +49,20 @@ export default function Programs() {
         location: program.location || '',
         startDate: program.startDate ? new Date(program.startDate).toISOString().split('T')[0] : '',
         endDate: program.endDate ? new Date(program.endDate).toISOString().split('T')[0] : '',
-        descriptionEn: program.descriptionEn || ''
+        descriptionEn: program.descriptionEn || '',
+        descriptionHi: program.descriptionHi || '',
+        descriptionGu: program.descriptionGu || '',
+        link: program.link || '',
+        websiteLink: program.websiteLink || ''
       });
     } else {
       setIsEdit(false);
-      setFormData({ titleEn: '', titleHi: '', titleGu: '', status: 'upcoming', location: '', startDate: '', endDate: '', descriptionEn: '' });
+      setFormData({ 
+        titleEn: '', titleHi: '', titleGu: '', 
+        status: 'upcoming', location: '', startDate: '', endDate: '', 
+        descriptionEn: '', descriptionHi: '', descriptionGu: '',
+        link: '', websiteLink: ''
+      });
     }
     setOpen(true);
   };
@@ -171,7 +180,13 @@ export default function Programs() {
             <TextField fullWidth type="date" label="Start Date" name="startDate" value={formData.startDate} onChange={handleChange} margin="normal" slotProps={{ inputLabel: { shrink: true } }} />
             <TextField fullWidth type="date" label="End Date" name="endDate" value={formData.endDate} onChange={handleChange} margin="normal" slotProps={{ inputLabel: { shrink: true } }} />
           </Box>
-          <TextField fullWidth multiline rows={3} label="Description" name="descriptionEn" value={formData.descriptionEn} onChange={handleChange} margin="normal" />
+          <TextField fullWidth multiline rows={3} label="Description (English)" name="descriptionEn" value={formData.descriptionEn} onChange={handleChange} margin="normal" />
+          <TextField fullWidth multiline rows={3} label="Description (Hindi)" name="descriptionHi" value={formData.descriptionHi} onChange={handleChange} margin="normal" />
+          <TextField fullWidth multiline rows={3} label="Description (Gujarati)" name="descriptionGu" value={formData.descriptionGu} onChange={handleChange} margin="normal" />
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <TextField fullWidth label="Brochure PDF Link" name="link" value={formData.link} onChange={handleChange} margin="normal" placeholder="https://" />
+            <TextField fullWidth label="Website Link" name="websiteLink" value={formData.websiteLink} onChange={handleChange} margin="normal" placeholder="https://" />
+          </Box>
         </DialogContent>
         <DialogActions sx={{ p: 3, pt: 0 }}>
           <Button onClick={handleClose} color="inherit">Cancel</Button>
