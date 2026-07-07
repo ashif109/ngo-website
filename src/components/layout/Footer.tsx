@@ -15,14 +15,12 @@ const Footer: React.FC = () => {
             <p className="text-[12px] text-gray-400 leading-relaxed mb-6 italic">
               {t('footer.aboutText')}
             </p>
-            <div className="flex gap-4">
-              {/* Social icons placeholder */}
-              <div className="w-8 h-8 bg-primary flex items-center justify-center rounded-full cursor-pointer hover:bg-primary-dark transition-colors">
-                <span className="text-[12px] font-bold">f</span>
-              </div>
-              <div className="w-8 h-8 bg-sky-600 flex items-center justify-center rounded-full cursor-pointer hover:bg-sky-500 transition-colors">
-                <span className="text-[12px] font-bold">x</span>
-              </div>
+            <div className="flex gap-4 flex-wrap">
+              {/* [ADDED] Social Media Links */}
+              <a href="https://www.facebook.com/gurukulamagra" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-[#1877F2] flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-80 transition-colors text-white text-[12px] font-bold" title="Facebook">f</a>
+              <a href="https://www.instagram.com/gurukulamagra" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-80 transition-colors text-white text-[12px] font-bold" title="Instagram">in</a>
+              <a href="https://www.youtube.com/gurukulamagra" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-[#FF0000] flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-80 transition-colors text-white text-[12px] font-bold" title="YouTube">yt</a>
+              <a href="https://www.linkedin.com/company/gurukulamagra" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-[#0A66C2] flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-80 transition-colors text-white text-[12px] font-bold" title="LinkedIn">li</a>
             </div>
           </div>
 

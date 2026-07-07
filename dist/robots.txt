@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /login/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /backup/
+Disallow: /temp/
+Disallow: /*?*
+Disallow: /*.pdf$
+
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+
+Sitemap: https://www.gurukulamagra.com/sitemap.xml

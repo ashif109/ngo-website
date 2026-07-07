@@ -4,6 +4,9 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import apiRoutes from './routes/api.js';
 import adminRoutes from './routes/admin.js';
+import authRoutes from './routes/auth.js';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 
 // Load environment variables
 dotenv.config();
@@ -20,13 +23,42 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT && process.env.PORT !== '3000' ? process.env.PORT : 5000;
 
+// Security Middleware
+app.use(helmet({
+  contentSecurityPolicy: false // Disabled temporarily for development
+}));
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again after a minute'
+});
+app.use('/api', limiter);
+
 // Middleware
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
-// Routes
 app.use('/api', apiRoutes);
+app.use('/api/admin/auth', authRoutes);
+import pagesRoutes from './routes/pages.js';
+import mediaRoutes from './routes/media.js';
+import programsRoutes from './routes/programs.js';
+import admissionsRoutes from './routes/admissions.js';
+import donationsRoutes from './routes/donations.js';
+import studentsRoutes from './routes/students.js';
+import analyticsRoutes from './routes/analytics.js';
+
+app.use('/api/admin/pages', pagesRoutes);
+app.use('/api/admin/media', mediaRoutes);
+app.use('/api/admin/programs', programsRoutes);
+app.use('/api/admin/admissions', admissionsRoutes);
+app.use('/api/admin/donations', donationsRoutes);
+app.use('/api/admin/students', studentsRoutes);
+app.use('/api/admin/analytics', analyticsRoutes);
+app.use('/api/donations', donationsRoutes); // Public endpoints for frontend
 app.use('/api/admin', adminRoutes);
 
 // Health check endpoint

@@ -3,9 +3,18 @@ const DonationSchema = new Schema({
     donorName: { type: String, required: true },
     phone: { type: String, required: true },
     email: { type: String },
-    transactionId: { type: String, required: true, unique: true },
     amount: { type: Number, required: true },
-    status: { type: String, enum: ['pending', 'verified', 'failed'], default: 'pending' },
-    createdAt: { type: Date, default: Date.now },
+    currency: { type: String, default: 'INR' },
+    razorpayOrderId: { type: String, required: true, unique: true },
+    razorpayPaymentId: { type: String },
+    razorpaySignature: { type: String },
+    receiptNumber: { type: String },
+    isAnonymous: { type: Boolean, default: false },
+    panNumber: { type: String },
+    address: { type: String },
+    status: { type: String, enum: ['created', 'pending', 'verified', 'failed', 'refunded'], default: 'created' },
+    campaign: { type: String },
+}, {
+    timestamps: true
 });
 export default mongoose.model('Donation', DonationSchema);
