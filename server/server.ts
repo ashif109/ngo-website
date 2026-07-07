@@ -88,7 +88,7 @@ app.get('*', (req, res) => {
 export default app;
 
 // Only listen if not running on Vercel
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.VERCEL !== '1') {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
