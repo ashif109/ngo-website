@@ -6,11 +6,10 @@ import AuditLog from '../models/AuditLog.js';
 
 const router = express.Router();
 
-const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-key-change-in-production';
-
 // @route   POST /api/admin/auth/login
 // @desc    Authenticate admin & get token
 router.post('/login', async (req, res) => {
+  const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-key-change-in-production';
   const { email, password } = req.body;
   const ip = req.ip || req.connection.remoteAddress || 'unknown';
 
