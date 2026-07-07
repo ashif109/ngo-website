@@ -1,10 +1,10 @@
 import express from 'express';
-import { authenticate } from '../middleware/auth';
-import User from '../models/User';
-import Donation from '../models/Donation';
-import Page from '../models/Page';
-import Student from '../models/Student';
-import AuditLog from '../models/AuditLog';
+import { authenticate } from '../middleware/auth.js';
+import User from '../models/User.js';
+import Donation from '../models/Donation.js';
+import Page from '../models/Page.js';
+import Student from '../models/Student.js';
+import AuditLog from '../models/AuditLog.js';
 
 const router = express.Router();
 

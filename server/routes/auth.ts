@@ -1,8 +1,8 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import User from '../models/User';
-import AuditLog from '../models/AuditLog';
+import User from '../models/User.js';
+import AuditLog from '../models/AuditLog.js';
 
 const router = express.Router();
 

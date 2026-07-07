@@ -1,7 +1,7 @@
 import express from 'express';
-import { authenticate, authorize } from '../middleware/auth';
-import Student from '../models/Student';
-import AuditLog from '../models/AuditLog';
+import { authenticate, authorize } from '../middleware/auth.js';
+import Student from '../models/Student.js';
+import AuditLog from '../models/AuditLog.js';
 
 const router = express.Router();
 
