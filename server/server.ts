@@ -28,6 +28,9 @@ app.use(helmet({
   contentSecurityPolicy: false // Disabled temporarily for development
 }));
 
+// Trust proxy for Vercel and express-rate-limit
+app.set('trust proxy', 1);
+
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
