@@ -52,8 +52,10 @@ export default function AdminDashboard() {
           });
           setRevenueData(res.data.revenueData || []);
         }
-      } catch (err) {
-        console.error('Error fetching analytics:', err);
+      } catch (err: any) {
+        if (err.response?.status !== 401) {
+          console.error('Error fetching analytics:', err);
+        }
       }
     };
     fetchAnalytics();
