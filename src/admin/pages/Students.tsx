@@ -28,7 +28,8 @@ export default function Students() {
       const res = await axios.get('/api/admin/students', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setStudents(res.data);
+      const data = Array.isArray(res.data) ? res.data : (res.data?.data || []);
+      setStudents(data);
     } catch (err) {
       console.error('Error fetching students:', err);
     }
@@ -40,7 +41,8 @@ export default function Students() {
       const res = await axios.get('/api/admin/programs', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setPrograms(res.data);
+      const data = Array.isArray(res.data) ? res.data : (res.data?.data || []);
+      setPrograms(data);
     } catch (err) {
       console.error('Error fetching programs:', err);
     }
@@ -153,7 +155,17 @@ export default function Students() {
               <TextField fullWidth label="Phone" name="phone" value={formData.phone} onChange={handleChange} required />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField fullWidth type="date" label="Date of Birth" name="dob" value={formData.dob} onChange={handleChange} slotProps={{ inputLabel: { shrink: true } }} required />
+              <TextField 
+                fullWidth 
+                label="Date of Birth" 
+                name="dob" 
+                type={formData.dob ? "date" : "text"}
+                onFocus={(e) => e.target.type = 'date'}
+                onBlur={(e) => { if (!e.target.value) e.target.type = 'text'; }}
+                value={formData.dob} 
+                onChange={handleChange} 
+                required 
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField select fullWidth label="Gender" name="gender" value={formData.gender} onChange={handleChange} required>

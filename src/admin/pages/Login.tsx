@@ -115,13 +115,15 @@ export default function AdminLogin() {
                 autoFocus
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Mail sx={{ color: '#94a3b8' }} />
-                    </InputAdornment>
-                  ),
-                  sx: { borderRadius: 2, bgcolor: '#f8fafc' }
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Mail sx={{ color: '#94a3b8' }} />
+                      </InputAdornment>
+                    ),
+                    sx: { borderRadius: 2, bgcolor: '#f8fafc' }
+                  }
                 }}
               />
               <TextField
@@ -135,24 +137,26 @@ export default function AdminLogin() {
                 autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Lock sx={{ color: '#94a3b8' }} />
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={() => setShowPassword(!showPassword)}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                  sx: { borderRadius: 2, bgcolor: '#f8fafc' }
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Lock sx={{ color: '#94a3b8' }} />
+                      </InputAdornment>
+                    ),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={() => setShowPassword(!showPassword)}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                    sx: { borderRadius: 2, bgcolor: '#f8fafc' }
+                  }
                 }}
               />
               

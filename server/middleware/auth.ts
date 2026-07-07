@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import User, { IUser } from '../models/User';
+import User, { IUser } from '../models/User.js';
 
 export interface AuthRequest extends Request {
   user?: IUser;
@@ -13,6 +13,7 @@ export const authenticate = async (req: AuthRequest, res: Response, next: NextFu
     if (!token) {
       return res.status(401).json({ message: 'Authentication required. No token provided.' });
     }
+    console.log('Received token:', token);
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback-secret-key-change-in-production') as { id: string };
     
@@ -28,6 +29,7 @@ export const authenticate = async (req: AuthRequest, res: Response, next: NextFu
     req.user = user;
     next();
   } catch (error) {
+    console.error('Authentication Error:', error);
     res.status(401).json({ message: 'Invalid or expired token.' });
   }
 };

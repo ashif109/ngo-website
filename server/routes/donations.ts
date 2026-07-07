@@ -1,7 +1,7 @@
 import express from 'express';
-import { authenticate, authorize } from '../middleware/auth';
-import Donation from '../models/Donation';
-import AuditLog from '../models/AuditLog';
+import { authenticate, authorize } from '../middleware/auth.js';
+import Donation from '../models/Donation.js';
+import AuditLog from '../models/AuditLog.js';
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
 

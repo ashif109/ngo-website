@@ -50,15 +50,25 @@ import admissionsRoutes from './routes/admissions.js';
 import donationsRoutes from './routes/donations.js';
 import studentsRoutes from './routes/students.js';
 import analyticsRoutes from './routes/analytics.js';
+import coursesRoutes from './routes/courses.js';
+import publicationsRoutes from './routes/publications.js';
+import announcementsRoutes from './routes/announcements.js';
+import admissionCampaignsRoutes from './routes/admissionCampaigns.js';
 
 app.use('/api/admin/pages', pagesRoutes);
 app.use('/api/admin/media', mediaRoutes);
-app.use('/api/admin/programs', programsRoutes);
 app.use('/api/admin/admissions', admissionsRoutes);
 app.use('/api/admin/donations', donationsRoutes);
 app.use('/api/admin/students', studentsRoutes);
 app.use('/api/admin/analytics', analyticsRoutes);
+
+app.use('/api/courses', coursesRoutes);
+app.use('/api/publications', publicationsRoutes);
+app.use('/api/announcements', announcementsRoutes);
+app.use('/api/admission-campaigns', admissionCampaignsRoutes);
+
 app.use('/api/donations', donationsRoutes); // Public endpoints for frontend
+app.use('/api/admissions', admissionsRoutes);
 app.use('/api/admin', adminRoutes);
 
 // Health check endpoint

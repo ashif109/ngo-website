@@ -18,7 +18,7 @@ const User = mongoose.models.User || mongoose.model('User', userSchema);
 async function seed() {
   await mongoose.connect(MONGO_URI);
   console.log('Connected to MongoDB');
-  const hash = await bcrypt.hash('admin123', 10);
+  const hash = await bcrypt.hash('GuruKulam@2026Admin', 10);
   await User.findOneAndUpdate(
     { email: 'admin@gurukulam.org' },
     { 

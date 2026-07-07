@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { X, Copy, CheckCircle, Loader2 } from 'lucide-react';
+import { X, Copy, CheckCircle, Loader2, CreditCard } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { submitDonationNotify } from '../../services/api';
+import { createRazorpayOrder, verifyRazorpayPayment } from '../../services/api';
+
+const loadRazorpayScript = () => {
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+};
 
 const DonateModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +19,7 @@ const DonateModal: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
 
   // Form State
-  const [formData, setFormData] = useState({ donorName: '', phone: '', email: '', transactionId: '', amount: '' });
+  const [formData, setFormData] = useState({ donorName: '', phone: '', email: '', amount: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -35,22 +45,79 @@ const DonateModal: React.FC = () => {
     </button>
   );
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handlePayment = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
     setErrorMessage('');
     
+    const res = await loadRazorpayScript();
+    if (!res) {
+      setStatus('error');
+      setErrorMessage('Razorpay SDK failed to load. Are you online?');
+      return;
+    }
+
     try {
-      const res = await submitDonationNotify({
+      // 1. Create order on our backend
+      const orderData = await createRazorpayOrder({
         ...formData,
         amount: Number(formData.amount)
       });
-      if (res.success) {
-        setStatus('success');
-      } else {
+
+      if (!orderData.order) {
         setStatus('error');
-        setErrorMessage(res.error || 'Failed to submit notification');
+        setErrorMessage('Failed to initiate order. Please try again.');
+        return;
       }
+
+      // 2. Open Razorpay Checkout
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_TYsEw9804jG1rK', // Fallback to test key if env not set
+        amount: orderData.order.amount,
+        currency: orderData.order.currency,
+        name: 'Triyambakam Gurukulam',
+        description: 'Donation',
+        order_id: orderData.order.id,
+        handler: async function (response: any) {
+          try {
+            // 3. Verify Payment
+            setStatus('loading');
+            const verifyRes = await verifyRazorpayPayment({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature
+            });
+
+            if (verifyRes.message === 'Payment verified successfully') {
+              setStatus('success');
+            } else {
+              setStatus('error');
+              setErrorMessage('Payment verification failed.');
+            }
+          } catch (err) {
+            setStatus('error');
+            setErrorMessage('Network error during verification.');
+          }
+        },
+        prefill: {
+          name: formData.donorName,
+          email: formData.email,
+          contact: formData.phone
+        },
+        theme: {
+          color: '#1a365d' // Primary color
+        }
+      };
+
+      const paymentObject = new (window as any).Razorpay(options);
+      paymentObject.on('payment.failed', function (response: any) {
+        setStatus('error');
+        setErrorMessage(response.error.description || 'Payment failed.');
+      });
+      paymentObject.open();
+
+      // We reset status to idle so the form is interactable if they close the modal
+      setStatus('idle');
     } catch (err) {
       setStatus('error');
       setErrorMessage('Network error. Please try again.');
@@ -134,7 +201,7 @@ const DonateModal: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Contact Details */}
+                    {/* Contact & Actions */}
                     <div className="space-y-6">
                       <div>
                         <h3 className="text-lg font-bold text-text-main border-b pb-2 mb-4 flex items-center">
@@ -162,17 +229,17 @@ const DonateModal: React.FC = () => {
                         </div>
                       </div>
                       
-                      {/* Trust Badge & Notify Button */}
-                      <div className="mt-8 flex flex-col items-center justify-center p-4 bg-green-50 border border-green-100 rounded-lg space-y-3">
-                        <div className="flex items-center">
-                          <CheckCircle className="text-green-600 mr-2" size={20} />
-                          <span className="text-sm font-medium text-green-800">100% Secure & Trusted Donation</span>
+                      {/* Trust Badge & Donate Button */}
+                      <div className="mt-8 flex flex-col items-center justify-center p-4 bg-blue-50 border border-blue-100 rounded-lg space-y-3">
+                        <div className="flex items-center text-blue-900 font-bold">
+                          <CreditCard className="mr-2" size={20} />
+                          <span>100% Secure Online Payment</span>
                         </div>
                         <button 
                           onClick={() => setShowForm(true)}
-                          className="w-full bg-primary-light text-white px-6 py-3 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-primary transition-colors"
+                          className="w-full bg-secondary text-white px-6 py-3 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-red-700 transition-colors shadow-lg"
                         >
-                          I have made a donation
+                          Donate Online via Razorpay
                         </button>
                       </div>
                     </div>
@@ -184,9 +251,9 @@ const DonateModal: React.FC = () => {
                     <div className="text-center py-8">
                       <CheckCircle className="mx-auto text-green-500 mb-4" size={64} />
                       <h3 className="text-2xl font-bold text-text-main mb-2">Thank You for Your Donation!</h3>
-                      <p className="text-text-muted mb-6">We have received your transaction details. Your support means everything to us.</p>
+                      <p className="text-text-muted mb-6">Your payment was successful. We truly appreciate your support to our Gurukulam.</p>
                       <button 
-                        onClick={() => { setIsOpen(false); setStatus('idle'); setShowForm(false); setFormData({ donorName: '', phone: '', email: '', transactionId: '', amount: '' }); }}
+                        onClick={() => { setIsOpen(false); setStatus('idle'); setShowForm(false); setFormData({ donorName: '', phone: '', email: '', amount: '' }); }}
                         className="bg-primary-light text-white px-6 py-2 rounded-sm font-bold text-sm uppercase tracking-wider hover:bg-primary transition-colors"
                       >
                         Close
@@ -197,8 +264,8 @@ const DonateModal: React.FC = () => {
                       <button onClick={() => setShowForm(false)} className="text-primary-light text-sm font-bold mb-6 hover:underline flex items-center">
                         &larr; Back to Bank Details
                       </button>
-                      <h3 className="text-xl font-bold text-text-main mb-6 border-b pb-2">Notify us of your donation</h3>
-                      <form onSubmit={handleSubmit} className="space-y-4">
+                      <h3 className="text-xl font-bold text-text-main mb-6 border-b pb-2">Online Donation Form</h3>
+                      <form onSubmit={handlePayment} className="space-y-4">
                         {status === 'error' && (
                           <div className="bg-red-50 text-red-600 p-3 rounded text-sm border border-red-200">
                             {errorMessage}
@@ -218,24 +285,21 @@ const DonateModal: React.FC = () => {
                             <input type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full p-3 border border-border-main rounded-sm focus:ring-2 focus:ring-[#9D2928] focus:border-transparent outline-none transition-all" placeholder="john@example.com" />
                           </div>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1">Transaction ID / UTR *</label>
-                            <input required type="text" value={formData.transactionId} onChange={e => setFormData({...formData, transactionId: e.target.value})} className="w-full p-3 border border-border-main rounded-sm focus:ring-2 focus:ring-[#9D2928] focus:border-transparent outline-none transition-all" placeholder="e.g. UPI123456789" />
-                          </div>
-                          <div>
-                            <label className="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1">Amount (₹) *</label>
-                            <input required type="number" min="1" value={formData.amount} onChange={e => setFormData({...formData, amount: e.target.value})} className="w-full p-3 border border-border-main rounded-sm focus:ring-2 focus:ring-[#9D2928] focus:border-transparent outline-none transition-all" placeholder="5000" />
-                          </div>
+                        <div>
+                          <label className="block text-xs font-bold text-text-muted uppercase tracking-wider mb-1">Amount (₹) *</label>
+                          <input required type="number" min="1" value={formData.amount} onChange={e => setFormData({...formData, amount: e.target.value})} className="w-full p-3 border border-border-main rounded-sm focus:ring-2 focus:ring-[#9D2928] focus:border-transparent outline-none transition-all" placeholder="5000" />
                         </div>
                         
                         <button 
                           disabled={status === 'loading'}
                           type="submit" 
-                          className="w-full mt-4 bg-primary-light text-white px-8 py-4 rounded-sm font-black text-sm uppercase tracking-wider hover:bg-primary transition-all shadow-xl hover-lift flex justify-center items-center disabled:opacity-70 disabled:hover:translate-y-0"
+                          className="w-full mt-4 bg-secondary text-white px-8 py-4 rounded-sm font-black text-sm uppercase tracking-wider hover:bg-red-700 transition-all shadow-xl hover-lift flex justify-center items-center disabled:opacity-70 disabled:hover:translate-y-0"
                         >
-                          {status === 'loading' ? <Loader2 className="animate-spin mr-2" size={20} /> : 'Submit Transaction Details'}
+                          {status === 'loading' ? <Loader2 className="animate-spin mr-2" size={20} /> : `Proceed to Pay ₹${formData.amount || '0'}`}
                         </button>
+                        <p className="text-[10px] text-center text-text-muted mt-2">
+                          By clicking Proceed, you agree to our terms and conditions. Payments are processed securely by Razorpay.
+                        </p>
                       </form>
                     </>
                   )}

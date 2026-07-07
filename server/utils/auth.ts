@@ -34,12 +34,27 @@ export function generateToken(payload: any): string {
   return iv.toString('hex') + '.' + encrypted;
 }
 
+import jwt from 'jsonwebtoken';
+
 /**
  * Decrypt and verify a token, returning the payload or null
+ * Supports both legacy AES encrypted tokens and new JWT tokens.
  */
 export function verifyToken(token: string): any | null {
   try {
+    // Check if it's a JWT (usually 3 parts separated by dots)
     const parts = token.split('.');
+    if (parts.length === 3) {
+      try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback-secret-key-change-in-production') as any;
+        // JWT decoded payload
+        return { id: decoded.id, email: decoded.email || 'admin@gurukulam.org', role: decoded.role };
+      } catch (jwtErr) {
+        console.error('JWT Verify Error:', jwtErr);
+        return null;
+      }
+    }
+
     if (parts.length !== 2) return null;
     const iv = Buffer.from(parts[0], 'hex');
     const encryptedText = parts[1];
@@ -48,6 +63,7 @@ export function verifyToken(token: string): any | null {
     decrypted += decipher.final('utf8');
     return JSON.parse(decrypted);
   } catch (err) {
+    console.error('Verify Token Error:', err);
     return null;
   }
 }
@@ -58,13 +74,17 @@ export function verifyToken(token: string): any | null {
 export const adminAuthMiddleware = (req: Request, res: Response, next: NextFunction): any => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    console.log('Auth denied: No token provided');
     return res.status(401).json({ success: false, error: 'Authorization denied: No token provided' });
   }
 
   const token = authHeader.split(' ')[1];
+  console.log('Verifying token:', token.substring(0, 20) + '...');
   const payload = verifyToken(token);
+  console.log('Payload from verifyToken:', payload);
 
   if (!payload || !payload.email) {
+    console.log('Auth denied: Invalid payload', payload);
     return res.status(401).json({ success: false, error: 'Authorization denied: Invalid token' });
   }
 

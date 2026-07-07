@@ -1,6 +1,6 @@
 import twilio from 'twilio';
 import nodemailer from 'nodemailer';
-import Notification from '../models/Notification';
+import Notification from '../models/Notification.js';
 
 const twilioClient = process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN 
   ? twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)

@@ -12,7 +12,9 @@ const ForthcomingPrograms: React.FC = () => {
     const fetchPrograms = async () => {
       try {
         const res = await getPrograms();
-        if (res.success) {
+        if (Array.isArray(res)) {
+          setPrograms(res);
+        } else if (res && res.success) {
           setPrograms(res.data);
         }
       } catch (err) {
@@ -55,11 +57,14 @@ const ForthcomingPrograms: React.FC = () => {
         ) : programs.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {programs.slice(0, 4).map((prog: any, i) => {
-              let translatedText = prog.textEn;
+              let translatedTitle = prog.titleEn;
+              let translatedDesc = prog.descriptionEn;
               if (language === 'hi') {
-                translatedText = prog.textHi;
+                translatedTitle = prog.titleHi || prog.titleEn;
+                translatedDesc = prog.descriptionHi || prog.descriptionEn;
               } else if (language === 'gu') {
-                translatedText = prog.textGu;
+                translatedTitle = prog.titleGu || prog.titleEn;
+                translatedDesc = prog.descriptionGu || prog.descriptionEn;
               }
               return (
                 <div 
@@ -70,9 +75,14 @@ const ForthcomingPrograms: React.FC = () => {
                     <div className="mb-4 text-secondary">
                       <BookOpen size={24} />
                     </div>
-                    <p className="text-white text-[13px] font-medium leading-relaxed group-hover:text-white transition-colors whitespace-pre-line mb-6">
-                      {translatedText}
-                    </p>
+                    <h3 className="text-white text-[15px] font-bold leading-tight group-hover:text-secondary transition-colors mb-2">
+                      {translatedTitle}
+                    </h3>
+                    {translatedDesc && (
+                      <p className="text-white/80 text-[12px] font-medium leading-relaxed group-hover:text-white transition-colors whitespace-pre-line mb-6 line-clamp-4">
+                        {translatedDesc}
+                      </p>
+                    )}
                   </div>
                   
                   <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-2.5">

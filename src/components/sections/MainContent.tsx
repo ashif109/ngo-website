@@ -4,6 +4,7 @@ import { EDUCATION_ITEMS } from '../../data/siteData';
 import { useLanguage } from '../../context/LanguageContext';
 
 import { submitGeneralForm } from '../../services/api';
+import AdmissionApplicationForm from './AdmissionApplicationForm';
 
 const AdmissionsSubscribeForm: React.FC = () => {
   const { language } = useLanguage();
@@ -75,6 +76,38 @@ const AdmissionsSubscribeForm: React.FC = () => {
 
 const MainContent: React.FC = () => {
   const { language } = useLanguage();
+  const [courses, setCourses] = React.useState<any[]>([]);
+  const [activeCampaign, setActiveCampaign] = React.useState<any>(null);
+  const [showApplyForm, setShowApplyForm] = React.useState(false);
+
+  React.useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const res = await fetch('/api/courses');
+        const data = await res.json();
+        if (data.success) {
+          setCourses(data.data);
+        }
+      } catch (err) {
+        console.error('Failed to fetch courses', err);
+      }
+    };
+    
+    const fetchCampaigns = async () => {
+      try {
+        const res = await fetch('/api/admission-campaigns');
+        const data = await res.json();
+        if (data.success && data.data.length > 0) {
+          setActiveCampaign(data.data[0]); // Get the most recent active campaign
+        }
+      } catch (err) {
+        console.error('Failed to fetch campaigns', err);
+      }
+    };
+
+    fetchCourses();
+    fetchCampaigns();
+  }, []);
 
   return (
     <div className="lg:col-span-3 space-y-16">
@@ -84,42 +117,83 @@ const MainContent: React.FC = () => {
           {language === 'hi' ? 'शिक्षा और नवाचार' : language === 'gu' ? 'શિક્ષણ અને નવીનતા' : 'Education & Innovation'}
         </h3>
         
-        {EDUCATION_ITEMS.length === 0 ? (
+        {courses.length === 0 ? (
           <div className="space-y-8 mt-6">
             {/* Main Premium Announcement Banner */}
-            <div className="relative overflow-hidden rounded-sm border border-blue-100 bg-gradient-to-br from-blue-50/70 via-indigo-50/30 to-white p-6 md:p-8 shadow-sm">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-primary-light/5 rounded-full -mr-20 -mt-20 blur-2xl"></div>
-              
-              <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start md:items-center">
-                <div className="bg-primary-light text-white p-4 rounded-sm shadow-md shrink-0">
-                  <GraduationCap size={32} className="animate-bounce" style={{ animationDuration: '3s' }} />
-                </div>
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <span className="bg-surface text-primary text-[9px] font-black px-2 py-0.5 rounded-sm uppercase tracking-wider">
-                      {language === 'hi' ? 'प्रवेश 2026-27' : language === 'gu' ? 'પ્રવેશ 2026-27' : 'Admissions 2026-27'}
-                    </span>
-                    <span className="bg-amber-100 text-amber-900 text-[9px] font-black px-2 py-0.5 rounded-sm uppercase tracking-wider flex items-center gap-1">
-                      <Sparkles size={8} /> {language === 'hi' ? 'पाठ्यक्रम समीक्षा' : language === 'gu' ? 'અભ્યાસક્રમ સમીક્ષા' : 'Curriculum Review'}
-                    </span>
+            {activeCampaign && (
+              <div className="relative overflow-hidden rounded-sm border border-blue-100 bg-gradient-to-br from-blue-50/70 via-indigo-50/30 to-white p-6 md:p-8 shadow-sm">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-primary-light/5 rounded-full -mr-20 -mt-20 blur-2xl"></div>
+                
+                <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start md:items-center">
+                  <div className="bg-primary-light text-white p-4 rounded-sm shadow-md shrink-0">
+                    <GraduationCap size={32} className="animate-bounce" style={{ animationDuration: '3s' }} />
                   </div>
-                  <h4 className="text-xl font-serif font-black text-blue-950 mb-2 leading-tight">
-                    {language === 'hi' 
-                      ? 'अकादमिक पाठ्यक्रम और प्रवेश जल्द ही शुरू हो रहे हैं' 
-                      : language === 'gu'
-                      ? 'શૈક્ષણિક અભ્યાસક્રમો અને પ્રવેશ ટૂંક સમયમાં આવી રહ્યા છે'
-                      : 'Academic Curriculums & Admissions Coming Soon'}
-                  </h4>
-                  <p className="text-[13px] text-text-muted leading-relaxed max-w-2xl">
-                    {language === 'hi'
-                      ? 'हमारी प्रतिष्ठित शैक्षणिक परिषद वर्तमान में पाठ्यक्रम रूपरेखा को अंतिम रूप दे रही है जो पारंपरिक वैदिक ज्ञानमीमांसा को समकालीन वैज्ञानिक मॉडलों (एआई नैतिकता, क्वांटम तर्क और विरासत शासन) के साथ सहजता से एकीकृत करती है। सीधे प्रवेश आवेदन पोर्टल जल्द ही खुलेंगे।'
-                      : language === 'gu'
-                      ? 'અમારી પ્રતિષ્ઠિત શૈક્ષણિક પરિષદ હાલમાં અભ્યાસક્રમની રૂપરેખાને આખરી ઓપ આપી રહી છે જે પરંપરાગત વૈદિક જ્ઞાનમીમાંસાને સમકાલીન વૈજ્ઞાનિક મોડલ્સ (એઆઈ નૈતિકતા, ક્વોન્ટમ તર્ક અને વારસા શાસન) સાથે એકીકૃત કરે છે. સીધા પ્રવેશ અરજી પોર્ટલ ટૂંક સમયમાં ખુલશે.'
-                      : 'Our distinguished academic council is currently finalizing course syllabi that seamlessly integrate traditional Vedic epistemology with contemporary scientific models (AI ethics, quantum logic, and heritage governance). Direct admission application portals will open shortly.'}
-                  </p>
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <span className="bg-surface text-primary text-[9px] font-black px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                        {language === 'hi' ? activeCampaign.titleHi || activeCampaign.titleEn : language === 'gu' ? activeCampaign.titleGu || activeCampaign.titleEn : activeCampaign.titleEn}
+                      </span>
+                      {activeCampaign.status === 'active' && (
+                        <span className="bg-green-100 text-green-900 text-[9px] font-black px-2 py-0.5 rounded-sm uppercase tracking-wider flex items-center gap-1 animate-pulse">
+                          <Sparkles size={8} /> {language === 'hi' ? 'आवेदन खुले हैं' : language === 'gu' ? 'અરજીઓ ખુલ્લી છે' : 'Applications Open'}
+                        </span>
+                      )}
+                    </div>
+                    <h4 className="text-xl font-serif font-black text-blue-950 mb-2 leading-tight">
+                      {language === 'hi' ? activeCampaign.titleHi || activeCampaign.titleEn : language === 'gu' ? activeCampaign.titleGu || activeCampaign.titleEn : activeCampaign.titleEn}
+                    </h4>
+                    <p className="text-[13px] text-text-muted leading-relaxed max-w-2xl">
+                      {language === 'hi' ? activeCampaign.descriptionHi || activeCampaign.descriptionEn : language === 'gu' ? activeCampaign.descriptionGu || activeCampaign.descriptionEn : activeCampaign.descriptionEn}
+                    </p>
+                  </div>
+                  
+                  {activeCampaign.status === 'active' && (
+                    <button 
+                      onClick={() => setShowApplyForm(true)}
+                      className="shrink-0 bg-secondary text-white font-bold text-xs uppercase px-6 py-3 tracking-widest rounded-sm hover:bg-red-700 hover:-translate-y-1 transition-all shadow-md"
+                    >
+                      {language === 'hi' ? 'अभी आवेदन करें' : language === 'gu' ? 'હમણાં અરજી કરો' : 'Apply Now'}
+                    </button>
+                  )}
                 </div>
               </div>
-            </div>
+            )}
+            
+            {!activeCampaign && (
+              <div className="relative overflow-hidden rounded-sm border border-blue-100 bg-gradient-to-br from-blue-50/70 via-indigo-50/30 to-white p-6 md:p-8 shadow-sm">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-primary-light/5 rounded-full -mr-20 -mt-20 blur-2xl"></div>
+                
+                <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start md:items-center">
+                  <div className="bg-primary-light text-white p-4 rounded-sm shadow-md shrink-0">
+                    <GraduationCap size={32} className="animate-bounce" style={{ animationDuration: '3s' }} />
+                  </div>
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <span className="bg-surface text-primary text-[9px] font-black px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                        {language === 'hi' ? 'प्रवेश 2026-27' : language === 'gu' ? 'પ્રવેશ 2026-27' : 'Admissions 2026-27'}
+                      </span>
+                      <span className="bg-amber-100 text-amber-900 text-[9px] font-black px-2 py-0.5 rounded-sm uppercase tracking-wider flex items-center gap-1">
+                        <Sparkles size={8} /> {language === 'hi' ? 'पाठ्यक्रम समीक्षा' : language === 'gu' ? 'અભ્યાસક્રમ સમીક્ષા' : 'Curriculum Review'}
+                      </span>
+                    </div>
+                    <h4 className="text-xl font-serif font-black text-blue-950 mb-2 leading-tight">
+                      {language === 'hi' 
+                        ? 'अकादमिक पाठ्यक्रम और प्रवेश जल्द ही शुरू हो रहे हैं' 
+                        : language === 'gu'
+                        ? 'શૈક્ષણિક અભ્યાસક્રમો અને પ્રવેશ ટૂંક સમયમાં આવી રહ્યા છે'
+                        : 'Academic Curriculums & Admissions Coming Soon'}
+                    </h4>
+                    <p className="text-[13px] text-text-muted leading-relaxed max-w-2xl">
+                      {language === 'hi'
+                        ? 'हमारी प्रतिष्ठित शैक्षणिक परिषद वर्तमान में पाठ्यक्रम रूपरेखा को अंतिम रूप दे रही है जो पारंपरिक वैदिक ज्ञानमीमांसा को समकालीन वैज्ञानिक मॉडलों के साथ सहजता से एकीकृत करती है।'
+                        : language === 'gu'
+                        ? 'અમારી પ્રતિષ્ઠિત શૈક્ષણિક પરિષદ હાલમાં અભ્યાસક્રમની રૂપરેખાને આખરી ઓપ આપી રહી છે જે પરંપરાગત વૈદિક જ્ઞાનમીમાંસાને સમકાલીન વૈજ્ઞાનિક મોડલ્સ સાથે એકીકૃત કરે છે.'
+                        : 'Our distinguished academic council is currently finalizing course syllabi that seamlessly integrate traditional Vedic epistemology with contemporary scientific models. Direct admission application portals will open shortly.'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Upcoming Programs Sneak Peek */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -234,29 +308,39 @@ const MainContent: React.FC = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-            {EDUCATION_ITEMS.map((edu, i) => (
-              <div key={i} className="institutional-card group hover:border-blue-900 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between p-6">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-surface -mr-12 -mt-12 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            {courses.map((edu, i) => (
+              <div key={i} className="group relative bg-background border border-border-main hover:border-secondary/60 p-5 rounded-sm shadow-sm transition-all duration-300 hover:-translate-y-0.5 flex flex-col justify-between overflow-hidden">
+                <div className="absolute top-0 right-0 w-16 h-16 bg-surface/50 -mr-8 -mt-8 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
                 
                 <div className="relative z-10">
-                  <div className="bg-primary-light text-white p-4 rounded-sm w-fit mb-6 group-hover:scale-110 transition-transform">
-                    <Globe size={24} />
+                  <div className="flex justify-between items-start mb-3">
+                    <span className="text-[9px] font-bold text-orange-800 bg-orange-50 px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                      {language === 'hi' ? edu.typeHi || edu.typeEn : language === 'gu' ? edu.typeGu || edu.typeEn : edu.typeEn}
+                    </span>
+                    <span className="text-[9px] font-black text-text-muted flex items-center gap-1">
+                      <Clock size={10} className="text-amber-600 animate-spin" style={{ animationDuration: '8s' }} /> 
+                      {language === 'hi' ? edu.statusHi || edu.statusEn : language === 'gu' ? edu.statusGu || edu.statusEn : edu.statusEn}
+                    </span>
                   </div>
-                  <h4 className="text-[15px] font-serif font-black text-primary leading-tight group-hover:text-blue-700 mb-3">
-                    {edu.title.split('\n').map((line: string, idx: number) => <span key={idx} className="block">{line}</span>)}
-                  </h4>
-                  <p className="text-[12px] text-text-muted mb-6 font-medium italic">{edu.subtitle}</p>
+                  <h5 className="text-[14px] font-serif font-black text-primary group-hover:text-blue-700 transition-colors mb-2 leading-tight">
+                    {language === 'hi' ? edu.titleHi || edu.titleEn : language === 'gu' ? edu.titleGu || edu.titleEn : edu.titleEn}
+                  </h5>
+                  <p className="text-[11px] text-text-muted leading-relaxed mb-4">
+                    {language === 'hi' ? edu.descriptionHi || edu.descriptionEn : language === 'gu' ? edu.descriptionGu || edu.descriptionEn : edu.descriptionEn}
+                  </p>
                 </div>
 
-                <div className="relative z-10 pt-6 border-t border-border-main flex items-center justify-between">
-                  {edu.new ? (
-                    <div className="flex items-center gap-3">
-                      <span className="bg-red-600 text-white text-[9px] font-black px-2 py-1 rounded-sm uppercase animate-pulse">New Admission</span>
-                      <p className="text-[10px] text-green-700 font-bold">{edu.tag}</p>
+                <div className="relative z-10 pt-3 border-t border-dashed border-border-main flex justify-between items-center text-[10px] font-bold text-primary-light/80">
+                  {edu.isNewCourse ? (
+                    <div className="flex items-center gap-2">
+                      <span className="bg-red-600 text-white text-[9px] font-black px-2 py-0.5 rounded-sm uppercase animate-pulse">New Admission</span>
+                      <p className="text-[10px] text-green-700 font-bold">{language === 'hi' ? edu.tagHi || edu.tagEn : language === 'gu' ? edu.tagGu || edu.tagEn : edu.tagEn}</p>
                     </div>
                   ) : <div />}
-                  <ArrowRight size={20} className="text-secondary-light group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                  <a href={edu.syllabusLink || "#"} target={edu.syllabusLink ? "_blank" : "_self"} className="text-gray-400 group-hover:text-primary transition-colors flex items-center gap-0.5 font-medium cursor-pointer">
+                    {edu.syllabusLink ? (language === 'hi' ? 'विवरण देखें' : language === 'gu' ? 'વિગતો જુઓ' : 'View Details') : (language === 'hi' ? 'मुझे सूचित करें' : language === 'gu' ? 'મને જાણ કરો' : 'Notify Me')} <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </a>
                 </div>
               </div>
             ))}
@@ -305,6 +389,14 @@ const MainContent: React.FC = () => {
           </button>
         </div>
       </section>
+
+      {/* Render Application Form Modal */}
+      {showApplyForm && activeCampaign && (
+        <AdmissionApplicationForm 
+          campaign={activeCampaign} 
+          onClose={() => setShowApplyForm(false)} 
+        />
+      )}
     </div>
   );
 };

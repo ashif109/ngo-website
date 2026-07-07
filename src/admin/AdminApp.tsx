@@ -9,20 +9,20 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#B8860B', // Dark Goldenrod
-      light: '#DAA520',
-      dark: '#8B6508'
+      main: '#7A1F1E', // Matches Home Primary
+      light: '#9D2928',
+      dark: '#5C1615'
     },
     secondary: {
-      main: '#D32F2F', // Red
-      light: '#EF5350',
-      dark: '#C62828'
+      main: '#D4AF37', // Matches Home Secondary (Gold)
+      light: '#E6C55C',
+      dark: '#B89326'
     },
     warning: {
-      main: '#FFC107', // Yellow
+      main: '#D97706', // Matches Home Accent
     },
     background: {
-      default: '#FAFAFA',
+      default: '#FDFBF7',
       paper: '#FFFFFF'
     }
   },
@@ -47,6 +47,9 @@ import Students from './pages/Students';
 import Submissions from './pages/Submissions';
 import SiteContent from './pages/SiteContent';
 import Settings from './pages/Settings';
+import Courses from './pages/Courses';
+import Publications from './pages/Publications';
+import Announcements from './pages/Announcements';
 
 export default function AdminApp() {
   const navigate = useNavigate();
@@ -78,6 +81,9 @@ export default function AdminApp() {
           <Route path="/pages" element={<CMSPages />} />
           <Route path="/media" element={<MediaLibrary />} />
           <Route path="/programs" element={<Programs />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/publications" element={<Publications />} />
+          <Route path="/announcements" element={<Announcements />} />
           <Route path="/admissions" element={<Admissions />} />
           <Route path="/donations" element={<Donations />} />
           <Route path="/students" element={<Students />} />

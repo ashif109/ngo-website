@@ -1,7 +1,7 @@
 import express from 'express';
-import { authenticate, authorize } from '../middleware/auth';
-import Admission from '../models/Admission';
-import AuditLog from '../models/AuditLog';
+import { authenticate, authorize } from '../middleware/auth.js';
+import Admission from '../models/Admission.js';
+import AuditLog from '../models/AuditLog.js';
 
 const router = express.Router();
 
@@ -14,6 +14,19 @@ router.get('/', authenticate, async (req, res) => {
     res.json(admissions);
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// @route   POST /api/admissions
+// @desc    Submit a new admission application
+// @access  Public
+router.post('/', async (req, res) => {
+  try {
+    const newAdmission = new Admission(req.body);
+    await newAdmission.save();
+    res.status(201).json({ success: true, data: newAdmission });
+  } catch (error: any) {
+    res.status(400).json({ success: false, message: error.message });
   }
 });
 
