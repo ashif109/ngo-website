@@ -51,6 +51,30 @@ router.put('/:id/status', authenticate, authorize(['super-admin', 'admin', 'edit
   }
 });
 
+// @route   DELETE /api/admin/donations/:id
+// @desc    Delete a donation/donor
+// @access  Super-Admin/Admin
+router.delete('/:id', authenticate, authorize(['super-admin', 'admin']), async (req: any, res: any) => {
+  try {
+    const donation = await Donation.findById(req.params.id);
+    if (!donation) return res.status(404).json({ message: 'Donation not found' });
+    
+    await donation.deleteOne();
+
+    await AuditLog.create({
+      user: req.user._id,
+      action: 'DELETE_DONATION',
+      module: 'DONATIONS',
+      details: { donationId: req.params.id, donorName: donation.donorName },
+      ip: req.ip
+    });
+
+    res.json({ message: 'Donation deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // @route   POST /api/donations/create-order
 // @desc    Create Razorpay order (Public API for frontend)
 // @access  Public

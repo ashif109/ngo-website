@@ -1,6 +1,7 @@
 import express from 'express';
-import { authenticate } from '../middleware/auth';
-import Donation from '../models/Donation';
+import { authenticate, authorize } from '../middleware/auth.js';
+import Donation from '../models/Donation.js';
+import AuditLog from '../models/AuditLog.js';
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
 const router = express.Router();
@@ -15,6 +16,50 @@ router.get('/', authenticate, async (req, res) => {
     try {
         const donations = await Donation.find().sort({ createdAt: -1 });
         res.json(donations);
+    }
+    catch (err) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+// @route   PUT /api/admin/donations/:id/status
+// @desc    Update donation status (manual verification)
+// @access  Admin/Editor
+router.put('/:id/status', authenticate, authorize(['super-admin', 'admin', 'editor']), async (req, res) => {
+    try {
+        const { status } = req.body;
+        const donation = await Donation.findByIdAndUpdate(req.params.id, { status }, { new: true });
+        if (!donation)
+            return res.status(404).json({ message: 'Donation not found' });
+        await AuditLog.create({
+            user: req.user._id,
+            action: 'UPDATE_DONATION_STATUS',
+            module: 'DONATIONS',
+            details: { donationId: donation._id, newStatus: status },
+            ip: req.ip
+        });
+        res.json(donation);
+    }
+    catch (err) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+// @route   DELETE /api/admin/donations/:id
+// @desc    Delete a donation/donor
+// @access  Super-Admin/Admin
+router.delete('/:id', authenticate, authorize(['super-admin', 'admin']), async (req, res) => {
+    try {
+        const donation = await Donation.findById(req.params.id);
+        if (!donation)
+            return res.status(404).json({ message: 'Donation not found' });
+        await donation.deleteOne();
+        await AuditLog.create({
+            user: req.user._id,
+            action: 'DELETE_DONATION',
+            module: 'DONATIONS',
+            details: { donationId: req.params.id, donorName: donation.donorName },
+            ip: req.ip
+        });
+        res.json({ message: 'Donation deleted successfully' });
     }
     catch (err) {
         res.status(500).json({ message: 'Server error' });

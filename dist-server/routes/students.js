@@ -1,7 +1,7 @@
 import express from 'express';
-import { authenticate, authorize } from '../middleware/auth';
-import Student from '../models/Student';
-import AuditLog from '../models/AuditLog';
+import { authenticate, authorize } from '../middleware/auth.js';
+import Student from '../models/Student.js';
+import AuditLog from '../models/AuditLog.js';
 const router = express.Router();
 // @route   GET /api/admin/students
 // @desc    Get all students
@@ -30,6 +30,28 @@ router.post('/', authenticate, authorize(['super-admin', 'admin', 'editor']), as
             ip: req.ip
         });
         res.status(201).json(student);
+    }
+    catch (err) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+// @route   DELETE /api/admin/students/:id
+// @desc    Delete a student
+// @access  Admin
+router.delete('/:id', authenticate, authorize(['super-admin', 'admin']), async (req, res) => {
+    try {
+        const student = await Student.findById(req.params.id);
+        if (!student)
+            return res.status(404).json({ message: 'Student not found' });
+        await student.deleteOne();
+        await AuditLog.create({
+            user: req.user._id,
+            action: 'DELETE_STUDENT',
+            module: 'STUDENTS',
+            details: { studentId: req.params.id, name: student.firstName },
+            ip: req.ip
+        });
+        res.json({ message: 'Student deleted successfully' });
     }
     catch (err) {
         res.status(500).json({ message: 'Server error' });
