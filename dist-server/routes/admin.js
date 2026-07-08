@@ -85,8 +85,8 @@ const DEFAULT_SITE_CONTENT = {
         orgNameHi: 'त्र्यंबकम गुरुकुलम एसोसिएशन',
         orgNameGu: 'ત્ર્યયંબકમ ગુરુકુળ સંઘ',
         address: 'Om Shree Platinum, Basai, Agra, Uttar Pradesh - 282001',
-        email: 'ashifansari04704@gmail.com',
-        phone: '+91 XXXXXXXXXX',
+        email: 'croping@gmail.com',
+        phone: '+91 94121 62807',
         facebookUrl: '',
         twitterUrl: '',
         instagramUrl: '',
@@ -209,14 +209,16 @@ router.get('/programs', async (req, res) => {
 });
 router.post('/programs', adminAuthMiddleware, async (req, res) => {
     try {
-        const { textEn, textHi, textGu, titleEn, titleHi, titleGu, link, websiteLink } = req.body;
-        const finalTitleEn = titleEn || textEn;
-        const finalTitleHi = titleHi || textHi;
-        const finalTitleGu = titleGu || textGu;
-        if (!finalTitleEn || !finalTitleHi || !finalTitleGu) {
-            return res.status(400).json({ success: false, error: 'Please provide program details in English, Hindi, and Gujarati' });
+        const { titleEn, titleHi, titleGu, descriptionEn, descriptionHi, descriptionGu, startDate, endDate, location, status, link, websiteLink } = req.body;
+        if (!titleEn || !titleHi || !titleGu) {
+            return res.status(400).json({ success: false, error: 'Please provide program title in English, Hindi, and Gujarati' });
         }
-        const program = await Program.create({ titleEn: finalTitleEn, titleHi: finalTitleHi, titleGu: finalTitleGu, link, websiteLink });
+        const program = await Program.create({
+            titleEn, titleHi, titleGu,
+            descriptionEn, descriptionHi, descriptionGu,
+            startDate, endDate, location, status,
+            link, websiteLink
+        });
         return res.status(201).json({ success: true, data: program });
     }
     catch (error) {
@@ -225,15 +227,17 @@ router.post('/programs', adminAuthMiddleware, async (req, res) => {
 });
 router.put('/programs/:id', adminAuthMiddleware, async (req, res) => {
     try {
-        const { textEn, textHi, textGu, titleEn, titleHi, titleGu, link, websiteLink } = req.body;
+        const { titleEn, titleHi, titleGu, descriptionEn, descriptionHi, descriptionGu, startDate, endDate, location, status, link, websiteLink } = req.body;
         const { id } = req.params;
-        const finalTitleEn = titleEn || textEn;
-        const finalTitleHi = titleHi || textHi;
-        const finalTitleGu = titleGu || textGu;
-        if (!finalTitleEn || !finalTitleHi || !finalTitleGu) {
-            return res.status(400).json({ success: false, error: 'Please provide program details in English, Hindi, and Gujarati' });
+        if (!titleEn || !titleHi || !titleGu) {
+            return res.status(400).json({ success: false, error: 'Please provide program title in English, Hindi, and Gujarati' });
         }
-        const program = await Program.findByIdAndUpdate(id, { titleEn: finalTitleEn, titleHi: finalTitleHi, titleGu: finalTitleGu, link, websiteLink }, { new: true });
+        const program = await Program.findByIdAndUpdate(id, {
+            titleEn, titleHi, titleGu,
+            descriptionEn, descriptionHi, descriptionGu,
+            startDate, endDate, location, status,
+            link, websiteLink
+        }, { new: true });
         if (!program)
             return res.status(404).json({ success: false, error: 'Program not found' });
         return res.status(200).json({ success: true, data: program });

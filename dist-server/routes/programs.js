@@ -1,7 +1,7 @@
 import express from 'express';
-import { authenticate, authorize } from '../middleware/auth';
-import Program from '../models/Program';
-import AuditLog from '../models/AuditLog';
+import { authenticate, authorize } from '../middleware/auth.js';
+import Program from '../models/Program.js';
+import AuditLog from '../models/AuditLog.js';
 const router = express.Router();
 // @route   GET /api/admin/programs
 // @desc    Get all programs

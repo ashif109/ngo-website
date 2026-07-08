@@ -44,6 +44,7 @@ import Programs from './pages/Programs';
 import Admissions from './pages/Admissions';
 import Donations from './pages/Donations';
 import Students from './pages/Students';
+import Users from './pages/Users';
 import Submissions from './pages/Submissions';
 import SiteContent from './pages/SiteContent';
 import Settings from './pages/Settings';
@@ -87,6 +88,7 @@ export default function AdminApp() {
           <Route path="/admissions" element={<Admissions />} />
           <Route path="/donations" element={<Donations />} />
           <Route path="/students" element={<Students />} />
+          <Route path="/users" element={<Users />} />
           <Route path="/submissions" element={<Submissions />} />
           <Route path="/settings" element={<Settings />} />
           {/* Default route redirect */}

@@ -28,12 +28,26 @@ export function generateToken(payload) {
     // Return token as iv_hex.encrypted_hex
     return iv.toString('hex') + '.' + encrypted;
 }
+import jwt from 'jsonwebtoken';
 /**
  * Decrypt and verify a token, returning the payload or null
+ * Supports both legacy AES encrypted tokens and new JWT tokens.
  */
 export function verifyToken(token) {
     try {
+        // Check if it's a JWT (usually 3 parts separated by dots)
         const parts = token.split('.');
+        if (parts.length === 3) {
+            try {
+                const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback-secret-key-change-in-production');
+                // JWT decoded payload
+                return { id: decoded.id, email: decoded.email || 'admin@gurukulam.org', role: decoded.role };
+            }
+            catch (jwtErr) {
+                console.error('JWT Verify Error:', jwtErr);
+                return null;
+            }
+        }
         if (parts.length !== 2)
             return null;
         const iv = Buffer.from(parts[0], 'hex');
@@ -44,6 +58,7 @@ export function verifyToken(token) {
         return JSON.parse(decrypted);
     }
     catch (err) {
+        console.error('Verify Token Error:', err);
         return null;
     }
 }
@@ -53,11 +68,15 @@ export function verifyToken(token) {
 export const adminAuthMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        console.log('Auth denied: No token provided');
         return res.status(401).json({ success: false, error: 'Authorization denied: No token provided' });
     }
     const token = authHeader.split(' ')[1];
+    console.log('Verifying token:', token.substring(0, 20) + '...');
     const payload = verifyToken(token);
+    console.log('Payload from verifyToken:', payload);
     if (!payload || !payload.email) {
+        console.log('Auth denied: Invalid payload', payload);
         return res.status(401).json({ success: false, error: 'Authorization denied: Invalid token' });
     }
     // Inject admin details in request for use down the line

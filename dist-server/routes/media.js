@@ -2,9 +2,9 @@ import express from 'express';
 import multer from 'multer';
 import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
-import { authenticate, authorize } from '../middleware/auth';
-import Media from '../models/Media';
-import AuditLog from '../models/AuditLog';
+import { authenticate, authorize } from '../middleware/auth.js';
+import Media from '../models/Media.js';
+import AuditLog from '../models/AuditLog.js';
 const router = express.Router();
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'test',

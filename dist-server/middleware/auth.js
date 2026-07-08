@@ -1,11 +1,12 @@
 import jwt from 'jsonwebtoken';
-import User from '../models/User';
+import User from '../models/User.js';
 export const authenticate = async (req, res, next) => {
     try {
         const token = req.header('Authorization')?.replace('Bearer ', '');
         if (!token) {
             return res.status(401).json({ message: 'Authentication required. No token provided.' });
         }
+        console.log('Received token:', token);
         const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback-secret-key-change-in-production');
         const user = await User.findById(decoded.id);
         if (!user) {
@@ -18,6 +19,7 @@ export const authenticate = async (req, res, next) => {
         next();
     }
     catch (error) {
+        console.error('Authentication Error:', error);
         res.status(401).json({ message: 'Invalid or expired token.' });
     }
 };

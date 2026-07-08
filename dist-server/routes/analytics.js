@@ -1,10 +1,10 @@
 import express from 'express';
-import { authenticate } from '../middleware/auth';
-import User from '../models/User';
-import Donation from '../models/Donation';
-import Page from '../models/Page';
-import Student from '../models/Student';
-import AuditLog from '../models/AuditLog';
+import { authenticate } from '../middleware/auth.js';
+import User from '../models/User.js';
+import Donation from '../models/Donation.js';
+import Page from '../models/Page.js';
+import Student from '../models/Student.js';
+import AuditLog from '../models/AuditLog.js';
 const router = express.Router();
 // @route   GET /api/admin/analytics/dashboard
 // @desc    Get dashboard analytics
@@ -22,16 +22,41 @@ router.get('/dashboard', authenticate, async (req, res) => {
             .sort({ timestamp: -1 })
             .limit(10)
             .populate('user', 'name email');
-        // Mock monthly data for recharts
-        const revenueData = [
-            { name: 'Jan', amount: 4000 },
-            { name: 'Feb', amount: 3000 },
-            { name: 'Mar', amount: 2000 },
-            { name: 'Apr', amount: 2780 },
-            { name: 'May', amount: 1890 },
-            { name: 'Jun', amount: 2390 },
-            { name: 'Jul', amount: 3490 },
-        ];
+        // Calculate real monthly data for recharts (past 7 months)
+        const sevenMonthsAgo = new Date();
+        sevenMonthsAgo.setMonth(sevenMonthsAgo.getMonth() - 6);
+        sevenMonthsAgo.setDate(1);
+        sevenMonthsAgo.setHours(0, 0, 0, 0);
+        const monthlyDonations = await Donation.aggregate([
+            {
+                $match: {
+                    status: 'verified',
+                    createdAt: { $gte: sevenMonthsAgo }
+                }
+            },
+            {
+                $group: {
+                    _id: {
+                        year: { $year: '$createdAt' },
+                        month: { $month: '$createdAt' }
+                    },
+                    total: { $sum: '$amount' }
+                }
+            }
+        ]);
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const revenueData = [];
+        for (let i = 6; i >= 0; i--) {
+            const d = new Date();
+            d.setMonth(d.getMonth() - i);
+            const year = d.getFullYear();
+            const month = d.getMonth() + 1;
+            const found = monthlyDonations.find(item => item._id.year === year && item._id.month === month);
+            revenueData.push({
+                name: monthNames[d.getMonth()],
+                amount: found ? found.total : 0
+            });
+        }
         res.json({
             metrics: {
                 totalUsers,
