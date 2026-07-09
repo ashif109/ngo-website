@@ -32,7 +32,8 @@ router.get('/', authenticate, async (req, res) => {
     const media = await Media.find().sort({ createdAt: -1 }).populate('uploadedBy', 'name');
     res.json(media);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -71,7 +72,8 @@ router.post('/upload', authenticate, authorize(['super-admin', 'admin', 'content
 
     res.status(201).json(media);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -100,7 +102,8 @@ router.delete('/:id', authenticate, authorize(['super-admin', 'admin', 'content-
 
     res.json({ message: 'Media deleted successfully' });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 

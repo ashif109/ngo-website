@@ -13,7 +13,8 @@ router.get('/', authenticate, async (req, res) => {
     const pages = await Page.find().sort({ updatedAt: -1 }).populate('author', 'name email');
     res.json(pages);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -28,7 +29,8 @@ router.get('/:id', authenticate, async (req, res) => {
     }
     res.json(page);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -73,7 +75,8 @@ router.post('/', authenticate, authorize(['super-admin', 'admin', 'content-manag
 
     res.status(201).json(page);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -125,7 +128,8 @@ router.put('/:id', authenticate, authorize(['super-admin', 'admin', 'content-man
 
     res.json(page);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -149,7 +153,8 @@ router.delete('/:id', authenticate, authorize(['super-admin', 'admin']), async (
 
     res.json({ message: 'Page deleted successfully' });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 

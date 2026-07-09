@@ -93,6 +93,10 @@ export default function Courses() {
   };
 
   const handleSubmit = async () => {
+    if (!formData.titleEn || !formData.typeEn || !formData.statusEn || !formData.descriptionEn) {
+      return alert('English Title, Type, Status, and Description are required');
+    }
+
     try {
       const token = localStorage.getItem('adminToken');
       if (isEdit) {
@@ -106,8 +110,9 @@ export default function Courses() {
       }
       fetchCourses();
       handleClose();
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error saving course:', err);
+      alert(err.response?.data?.error || err.response?.data?.message || 'Error saving course');
     }
   };
 

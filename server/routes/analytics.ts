@@ -78,7 +78,8 @@ router.get('/dashboard', authenticate, async (req, res) => {
       revenueData
     });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 

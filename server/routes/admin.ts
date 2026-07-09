@@ -121,7 +121,8 @@ router.get('/check-setup', async (req: Request, res: Response): Promise<any> => 
     const adminCount = await Admin.countDocuments();
     return res.status(200).json({ success: true, isSetup: adminCount > 0 });
   } catch (error: any) {
-    return res.status(500).json({ success: false, error: 'Server error while checking admin status' });
+    console.error(error);
+    return res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Server error while checking admin status' });
   }
 });
 
@@ -140,7 +141,8 @@ router.post('/setup', async (req: Request, res: Response): Promise<any> => {
     await Admin.create({ email, passwordHash: hash, passwordSalt: salt });
     return res.status(201).json({ success: true, message: 'Admin setup completed successfully' });
   } catch (error: any) {
-    return res.status(500).json({ success: false, error: 'Server error during admin setup' });
+    console.error(error);
+    return res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Server error during admin setup' });
   }
 });
 
@@ -158,7 +160,8 @@ router.post('/login', async (req: Request, res: Response): Promise<any> => {
     const token = generateToken({ id: admin._id, email: admin.email });
     return res.status(200).json({ success: true, token, email: admin.email });
   } catch (error: any) {
-    return res.status(500).json({ success: false, error: 'Server error during login' });
+    console.error(error);
+    return res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Server error during login' });
   }
 });
 
@@ -180,7 +183,8 @@ router.post('/change-password', adminAuthMiddleware, async (req: Request, res: R
     await admin.save();
     return res.status(200).json({ success: true, message: 'Password updated successfully' });
   } catch (error: any) {
-    return res.status(500).json({ success: false, error: 'Server error while changing password' });
+    console.error(error);
+    return res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Server error while changing password' });
   }
 });
 
@@ -193,7 +197,8 @@ router.get('/submissions', adminAuthMiddleware, async (req: Request, res: Respon
     const generals = await Submission.find().sort({ createdAt: -1 });
     return res.status(200).json({ success: true, data: { volunteers, contacts, donations, generals } });
   } catch (error: any) {
-    return res.status(500).json({ success: false, error: 'Server error while fetching submissions' });
+    console.error(error);
+    return res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Server error while fetching submissions' });
   }
 });
 
@@ -206,7 +211,8 @@ router.get('/programs', async (req: Request, res: Response): Promise<any> => {
     const programs = await Program.find().sort({ createdAt: -1 });
     return res.status(200).json({ success: true, data: programs });
   } catch (error: any) {
-    return res.status(500).json({ success: false, error: 'Server error while fetching programs' });
+    console.error(error);
+    return res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Server error while fetching programs' });
   }
 });
 
@@ -225,7 +231,8 @@ router.post('/programs', adminAuthMiddleware, async (req: Request, res: Response
     });
     return res.status(201).json({ success: true, data: program });
   } catch (error: any) {
-    return res.status(500).json({ success: false, error: 'Server error while creating program' });
+    console.error(error);
+    return res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Server error while creating program' });
   }
 });
 
@@ -246,7 +253,8 @@ router.put('/programs/:id', adminAuthMiddleware, async (req: Request, res: Respo
     if (!program) return res.status(404).json({ success: false, error: 'Program not found' });
     return res.status(200).json({ success: true, data: program });
   } catch (error: any) {
-    return res.status(500).json({ success: false, error: 'Server error while updating program' });
+    console.error(error);
+    return res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Server error while updating program' });
   }
 });
 
@@ -257,7 +265,8 @@ router.delete('/programs/:id', adminAuthMiddleware, async (req: Request, res: Re
     if (!program) return res.status(404).json({ success: false, error: 'Program not found' });
     return res.status(200).json({ success: true, message: 'Program deleted successfully' });
   } catch (error: any) {
-    return res.status(500).json({ success: false, error: 'Server error while deleting program' });
+    console.error(error);
+    return res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Server error while deleting program' });
   }
 });
 
@@ -417,7 +426,8 @@ router.put('/gallery/:id', adminAuthMiddleware, async (req: Request, res: Respon
     if (!image) return res.status(404).json({ success: false, error: 'Image not found' });
     return res.status(200).json({ success: true, data: image });
   } catch (error: any) {
-    return res.status(500).json({ success: false, error: 'Server error while updating image' });
+    console.error(error);
+    return res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Server error while updating image' });
   }
 });
 
@@ -429,7 +439,8 @@ router.delete('/gallery/:id', adminAuthMiddleware, async (req: Request, res: Res
     if (!image) return res.status(404).json({ success: false, error: 'Gallery image not found' });
     return res.status(200).json({ success: true, message: 'Gallery image deleted successfully' });
   } catch (error: any) {
-    return res.status(500).json({ success: false, error: 'Server error while deleting gallery image' });
+    console.error(error);
+    return res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Server error while deleting gallery image' });
   }
 });
 

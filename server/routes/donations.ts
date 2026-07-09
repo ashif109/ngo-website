@@ -20,7 +20,8 @@ router.get('/', authenticate, async (req, res) => {
     const donations = await Donation.find().sort({ createdAt: -1 });
     res.json(donations);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -47,7 +48,8 @@ router.put('/:id/status', authenticate, authorize(['super-admin', 'admin', 'edit
 
     res.json(donation);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -71,7 +73,8 @@ router.delete('/:id', authenticate, authorize(['super-admin', 'admin']), async (
 
     res.json({ message: 'Donation deleted successfully' });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -108,7 +111,8 @@ router.post('/create-order', async (req, res) => {
 
     res.json({ order, donationId: donation._id });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -143,7 +147,8 @@ router.post('/verify', async (req, res) => {
       res.status(400).json({ message: 'Invalid signature sent!' });
     }
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 

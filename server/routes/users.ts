@@ -14,7 +14,8 @@ router.get('/', authenticate, async (req, res) => {
     const users = await User.find().select('-passwordHash -loginHistory').sort({ createdAt: -1 });
     res.json(users);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -25,6 +26,10 @@ router.post('/', authenticate, authorize(['super-admin', 'admin']), async (req: 
   try {
     const { name, email, password, role, status } = req.body;
     
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'Name, email, and password are required' });
+    }
+
     let user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({ message: 'User already exists' });
@@ -53,7 +58,8 @@ router.post('/', authenticate, authorize(['super-admin', 'admin']), async (req: 
 
     res.status(201).json(user);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -87,7 +93,8 @@ router.put('/:id', authenticate, authorize(['super-admin', 'admin']), async (req
 
     res.json(user);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -115,7 +122,8 @@ router.delete('/:id', authenticate, authorize(['super-admin', 'admin']), async (
 
     res.json({ message: 'User deleted successfully' });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
