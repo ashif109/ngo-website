@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
       <div className="absolute inset-y-0 right-0 w-full sm:w-[90%] md:w-[75%] lg:w-[65%] flex justify-end items-center overflow-hidden">
         <img
           src={heroBg}
-          alt="Triyambakam Gurukulam - Premier Vedic Education and Cultural Research Academy in Agra"
+          alt="Students engaging in Vedic Education at Triyambakam Gurukulam Association in Agra"
           className="h-full w-auto max-w-full object-contain opacity-90 transition-all duration-700"
           style={{ 
             WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 100%)',
@@ -75,7 +75,7 @@ const Hero: React.FC = () => {
               ? (content?.descHi || 'प्राचीन ज्ञान को पोषित करने, वैदिक शिक्षा को बढ़ावा देने और एक उज्जवल, मूल्य-आधारित कल के निर्माण के हमारे मिशन में शामिल हों।')
               : language === 'gu'
                 ? (content?.descGu || 'પ્રાચીન જ્ઞાનને પોષવા, વૈદિક શિક્ષણને પ્રોત્સાહન આપવા અને ઉજ્જવળ, મૂલ્ય આધારિત આવતીકાલના નિર્માણના અમારા મિશનમાં જોડાઓ.')
-                : (content?.descEn || 'Join us in our mission to nurture ancient knowledge, promote Vedic education, and build a brighter, value-driven tomorrow.')}
+                : (content?.descEn || 'Empowering the future through authentic Vedic Education in Agra. Welcome to the premier Gurukulam Agra campus where we nurture ancient knowledge and build a value-driven tomorrow.')}
           </p>
 
           {/* Buttons */}
