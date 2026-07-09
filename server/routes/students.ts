@@ -13,7 +13,8 @@ router.get('/', authenticate, async (req, res) => {
     const students = await Student.find().populate('program', 'titleEn').sort({ createdAt: -1 });
     res.json(students);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -35,7 +36,8 @@ router.post('/', authenticate, authorize(['super-admin', 'admin', 'editor']), as
 
     res.status(201).json(student);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -59,7 +61,8 @@ router.delete('/:id', authenticate, authorize(['super-admin', 'admin']), async (
 
     res.json({ message: 'Student deleted successfully' });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 

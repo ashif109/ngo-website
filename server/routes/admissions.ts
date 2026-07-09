@@ -13,7 +13,8 @@ router.get('/', authenticate, async (req, res) => {
     const admissions = await Admission.find().sort({ createdAt: -1 }).populate('programId', 'titleEn');
     res.json(admissions);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -56,7 +57,8 @@ router.put('/:id/status', authenticate, authorize(['super-admin', 'admin', 'edit
 
     res.json(admission);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 

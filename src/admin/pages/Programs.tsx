@@ -77,6 +77,10 @@ export default function Programs() {
   };
 
   const handleSubmit = async () => {
+    if (!formData.titleEn || !formData.titleHi || !formData.titleGu) {
+      return alert('Titles in English, Hindi, and Gujarati are required');
+    }
+
     try {
       const token = localStorage.getItem('adminToken');
       if (isEdit) {
@@ -90,8 +94,9 @@ export default function Programs() {
       }
       fetchPrograms();
       handleClose();
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error saving program:', err);
+      alert(err.response?.data?.error || err.response?.data?.message || 'Error saving program');
     }
   };
 

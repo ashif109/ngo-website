@@ -13,7 +13,8 @@ router.get('/', authenticate, async (req, res) => {
     const volunteers = await Volunteer.find().sort({ createdAt: -1 });
     res.json(volunteers);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -40,7 +41,8 @@ router.put('/:id', authenticate, authorize(['super-admin', 'admin', 'editor']), 
 
     res.json(volunteer);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -64,7 +66,8 @@ router.delete('/:id', authenticate, authorize(['super-admin', 'admin']), async (
 
     res.json({ message: 'Volunteer deleted successfully' });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 

@@ -90,6 +90,13 @@ export default function Users() {
   };
 
   const handleSaveUser = async () => {
+    if (!userFormData.name || !userFormData.email) {
+      return alert('Name and email are required');
+    }
+    if (!editingUser && !userFormData.password) {
+      return alert('Password is required for new users');
+    }
+
     try {
       const config = { headers: { Authorization: `Bearer ${token}` } };
       if (editingUser) {

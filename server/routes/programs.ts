@@ -13,7 +13,8 @@ router.get('/', authenticate, async (req, res) => {
     const programs = await Program.find().sort({ startDate: 1 });
     res.json(programs);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -35,7 +36,8 @@ router.post('/', authenticate, authorize(['super-admin', 'admin', 'editor']), as
 
     res.status(201).json(program);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -57,7 +59,8 @@ router.put('/:id', authenticate, authorize(['super-admin', 'admin', 'editor']), 
 
     res.json(program);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 
@@ -81,7 +84,8 @@ router.delete('/:id', authenticate, authorize(['super-admin', 'admin']), async (
 
     res.json({ message: 'Program deleted successfully' });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: err instanceof Error ? err.message : 'Server error' });
   }
 });
 

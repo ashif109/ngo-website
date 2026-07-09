@@ -76,6 +76,10 @@ export default function Announcements() {
   };
 
   const handleSubmit = async () => {
+    if (!formData.contentEn) {
+      return alert('Content (English) is required');
+    }
+
     try {
       const token = localStorage.getItem('adminToken');
       if (isEdit) {
@@ -89,8 +93,9 @@ export default function Announcements() {
       }
       fetchAnnouncements();
       handleClose();
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error saving announcement:', err);
+      alert(err.response?.data?.error || err.response?.data?.message || 'Error saving announcement');
     }
   };
 
