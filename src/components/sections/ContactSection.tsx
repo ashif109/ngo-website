@@ -45,7 +45,7 @@ const ContactSection: React.FC = () => {
                 ? 'हमारी पहलों के बारे में प्रश्न हैं या सहयोग करना चाहते हैं? हमें एक संदेश भेजें और हमारी टीम आपसे तुरंत संपर्क करेगी।'
                 : language === 'gu'
                 ? 'અમારી પહેલ વિશે પ્રશ્નો છે અથવા સહયોગ કરવા માંગો છો? અમને સંદેશ મોકલો અને અમારી ટીમ તરત જ તમારો સંપર્ક કરશે.'
-                : 'Have questions about our initiatives or want to collaborate? Send us a message and our team will get back to you promptly.'}
+                : 'Have questions about our initiatives or want to collaborate? Visit Gurukulam Agra to experience our heritage firsthand. The Triyambakam Gurukulam Association is proud to serve the community—send us a message and our team will get back to you promptly.'}
             </p>
             <div className="space-y-4">
               <p className="flex items-center text-sm font-bold"><span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mr-3">📞</span> {settings?.phone || '+91 94121 62807'}</p>

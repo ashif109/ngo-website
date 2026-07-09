@@ -381,7 +381,7 @@ const MainContent: React.FC = () => {
                 ? '"हमारा मिशन गुरुकुल प्रणाली के गहन ज्ञान को पुनर्जीवित करना और इसे आधुनिक वैज्ञानिक अन्वेषण की सटीकता के साथ एकीकृत करना है। हमारा मानना है कि परंपरा और तकनीक का अभिसरण वैश्विक कल्याण की कुंजी है।"'
                 : language === 'gu'
                 ? '"અમારો મિશન ગુરુકુલમ પ્રણાલીના ગહન જ્ઞાનને પુનર્જીવિત કરવાનો અને તેને આધુનિક સંશોધનની ચોકસાઈ સાથે એકીકૃત કરવાનો છે. અમારું માનવું છે કે પરંપરા અને ટેકનોલોજીનું મિલન વૈશ્વિક કલ્યાણની ચાવી છે."'
-                : '"Our mission is to resurrect the profound wisdom of the Gurukulam system and integrate it with the precision of modern inquiry. We believe that the convergence of tradition and technology is the key to global well-being."'}
+                : '"As a leading institution for Vedic Education in Agra, our mission at the Triyambakam Gurukulam Association is to resurrect the profound wisdom of the Gurukulam system and integrate it with the precision of modern inquiry. We believe that the convergence of tradition and technology is the key to global well-being."'}
             </p>
           </div>
           <button className="w-full md:w-auto justify-center px-8 py-4 border-2 border-white/30 text-white text-xs font-black uppercase tracking-widest hover:bg-white hover:text-primary transition-all rounded-sm flex items-center gap-3 cursor-pointer">
